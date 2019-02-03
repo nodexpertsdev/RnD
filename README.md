@@ -14,8 +14,8 @@ It is to explore, learn and try anything interesting.
 # Getting Started
 
     $ git clone https://github.com/nodexpertsdev/RnD.git
-    $ cd RnD/expressEngine
     $ git checkout develop
+    $ cd RnD/expressEngine
     $ npm start
 
 # Swagger Documentation
