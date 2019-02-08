@@ -21,3 +21,49 @@ It is to explore, learn and try anything interesting.
 # Swagger Documentation
 Use /api-docs to access swagger docs for this api.
 
+# Database Collections
+ * customer - All customer details
+ * order - Details of orders
+ * product - Details of products
+ * user - User's details like their email, password, last login and username
+ * userDetail - Store other details of user's.
+ * orderItem - Map the order collection with product collection
+
+# Structure and Naming
+ * Use camel case for naming files and folders.
+ * Defining the directory structure for only one collection: user
+
+ * expressEngine
+    ├── cms
+    |   └── user
+    |       ├── index.js
+    |       ├── user.js
+    |       ├── success.js
+    |       └── info.js
+    ├── db
+    |   └── db.js
+    ├── doc
+    |   └── swagger.json
+    ├── lib
+    |   ├── controller
+    |   |   ├── base.js
+    |   |   └── info.js
+    |   └── service
+    |       ├── base.js
+    |       ├── db.js
+    |       └── info.js
+    ├── model
+    |   ├── collection
+    |   |   └── user.js
+    |   ├── lib
+    |   |   └── index.js
+    |   └── index.js
+    └── user
+        ├── controller
+        |   ├── user.js
+        |   └── index.js
+        ├── service
+        |   ├── index.js
+        |   └── user.js
+        └── route.js
+
