@@ -33,7 +33,9 @@ Use /api-docs to access swagger docs for this api.
  * Use camel case for naming files and folders.
  * Defining the directory structure for only one collection: user
 
- * expressEngine
+ *  ```
+    expressEngine
+    |
     ├── cms
     |   └── user
     |       ├── index.js
@@ -66,4 +68,4 @@ Use /api-docs to access swagger docs for this api.
         |   ├── index.js
         |   └── user.js
         └── route.js
-
+    ```
