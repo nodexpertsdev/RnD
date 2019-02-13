@@ -1,10 +1,7 @@
-// import base controller
-import { BaseController } from '../../lib/controller/index';
-
 // import service
 import { ProductService } from '../service/index';
 
-class ProductController extends BaseController {
+class ProductController  {
   create = async (data) => {
     try {
       console.log('Inside Register Product Method');

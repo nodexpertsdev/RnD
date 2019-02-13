@@ -1,10 +1,10 @@
 // import the controller
 import { ProductController } from "../controller/index";
 
-// import base controller
-import { BaseController } from '../../lib/controller/index';
+// import base Parser
+import { BaseParser } from '../../lib/parser/index';
 
-class ProductParser extends BaseController {
+class ProductParser extends BaseParser {
 
   create = async (req, res)  => {
     try {
