@@ -2,9 +2,9 @@
 import { UserController } from "../controller/index";
 
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseParser } from '../../lib/parser/index';
 
-class UserParser extends BaseController {
+class Parser extends BaseParser {
 
   create = async (req, res)  => {
     try {
@@ -12,9 +12,9 @@ class UserParser extends BaseController {
       const result = await UserController.create({ email, password });
       this.response(res, result);
     } catch (error) {
-      this.response(res, this.error(error), 409);
+      this.response(res, error, 409);
     }
    }
 }
 
-export default new UserParser();
+export default new Parser();
