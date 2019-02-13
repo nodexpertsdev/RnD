@@ -6,13 +6,16 @@ import { BaseParser } from '../../lib/parser/index';
 
 class ProductParser extends BaseParser {
 
-  create = async (req, res)  => {
-    try {
-      const { name, supplierId, unitPrice, package, isDiscounted } = req.body;
-      const result = await ProductController.create({ name, supplierId, unitPrice, package, isDiscounted });
-      this.response(res, result);
-    } catch (error) {
-      this.response(res, this.error(error), 409);
+  run(functionName){
+
+    return async (req, res)  => {
+      const { body, params, query } = req.body;
+      try {
+        const result = await ProductController[functionName]({ params, query, body });
+        this.response(res, result);
+      } catch (error) {
+        this.response(res, this.error(error), 409);
+      }
     }
   }
 }

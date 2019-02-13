@@ -2,11 +2,12 @@
 import { ProductService } from '../service/index';
 
 class ProductController  {
-  create = async (data) => {
+  create = async ({body}) => {
+    const {name, supplierId, unitPrice, package, isDiscontinued} = body;
     try {
       console.log('Inside Register Product Method');
 
-      return await ProductService.registerProduct(data);
+      return await ProductService.registerProduct( {name, supplierId, unitPrice, package, isDiscontinued});
     } catch (err) {
       return err;
     }
