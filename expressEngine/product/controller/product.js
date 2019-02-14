@@ -1,7 +1,10 @@
+// import base controller
+import { BaseController } from '../../lib/controller/index';
+
 // import service
 import { ProductService } from '../service/index';
 
-class ProductController  {
+class ProductController extends BaseController  {
   create = async ({body}) => {
     const {name, supplierId, unitPrice, package, isDiscontinued} = body;
     try {
