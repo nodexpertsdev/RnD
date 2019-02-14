@@ -3,6 +3,9 @@ import {
     Router
 } from "express";
 
+import { ProductController } from "./controller/index";
+
+
 // import controller
 import {
     ProductParser
@@ -12,6 +15,6 @@ const router = Router();
 
 router
     .post('/',
-        ProductParser.run('create'));
+        ProductParser.run(ProductController, 'create'));
 
 export default router;
