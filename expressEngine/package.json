@@ -20,7 +20,7 @@
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.9",
+    "mongoose": "^5.4.12",
     "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
