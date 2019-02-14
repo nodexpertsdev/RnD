@@ -1,6 +1,4 @@
-import { Schema } from 'mongoose';
-
-
+import { Schema, model } from 'mongoose';
 
 const productsSchema = new Schema({
     name:{
@@ -28,7 +26,7 @@ const productsSchema = new Schema({
 
 // productsSchema.index({ name: 1, supplierId: 1 }, { unique: true });
 
-const ProductModel = mongoose.model('Products', productsSchema);
+const ProductModel = model('Products', productsSchema);
 
 
 export default ProductModel;
