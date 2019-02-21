@@ -3,6 +3,7 @@ import express from 'express';
 
 // import routes
 import UserRoute from './user/route';
+import OrderRoute from './order/route';
 
 const app = express();
 
@@ -18,5 +19,7 @@ app.use('/', (req, res, next) => { // to be used to authenticate request
 })
 
 app.use('/user', UserRoute);
+app.use('/order', OrderRoute);
+
 
 export default app;
