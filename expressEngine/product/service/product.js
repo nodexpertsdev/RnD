@@ -10,7 +10,6 @@ import cms from '../../cms/product/index';
 class Service extends BaseService {
   registerProduct = async (data) => {
     try {
-      // const data = { ...req.body };
 
       const requiredFields = ["name", "supplierId","unitPrice"];
       this.validateRequired(data, requiredFields);

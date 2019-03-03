@@ -10,7 +10,6 @@ import cms from '../../cms/user/index';
 class Service extends BaseService {
   registerUser = async (data) => {
     try {
-      // const data = { ...req.body };
 
       const requiredFields = ["email", "password"];
       this.validateRequired(data, requiredFields);

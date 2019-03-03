@@ -6,7 +6,6 @@ import { ProductService } from '../service/index';
 
 class ProductController extends BaseController  {
   create = async ({body}) => {
-    console.log("#####################", body);
     const {name, supplierId, unitPrice, productPackage , isDiscontinued} = body;
     try {
       console.log('Inside Register Product Method');

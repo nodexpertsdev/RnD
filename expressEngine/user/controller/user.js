@@ -4,7 +4,7 @@ import { BaseController } from '../../lib/controller/index';
 // import service
 import { UserService } from '../service/index';
 
-class UserController extends BaseController {
+class Controller extends BaseController {
   create = async (data) => {
     try {
       console.log('Inside Register User Method');
@@ -16,4 +16,4 @@ class UserController extends BaseController {
   };
 };
 
-export default new UserController();
+export default new Controller();

@@ -1,4 +1,3 @@
-// import the controller
 // import base Parser
 import { BaseParser } from '../../lib/parser/index';
 
