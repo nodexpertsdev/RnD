@@ -1,1 +1,5 @@
-export { default as ProductParser } from './product';
+import ProductParser from './product';
+
+export {
+  ProductParser,
+};

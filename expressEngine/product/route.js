@@ -1,20 +1,22 @@
 // importing packages
 import {
-    Router
-} from "express";
+  Router,
+} from 'express';
 
-import { ProductController } from "./controller/index";
+import {
+  ProductController,
+} from './controller/index';
 
 
 // import controller
 import {
-    ProductParser
+  ProductParser,
 } from './parser';
 
 const router = Router();
 
 router
-    .post('/',
-        ProductParser.run(ProductController, 'create'));
+  .post('/',
+    ProductParser.run(ProductController, 'create'));
 
 export default router;

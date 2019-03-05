@@ -14,7 +14,7 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: [true, "Email is required"],
+    required: [true, 'Email is required'],
     validate: {
       validator: (email) => modelLib.validateEmail(email),
       message: props => `${props.value} is not a valid email!`,
@@ -28,7 +28,7 @@ const UserSchema = new Schema({
     type: Date,
     required: false,
   },
-}, { collection: "user", timestamps: true });
+}, { collection: 'user', timestamps: true });
 
 /**
  * Pre hooks
@@ -42,10 +42,10 @@ UserSchema.pre('save', async function () {
 });
 
 // index
-UserSchema.index({ "email": 1 }, {
+UserSchema.index({ 'email': 1 }, {
   unique: true,
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 export default User;

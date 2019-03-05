@@ -1,30 +1,35 @@
-import { Schema, model } from 'mongoose';
+import {
+    Schema,
+    model
+} from 'mongoose';
 
 const productsSchema = new Schema({
-    name:{
+    name: {
         type: String,
-        required: true
+        required: true,
     },
-    supplierId:{
+    supplierId: {
         type: String,
-        required: true
+        required: true,
     },
     unitPrice: {
         type: Number,
-        required: true
+        required: true,
     },
-    package:{
+    package: {
         type: String,
-        required: false
+        required: false,
     },
     isDiscontinued: {
         type: Boolean,
-        required: false
+        required: false,
     }
 
-}, {collection: "product", timestamp: true});
+}, {
+    collection: 'product',
+    timestamp: true,
+});
 
-// productsSchema.index({ name: 1, supplierId: 1 }, { unique: true });
 
 const ProductModel = model('Products', productsSchema);
 

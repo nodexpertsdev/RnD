@@ -10,22 +10,17 @@ import cms from '../../cms/product/index';
 class Service extends BaseService {
   registerProduct = async (data) => {
     try {
-
-      const requiredFields = ["name", "supplierId","unitPrice"];
+      const {name, supplierId,unitPrice, productPackage, isDiscontinued  } = data,
+      requiredFields = ['name', 'supplierId','unitPrice'];
+      
+      console.log('Service: Product create');
       this.validateRequired(data, requiredFields);
-
-      const isExist = await DbService.count(ProductModel, { name: data.name, supplierId: data.supplierId });
-      if (isExist) {
-        return this.error(cms.alreadyRegistered);
-      }
-
-
       const Product = await DbService.create(ProductModel, {
-        name: data.name,
-        supplierId: data.supplierId,
-        unitPrice: data.unitPrice,
-        package: data.productPackage,
-        isDiscontinued: data.isDiscontinued
+        name,
+        supplierId,
+        unitPrice,
+        package: productPackage,
+        isDiscontinued
       });
 
       return this.success(Product, cms.ProductRegistered);

@@ -6,11 +6,10 @@ import { ProductService } from '../service/index';
 
 class ProductController extends BaseController  {
   create = async ({body}) => {
-    const {name, supplierId, unitPrice, productPackage , isDiscontinued} = body;
     try {
-      console.log('Inside Register Product Method');
+      console.log('Controller: Product create');
 
-      return await ProductService.registerProduct( {name, supplierId, unitPrice, productPackage , isDiscontinued});
+      return await ProductService.registerProduct(body);
     } catch (err) {
       return err;
     }
