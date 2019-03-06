@@ -16,7 +16,7 @@ class Service extends BaseService {
 
       const isExist = await DbService.count(User, { email: data.email });
       if (isExist) {
-        return this.error(cms.alreadyRegistered);
+        return this.error(cms.Error.alreadyRegistered);
       }
 
 
@@ -25,7 +25,7 @@ class Service extends BaseService {
         password: data.password,
       });
 
-      return this.success(user, cms.userRegistered);
+      return this.success(user, cms);
     } catch(err) {
       console.log('ERROR:::::::::::::::::::::::', err);
       return this.error(err);
