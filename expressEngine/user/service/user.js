@@ -2,7 +2,7 @@
 import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
-import { User, UserDetail } from '../../model/index';
+import { User } from '../../model/index';
 
 // import messages
 import cms from '../../cms/user/index';
@@ -16,7 +16,7 @@ class Service extends BaseService {
 
       const isExist = await DBService.count(User, { email: data.email });
       if (isExist) {
-        return this.error(cms.Error.alreadyRegistered);
+        return this.error(cms.error.alreadyRegistered);
       }
 
 
@@ -25,7 +25,7 @@ class Service extends BaseService {
         password: data.password,
       });
 
-      return this.success(user, cms);
+      return this.success(user, cms.success.userRegistered);
     } catch(err) {
       console.log('ERROR:::::::::::::::::::::::', err);
       return this.error(err);

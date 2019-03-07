@@ -1,5 +1,5 @@
-import Error from './error';
-import Info from './info';
-import Success from './success';
+import error from './error';
+import info from './info';
+import success from './success';
 
-export default { Error, Info, Success };
+export default { error, info, success };

@@ -23,7 +23,7 @@ class Service extends BaseService {
         isDiscontinued
       });
 
-      return this.success(Product, cms.Success.productRegistered);
+      return this.success(Product, cms.success.productRegistered);
     } catch(err) {
       console.log('ERROR:::::::::::::::::::::::', err);
       return this.error(err);
