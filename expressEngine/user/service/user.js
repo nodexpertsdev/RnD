@@ -1,5 +1,5 @@
 // import service libraries
-import { BaseService, DbService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
 import { User, UserDetail } from '../../model/index';
@@ -14,13 +14,13 @@ class Service extends BaseService {
       const requiredFields = ["email", "password"];
       this.validateRequired(data, requiredFields);
 
-      const isExist = await DbService.count(User, { email: data.email });
+      const isExist = await DBService.count(User, { email: data.email });
       if (isExist) {
         return this.error(cms.Error.alreadyRegistered);
       }
 
 
-      const user = await DbService.create(User, {
+      const user = await DBService.create(User, {
         email: data.email,
         password: data.password,
       });

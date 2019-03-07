@@ -1,5 +1,5 @@
 // import service libraries
-import { BaseService, DbService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
 import { ProductModel, ProductDetail } from '../../model/index';
@@ -15,7 +15,7 @@ class Service extends BaseService {
       
       console.log('Service: Product create');
       this.validateRequired(data, requiredFields);
-      const Product = await DbService.create(ProductModel, {
+      const Product = await DBService.create(ProductModel, {
         name,
         supplierId,
         unitPrice,
