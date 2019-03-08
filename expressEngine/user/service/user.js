@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service/index';
 import { User } from '../../model/index';
 
 // import messages
-import cms from '../../cms/user/index';
+import {error, success} from '../../cms/user/index';
 
 class Service extends BaseService {
   registerUser = async (data) => {
@@ -16,7 +16,7 @@ class Service extends BaseService {
 
       const isExist = await DBService.count(User, { email: data.email });
       if (isExist) {
-        return this.error(cms.error.alreadyRegistered);
+        return this.error(error.alreadyRegistered);
       }
 
 
@@ -25,7 +25,7 @@ class Service extends BaseService {
         password: data.password,
       });
 
-      return this.success(user, cms.success.userRegistered);
+      return this.success(user, success.userRegistered);
     } catch(err) {
       console.log('ERROR:::::::::::::::::::::::', err);
       return this.error(err);
