@@ -8,8 +8,7 @@ class Parser extends BaseParser {
 
   create = async (req, res)  => {
     try {
-      const { email, password } = req.body;
-      const result = await UserController.create({ email, password });
+      const result = await UserController.create(...req.body);
       this.response(res, result);
     } catch (error) {
       this.response(res, error, 409);

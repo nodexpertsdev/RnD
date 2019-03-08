@@ -1,7 +1,7 @@
 class Controller {
   error = (err) => {
     const errMsg =
-      (err.errors && err.errors && err.errors[Object.keys(err.errors)[0]].message) ||
+      (err.errors && err.errors[Object.keys(err.errors)[0]].message) ||
       err.message ||
       err;
     return {

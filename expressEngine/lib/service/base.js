@@ -1,7 +1,8 @@
 class BaseService {
   error = (err) => {
+    console.log('Inside lib base service ', err);
     const errMsg =
-      (err.errors && err.errors && err.errors[Object.keys(err.errors)[0]].message) ||
+      (err.errors && err.errors[Object.keys(err.errors)[0]].message) ||
       err.message ||
       err;
     return {
@@ -13,7 +14,7 @@ class BaseService {
   response = (res, data, statusCode = 200) => res.status(statusCode).json(data);
 
   success = (data, successMsg = false) => {
-    if (typeof data === "string") {
+    if (typeof data === 'string') {
       return {
         success: true,
         message: data,
@@ -22,7 +23,7 @@ class BaseService {
     return {
       success: true,
       data,
-      message: successMsg || "Process compeleted successfully",
+      message: successMsg || 'Process compeleted successfully',
     };
   }
 

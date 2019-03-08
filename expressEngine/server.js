@@ -18,16 +18,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/health-check", (req , res, next) => {
+app.use('/health-check', (req, res, next) => {
   res.status(200).json({
-    status: "ok",
-    message: "Health is good",
+    status: 'ok',
+    message: 'Health is good',
   })
 });
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
-app.use("/api", Route);
+app.use('/api', Route);
 
 const PORT = 5000;
 
