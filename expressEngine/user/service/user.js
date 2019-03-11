@@ -1,29 +1,35 @@
 // import service libraries
-import { BaseService, DbService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
-import { User, UserDetail } from '../../model/index';
+import { User } from '../../model/index';
 
 // import messages
-import cms from '../../cms/user/index';
+import {error, success} from '../../cms/user/index';
 
 class Service extends BaseService {
-  registerUser = async (req, res) => {
-    const data = { ...req.body };
-    const requiredFields = ["email", "password"];
-    this.validateRequired(data, requiredFields);
+  registerUser = async (data) => {
+    try {
 
-    const isExist = await DbService.count(User, { email: data.email });
-    if (isExist) {
-      return this.response(res, this.error(cms.alreadyRegistered), 409);
+      const requiredFields = ["email", "password"];
+      this.validateRequired(data, requiredFields);
+
+      const isExist = await DBService.count(User, { email: data.email });
+      if (isExist) {
+        return this.error(error.alreadyRegistered);
+      }
+
+
+      const user = await DBService.create(User, {
+        email: data.email,
+        password: data.password,
+      });
+
+      return this.success(user, success.userRegistered);
+    } catch(err) {
+      console.log('ERROR:::::::::::::::::::::::', err);
+      return this.error(err);
     }
-
-    const user = await DbService.create(User, {
-      email: data.email,
-      password: data.password,
-    });
-
-    return this.response(res, this.success(user, cms.userRegistered));
   }
 }
 

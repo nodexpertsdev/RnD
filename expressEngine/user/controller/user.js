@@ -5,13 +5,13 @@ import { BaseController } from '../../lib/controller/index';
 import { UserService } from '../service/index';
 
 class Controller extends BaseController {
-  create = async (req, res) => {
+  create = async (data) => {
     try {
       console.log('Inside Register User Method');
 
-      await UserService.registerUser(req, res);
+      return await UserService.registerUser(data);
     } catch (err) {
-      return this.response(res, this.error(err), 422);
+      return err;
     }
   };
 };

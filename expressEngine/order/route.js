@@ -1,11 +1,19 @@
 // importing packages
-import express from "express";
+import {
+  Router,
+} from 'express';
+import {
+  OrderParser,
+} from './parser';
 
 // import controller
-import { OrderController } from './controller/index';
+import {
+  OrderController,
+} from './controller/index';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/', OrderController.create);
+router.post('/',
+  OrderParser.run(OrderController, 'create'));
 
 export default router;

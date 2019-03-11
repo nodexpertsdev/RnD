@@ -79,5 +79,5 @@ Use /api-docs to access swagger docs.
    
 ### Coding Style Guideline
 
-We are following the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+We are following [Coding Style Guidelines](https://github.com/nodexpertsdev/RnD/blob/develop/CODING_GUIDE.md)
 

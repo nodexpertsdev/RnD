@@ -5,11 +5,13 @@ import { BaseController } from '../../lib/controller/index';
 import { OrderService } from '../service/index';
 
 class Controller extends BaseController {
-  create = async (req, res) => {
+  create = async ({body}) => {
     try {
-      await OrderService.generateOrder(req, res);
+
+      console.log('Controller: Order Create')
+      return await OrderService.generateOrder(body);
     } catch (err) {
-      return this.response(res, this.error(err), 422);
+      return err ;
     }
   };
 };

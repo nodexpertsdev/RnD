@@ -1,11 +1,11 @@
 // importing packages
-import express from "express";
+import express from 'express';
 
 // import controller
-import { UserController } from './controller/index';
+import { Parser } from './parser';
 
-const router      = express.Router();
+const router = express.Router();
 
-router.post('/', UserController.create);
+router.post('/', Parser.create);
 
 export default router;

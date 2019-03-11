@@ -4,6 +4,7 @@
   "description": "It is to explore, learn and try anything interesting.",
   "main": "server.js",
   "scripts": {
+    "lint": "eslint",
     "start": "npm i && node_modules/.bin/nodemon server.js --exec babel-node server.js"
   },
   "repository": {
@@ -19,8 +20,9 @@
   "dependencies": {
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
+    "eslint-config-airbnb-base": "^13.1.0",
     "express": "^4.16.4",
-    "mongoose": "^5.4.9",
+    "mongoose": "^5.4.12",
     "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
@@ -29,6 +31,8 @@
     "@babel/node": "^7.0.0-rc.1",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/preset-env": "^7.0.0-rc.1",
+    "eslint": "^5.14.1",
+    "eslint-plugin-import": "^2.16.0",
     "nodemon": "^1.18.9"
   }
 }

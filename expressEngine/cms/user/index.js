@@ -1,5 +1,5 @@
-import ErrorMsgs from './error';
-import InfoMsgs from './info';
-import SuccessMsgs from './success';
+import error from './error';
+import info from './info';
+import success from './success';
 
-export default { ...ErrorMsgs, ...InfoMsgs, ...SuccessMsgs };
+export { error, info, success };

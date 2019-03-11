@@ -1,4 +1,4 @@
-class Controller {
+class Parser {
   error = (err) => {
     const errMsg =
       (err.errors && err.errors[Object.keys(err.errors)[0]].message) ||
@@ -13,4 +13,4 @@ class Controller {
   response = (res, data, statusCode = 200) => res.status(statusCode).json(data);
 };
 
-export default Controller;
+export default Parser;
