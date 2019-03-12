@@ -18,10 +18,7 @@ app.use('/', (req, res, next) => { // to be used to authenticate request
   }
   next();
 });
-
 app.use('/user', UserRoute);
 app.use('/order', OrderRoute);
-
 app.use('/products', ProductRoute);
-
 export default app;

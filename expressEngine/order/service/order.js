@@ -2,7 +2,7 @@
 import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
-import { OrderModel } from '../../model/index';
+import { Order } from '../../model/index';
 
 // import messages
 import { success } from '../../cms/order';
@@ -14,14 +14,14 @@ class Service extends BaseService {
       requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
       console.log('Service: Order Create');
       this.validateRequired(data, requiredFields)
-      const Order = await DBService.create(OrderModel, {
+      const Orders = await DBService.create(Order, {
         orderNumber,
         supplierId,
         unitPrice,
         package:productPackage,
       });
 
-      return this.success(Order, success.orderGenerated);
+      return this.success(Orders, success.orderGenerated);
 
     } catch (err) {
       console.log('ERROR:::::::::::::::::::::::::', err);
