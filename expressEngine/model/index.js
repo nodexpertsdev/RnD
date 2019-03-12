@@ -1,9 +1,11 @@
 import User from './collection/user';
 import UserDetail from './collection/userDetail';
-import ProductModel from './collection/product';
+import Order from './collection/order';
+import Product from './collection/product';
 
 export {
   User,
   UserDetail,
-  ProductModel
+  Order,
+  Product,
 };

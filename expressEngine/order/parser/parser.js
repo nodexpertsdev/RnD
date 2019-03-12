@@ -3,7 +3,7 @@ import {
   BaseParser,
 } from '../../lib/parser/index';
 
-class ProductParser extends BaseParser {
+class OrderParser extends BaseParser {
   run(controller, functionName) {
     return async (req, res) => {
       const {
@@ -29,4 +29,4 @@ class ProductParser extends BaseParser {
   }
 }
 
-export default new ProductParser();
+export default new OrderParser();

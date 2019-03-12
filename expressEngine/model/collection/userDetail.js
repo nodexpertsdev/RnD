@@ -8,7 +8,7 @@ const { Schema } = mongoose;
 const userDetailSchema = new Schema({
   userId: {
     type: String,
-    unique: [true, "You have already added profile details"],
+    unique: [true, 'You have already added profile details'],
     required: true,
   },
   role: {
@@ -44,8 +44,8 @@ const userDetailSchema = new Schema({
     type: String,
     required: false,
   },
-}, { collection: "userDetail", timestamps: true });
+}, { collection: 'userDetail', timestamps: true });
 
-const UserDetail = mongoose.model("UserDetail", userDetailSchema);
+const UserDetail = mongoose.model('UserDetail', userDetailSchema);
 
 export default UserDetail;

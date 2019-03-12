@@ -3,9 +3,9 @@ import {
   model,
 } from 'mongoose';
 
-const productsSchema = new Schema({
-  name: {
-    type: String,
+const ordersSchema = new Schema({
+  orderNumber: {
+    type: Number,
     required: true,
   },
   supplierId: {
@@ -20,18 +20,11 @@ const productsSchema = new Schema({
     type: String,
     required: false,
   },
-  isDiscontinued: {
-    type: Boolean,
-    required: false,
-  },
 
 }, {
-  collection: 'product',
+  collection: 'orders',
   timestamp: true,
 });
+const Order = model('orders', ordersSchema);
 
-
-const ProductModel = model('Products', productsSchema);
-
-
-export default ProductModel;
+export default Order;
