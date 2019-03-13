@@ -31,6 +31,19 @@ class Service extends BaseService {
       return this.error(err);
     }
   }
+  deleteUser = async (id) => {
+    try {
+      const isExist = await DBService.findOne(User, {_id: id});
+      if(!isExist) {
+        console.log('1st');
+        return this.error(error.idDoesNotExist);
+      }
+        await DBService.findOneAndDelete(User, {_id: id});
+        return this.success(id, success.delete);
+    } catch(err) {
+      return this.error(err);
+  }
+}
 }
 
 export default new Service();

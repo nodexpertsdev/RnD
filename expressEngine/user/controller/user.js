@@ -14,6 +14,13 @@ class Controller extends BaseController {
       return err;
     }
   };
+  delete = async (id) => {
+    try {
+      return await UserService.deleteUser(id);
+    } catch (err) {
+      return err;
+    }
+  };
 };
 
 export default new Controller();
