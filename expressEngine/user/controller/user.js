@@ -6,13 +6,11 @@ import { UserService } from '../service/index';
 
 class Controller extends BaseController {
   create = async (data) => {
-    try {
-      console.log('Inside Register User Method');
+    console.log('Inside Register User Method');
 
-      return await UserService.registerUser(data);
-    } catch (err) {
-      return err;
-    }
+    const result = await UserService.registerUser(data);
+
+    return result;
   };
 };
 
