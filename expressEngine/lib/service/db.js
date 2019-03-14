@@ -14,6 +14,13 @@ class DbOperation {
   findOne = (collection, data = {}, projection = {}) => {
     return collection.findOne(data, projection);
   }
+  updateOne = (collection, data = {}, projection = {}) => {
+    return collection.updateOne(data, projection);
+  }
+
+  updateMany = (collection, data = {}, projection = {}) => {
+    return collection.updateMany(data, projection);
+  }
 }
 
 export default new DbOperation();

@@ -5,6 +5,7 @@ import express from 'express';
 import UserRoute from './user/route';
 import OrderRoute from './order/route';
 import ProductRoute from './product/route';
+import OrderItemsRoute from './orderItems/route';
 
 const app = express();
 
@@ -21,4 +22,5 @@ app.use('/', (req, res, next) => { // to be used to authenticate request
 app.use('/user', UserRoute);
 app.use('/order', OrderRoute);
 app.use('/products', ProductRoute);
+app.use('/orderItems', OrderItemsRoute);
 export default app;
