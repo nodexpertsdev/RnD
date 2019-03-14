@@ -76,6 +76,58 @@
           }
         }
       }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "To register a new user",
+        "description": "",
+        "operationId": "addUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "properties": {
+              "email": {
+                "name": "email",
+                "description": "Email id of user getting registered",
+                "required": true,
+                "type": "string"
+              },
+              "password": {
+                "name": "password",
+                "description": "Password of user getting registered",
+                "required": true,
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have registered successfully",
+            "type": "object",
+            "$ref": "#/definitions/Success"
+          },
+          "422": {
+            "description": "User is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          },
+          "409": {
+            "description": "User is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
     }
   },
   "definitions": {

@@ -5,6 +5,7 @@ import { BaseController } from '../../lib/controller/index';
 import { UserService } from '../service/index';
 
 class Controller extends BaseController {
+
   create = async (data) => {
     try {
       console.log('Inside Register User Method');
@@ -14,6 +15,15 @@ class Controller extends BaseController {
       return err;
     }
   };
+
+  createToken = async (data) => {
+    try {
+      return await UserService.createToken(data);
+    } catch (err) {
+      return err;
+    }
+  };
+
   delete = async (id) => {
     try {
       return await UserService.deleteUser(id);

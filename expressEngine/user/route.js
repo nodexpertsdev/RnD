@@ -7,6 +7,7 @@ import { Parser } from './parser';
 const router = express.Router();
 
 router.post('/', Parser.create);
-router.delete('/:id', Parser.delete );
+
+router.delete('/:id', Parser.delete);
 
 export default router;

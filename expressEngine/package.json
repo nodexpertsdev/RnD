@@ -22,6 +22,7 @@
     "body-parser": "^1.18.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.4.12",
     "swagger-ui-express": "^4.0.2"
   },

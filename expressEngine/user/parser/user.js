@@ -25,6 +25,23 @@ class Parser extends BaseParser {
       this.response(res, error, 409);
     }
   }
+
+  createToken = async (req, res) => {
+    try {
+      const {
+        email,
+        password
+      } = req.body;
+      const result = await UserController.createToken({
+        email,
+        password
+      });
+      this.response(res, result);
+    } catch (error) {
+      this.response(res, error, 409);
+    }
+  }
+
   delete = async (req, res) => {
     try {
       const {
