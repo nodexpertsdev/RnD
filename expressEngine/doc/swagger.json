@@ -47,6 +47,46 @@
                 "description": "Password of user getting registered",
                 "required": true,
                 "type": "string"
+              },
+              "role": {
+                "name": "role",
+                "description": "Role of user getting registered",
+                "type": "string"
+              },
+              "companyName": {
+                "name": "companyName",
+                "description": "Company Name of user getting registered",
+                "type": "string"
+              },
+              "contactName": {
+                "name": "contactName",
+                "description": "Contact Name of user getting registered",
+                "type": "string"
+              },
+              "contactTitle": {
+                "name": "contactTitle",
+                "description": "Contact Title of user getting registered",
+                "type": "string"
+              },
+              "city": {
+                "name": "city",
+                "description": "City of user getting registered",
+                "type": "string"
+              },
+              "country": {
+                "name": "country",
+                "description": "Country of user getting registered",
+                "type": "string"
+              },
+              "phone": {
+                "name": "phone",
+                "description": "Phone number of user getting registered",
+                "type": "string"
+              },
+              "fax": {
+                "name": "fax",
+                "description": "Fax of user getting registered",
+                "type": "string"
               }
             }
           },
