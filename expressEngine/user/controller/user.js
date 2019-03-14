@@ -20,6 +20,16 @@ class Controller extends BaseController {
     } catch (err) {
       return err;
     }
+  }
+
+  get = async (id) => {
+    try {
+      console.log('Inside User Get Method');
+
+      return await UserService.getUser(id);
+    } catch (err) {
+      return err;
+    }
   };
 };
 

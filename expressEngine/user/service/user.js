@@ -44,6 +44,25 @@ class Service extends BaseService {
       return this.error(err);
   }
 }
+
+  getUser = async (id) => {
+    try {
+      let users;
+      if (id) {
+       users = await DBService.findOne(User, {_id: id});
+      } else {
+       users = await DBService.find(User, {});
+
+      }
+      if (users) {
+        return this.success(users, success.fetch);
+      }
+        return null;
+    } catch(err) {
+      console.log('ERROR:::::::::::::::::::::::', err);
+      return this.error(err);
+    }
+  }
 }
 
 export default new Service();

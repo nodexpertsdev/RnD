@@ -9,4 +9,6 @@ const router = express.Router();
 router.post('/', Parser.create);
 router.delete('/:id', Parser.delete );
 
+router.get('/:id?', Parser.get);
+
 export default router;
