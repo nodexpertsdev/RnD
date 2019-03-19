@@ -4,8 +4,8 @@
   "description": "It is to explore, learn and try anything interesting.",
   "main": "server.js",
   "scripts": {
-    "lint": "eslint",
-    "start": "npm i && node_modules/.bin/nodemon server.js --exec babel-node server.js"
+    "start": "npm i && node_modules/.bin/nodemon server.js --exec babel-node server.js",
+    "test": "ENV=test ./node_modules/.bin/mocha --require @babel/register --recursive './{,!(node_modules)/**}/*.test.js'"
   },
   "repository": {
     "type": "git",
@@ -18,21 +18,26 @@
   },
   "homepage": "https://github.com/nodexpertsdev/RnD#readme",
   "dependencies": {
+    "@babel/runtime": "^7.3.4",
+    "babel-core": "^6.26.3",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
+    "chai-http": "^4.2.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "express": "^4.16.4",
     "mongoose": "^5.4.12",
     "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-rc.1",
-    "@babel/core": "^7.0.0-rc.1",
-    "@babel/node": "^7.0.0-rc.1",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
-    "@babel/preset-env": "^7.0.0-rc.1",
-    "eslint": "^5.14.1",
-    "eslint-plugin-import": "^2.16.0",
-    "nodemon": "^1.18.9"
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.10"
   }
 }
