@@ -12,7 +12,8 @@ class Parser extends BaseParser {
       this.validateRequired(data, requiredFields);
 
       const result = await UserController.create(data);
-      this.response(res, result);
+
+      this.response(res, this.success(result));
     } catch (error) {
       this.response(res, this.error(error), 422);
     }

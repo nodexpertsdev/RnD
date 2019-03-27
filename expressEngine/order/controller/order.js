@@ -11,7 +11,7 @@ class Controller extends BaseController {
       console.log('Controller: Order Create')
       return await OrderService.generateOrder(body);
     } catch (err) {
-      return err ;
+      return err;
     }
   };
 };

@@ -13,12 +13,10 @@ class BaseService {
   success = (data, successMsg = false) => {
     if (typeof data === 'string') {
       return {
-        success: true,
         message: data,
       };
     }
     return {
-      success: true,
       data,
       message: successMsg || 'Process compeleted successfully',
     };

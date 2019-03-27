@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service/index';
 import { User } from '../../model/index';
 
 // import messages
-import { error, success } from '../../cms/user/index';
+import { error } from '../../cms/user/index';
 
 class Service extends BaseService {
   constructor() {
@@ -43,7 +43,11 @@ class Service extends BaseService {
       fax,
     });
 
-    return this.success({ userId: user.userId }, success.userRegistered);
+    if (!user) {
+      throw error.unableToRegister;
+    }
+
+    return user;
   }
 }
 

@@ -8,9 +8,9 @@ class Controller extends BaseController {
   create = async (data) => {
     console.log('Inside Register User Method');
 
-    const result = await UserService.registerUser(data);
+    const userData = await UserService.registerUser(data);
 
-    return result;
+    return { userId: userData.userId };
   };
 };
 
