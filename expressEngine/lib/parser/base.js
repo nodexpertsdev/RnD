@@ -9,7 +9,7 @@ class Parser {
     };
   }
 
-  success = (data, successMsg = false) => {
+  success = (data, successMsg = 'Process compeleted successfully') => {
     if (typeof data === 'string') {
       return {
         message: data,
@@ -17,7 +17,7 @@ class Parser {
     }
     return {
       data,
-      message: successMsg || 'Process compeleted successfully',
+      message: successMsg,
     };
   }
 
