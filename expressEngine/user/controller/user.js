@@ -6,8 +6,6 @@ import { UserService } from '../service/index';
 
 class Controller extends BaseController {
   create = async (data) => {
-    console.log('Inside Register User Method');
-
     const userData = await UserService.registerUser(data);
 
     return { userId: userData.userId };
