@@ -12,7 +12,6 @@ class Service extends BaseService {
     try {
       const { orderNumber, supplierId, unitPrice, productPackage } = data,
       requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
-      console.log('Service: Order Create');
       this.validateRequired(data, requiredFields)
       const result = await DBService.create(Order, {
         orderNumber,
@@ -24,7 +23,6 @@ class Service extends BaseService {
       return this.success(result, success.orderGenerated);
 
     } catch (err) {
-      console.log('ERROR:::::::::::::::::::::::::', err);
       return this.error(err);
     }
   }

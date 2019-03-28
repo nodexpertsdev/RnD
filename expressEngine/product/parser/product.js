@@ -22,7 +22,6 @@ class ProductParser extends BaseParser {
         });
         this.response(res, result);
       } catch (error) {
-        console.log(error);
         this.response(res, error, 409);
       }
     };

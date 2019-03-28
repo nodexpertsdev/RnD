@@ -1,1 +1,3 @@
-export { default as Parser } from './user';
+import UserParser from './user';
+
+export { UserParser };

@@ -5,12 +5,36 @@ class Parser {
       err.message ||
       err;
     return {
-      message: errMsg,
-      error: true,
+      error: errMsg,
+    };
+  }
+
+  success = (data, successMsg = 'Process compeleted successfully') => {
+    if (typeof data === 'string') {
+      return {
+        message: data,
+      };
+    }
+    return {
+      data,
+      message: successMsg,
     };
   }
 
   response = (res, data, statusCode = 200) => res.status(statusCode).json(data);
+
+  validateRequired = (data = {}, required = []) => {
+    const retVal = {};
+    required.forEach((field) => {
+      if (!(data[field] || data[field] === false || data[field] === 0)) {
+        const fieldKey = field.charAt(0).toUpperCase() + field.slice(1);
+        retVal[field] = `${fieldKey} is required.`;
+      }
+    });
+    if (Object.keys(retVal).length) {
+      throw retVal;
+    }
+  }
 };
 
 export default Parser;
