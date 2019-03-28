@@ -7,8 +7,6 @@ import { ProductService } from '../service/index';
 class ProductController extends BaseController  {
   create = async ({body}) => {
     try {
-      console.log('Controller: Product create');
-
       return await ProductService.registerProduct(body);
     } catch (err) {
       return err;

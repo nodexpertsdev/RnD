@@ -13,7 +13,6 @@ class Service extends BaseService {
       const {name, supplierId,unitPrice, productPackage, isDiscontinued  } = data,
       requiredFields = ['name', 'supplierId','unitPrice'];
       
-      console.log('Service: Product create');
       this.validateRequired(data, requiredFields);
       const Product = await DBService.create(ProductModel, {
         name,
@@ -25,7 +24,6 @@ class Service extends BaseService {
 
       return this.success(Product, success.productRegistered);
     } catch(err) {
-      console.log('ERROR:::::::::::::::::::::::', err);
       return this.error(err);
     }
   }
