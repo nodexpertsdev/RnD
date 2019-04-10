@@ -10,14 +10,7 @@ class Controller {
     };
   }
 
-  response = (data) => {
-    return [{
-      data
-    }, {
-      code: "1234567890",
-      status: "Success"
-    }];
-  }
+  response = (res, data, statusCode = 200) => res.status(statusCode).json(data);
 };
 
 export default Controller;
