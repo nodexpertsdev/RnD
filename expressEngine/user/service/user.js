@@ -8,6 +8,11 @@ import { User } from '../../model/index';
 import { error } from '../../cms/user/index';
 
 class Service extends BaseService {
+  constructor() {
+    super();
+    this.supplier = 'supplier';
+  }
+
   registerUser = async ({ email, password, ...rest }) => {
     const isExist = await DBService.count(User, { email });
     if (isExist) {

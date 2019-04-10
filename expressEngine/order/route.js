@@ -2,9 +2,9 @@
 import {
   Router,
 } from 'express';
-import {
-  OrderParser,
-} from './parser';
+
+// import parser
+import parser from '../lib/parser';
 
 // import controller
 import {
@@ -14,6 +14,6 @@ import {
 const router = Router();
 
 router.post('/',
-  OrderParser.run(OrderController, 'create'));
+  parser(OrderController, 'create'));
 
 export default router;

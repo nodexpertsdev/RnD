@@ -8,8 +8,7 @@ class Controller extends BaseController {
   create = async (data) => {
     const userData = await UserService.registerUser(data);
 
-    // return { userId: userData.userId };
-    return this.response({ userId: userData.userId })
+    return { userId: userData.userId };
   };
 };
 
