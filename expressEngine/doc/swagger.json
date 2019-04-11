@@ -65,7 +65,7 @@
             "$ref": "#/definitions/Success"
           },
           "422": {
-            "description": "User is already registered",
+            "description": "Unprocessable",
             "type": "object",
             "$ref": "#/definitions/Error"
           },

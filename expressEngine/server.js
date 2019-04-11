@@ -18,11 +18,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/health-check', (req, res, next) => {
+app.use('/health-check', (req, res) => {
   res.status(200).json({
     status: 'ok',
     message: 'Health is good',
-  })
+  });
 });
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
@@ -31,15 +31,17 @@ app.use('/api', Route);
 
 const PORT = 5000;
 
-db.open().then(async () => {
-  try {
-    console.log('Db connected successfully');
+db.open()
+  .then(async () => {
+    try {
+      console.log('Db connected successfully');
 
-    await app.listen(PORT);
-    console.log(`App running on port ${PORT}`);
-  } catch (err) {
+      await app.listen(PORT);
+      console.log(`App running on port ${PORT}`);
+    } catch (err) {
+      console.warn(err);
+    }
+  })
+  .catch((err) => {
     console.warn(err);
-  }
-}).catch((err) => {
-  console.warn(err);
-});
+  });

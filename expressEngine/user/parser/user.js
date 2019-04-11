@@ -1,12 +1,12 @@
 // import the controller
 import {
   UserController
-} from "../controller/index";
+} from "../controller";
 
 // import base controller
 import {
   BaseParser
-} from '../../lib/parser/index';
+} from '../../lib/parser';
 
 class Parser extends BaseParser {
 

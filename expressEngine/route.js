@@ -6,6 +6,7 @@ import UserRoute from './user/route';
 import OrderRoute from './order/route';
 import ProductRoute from './product/route';
 
+// eslint-disable-next-line import/named
 import { Parser } from './user/parser';
 import checkAuth from './check-auth';
 

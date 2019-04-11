@@ -2,6 +2,7 @@
 import express from 'express';
 
 // import controller
+// eslint-disable-next-line import/named
 import { Parser } from './parser';
 
 const router = express.Router();

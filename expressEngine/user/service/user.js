@@ -3,13 +3,13 @@ import jwt from 'jsonwebtoken';
 import config from '../../config';
 
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { User } from '../../model/index';
+import { User } from '../../model';
 
 // import messages
-import {error, success} from '../../cms/user/index';
+import {error, success} from '../../cms/user';
 
 class Service extends BaseService {
 
@@ -40,11 +40,14 @@ class Service extends BaseService {
 
       const requiredFields = ["email", "password"];
       this.validateRequired(data, requiredFields);
-
+      // console.log("email and Pass",data.email, data.password);
       const doc = await DBService.findOne(User, { email: data.email });
+
       if (doc) {
+        console.log("email and Pass",doc.email, doc.password);
 
         const result = bcrypt.compareSync(data.password, doc.password);
+        console.log("result", result);
         if (!result) {
           return this.error(error.incorrectLogin);
         } else {
@@ -65,17 +68,14 @@ class Service extends BaseService {
 
   deleteUser = async (id) => {
     try {
-      const isExist = await DBService.findOne(User, {_id: id});
+      const isExist = await DBService.findOneAndDelete(User, {_id: id});
       if(!isExist) {
-        console.log('1st');
         return this.error(error.idDoesNotExist);
       }
-        await DBService.findOneAndDelete(User, {_id: id});
         return this.success(id, success.delete);
     } catch(err) {
       return this.error(err);
   }
 }
 }
-
 export default new Service();
