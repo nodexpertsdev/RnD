@@ -1,9 +1,11 @@
+import { error } from '../../cms/parser/index';
+
 export default (controller = null, functionName = '') => async (req, res) => {
   const { params, query, body } = req;
 
   try {
     if (!(controller && controller[functionName])) {
-      throw new Error(`No function found in controller having name : ${functionName}`);
+      throw new Error(error.functionNotFound);
     }
 
     const result = await controller[functionName]({ params, query, body });
