@@ -1,4 +1,4 @@
-import ProductService from './product';
+import ProductService from './service';
 
 export {
   ProductService,

@@ -1,4 +1,4 @@
-import ProductController from './product';
+import ProductController from './controller';
 
 export {
   ProductController,

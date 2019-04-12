@@ -1,3 +1,3 @@
-import UserParser from './user';
+import UserParser from './parser';
 
 export { UserParser };

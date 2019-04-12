@@ -1,4 +1,4 @@
-import ProductParser from './product';
+import ProductParser from './parser';
 
 export {
   ProductParser,

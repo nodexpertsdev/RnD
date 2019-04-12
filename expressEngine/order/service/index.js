@@ -1,4 +1,4 @@
-import OrderService from './order';
+import OrderService from './service';
 
 export {
   OrderService,

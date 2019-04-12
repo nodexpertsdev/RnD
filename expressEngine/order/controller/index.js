@@ -1,4 +1,4 @@
-import OrderController from './order';
+import OrderController from './controller';
 
 export {
   OrderController,
