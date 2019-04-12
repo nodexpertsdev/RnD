@@ -20,6 +20,7 @@
   "homepage": "https://github.com/nodexpertsdev/RnD#readme",
   "dependencies": {
     "@babel/runtime": "^7.3.4",
+    "@types/dotenv": "^6.1.1",
     "babel-core": "^6.26.3",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",

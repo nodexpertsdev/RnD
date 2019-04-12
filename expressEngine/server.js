@@ -22,21 +22,19 @@ app.use('/health-check', (req, res, next) => {
   res.status(200).json({
     status: 'ok',
     message: 'Health is good',
-  })
+  });
 });
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
 app.use('/api', Route);
 
-const PORT = 5000;
-
 db.open().then(async () => {
   try {
     console.log('Db connected successfully');
 
-    await app.listen(PORT);
-    console.log(`App running on port ${PORT}`);
+    await app.listen(process.env.PORT);
+    console.log(`App running on port ${process.env.PORT}`);
   } catch (err) {
     console.warn(err);
   }

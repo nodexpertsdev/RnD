@@ -10,7 +10,7 @@ const app = express();
 
 app.use('/', (req, res, next) => { // to be used to authenticate request
   const { headers } = req;
-  if (headers.authkey !== 'successive') {
+  if (headers.authkey !== process.env.KEY) {
     return res.status(403).json({
       error: true,
       message: 'Forbidden',
