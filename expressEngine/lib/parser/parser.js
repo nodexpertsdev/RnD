@@ -8,6 +8,7 @@ export default (controller = null, functionName = '') => async (req, res) => {
       throw new Error(error.functionNotFound);
     }
 
+    console.log("inside Parser");
     const result = await controller[functionName]({ params, query, body });
 
     if (result.error) {

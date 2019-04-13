@@ -14,6 +14,9 @@ class Service extends BaseService {
   }
 
   registerUser = async ({ email, password, ...rest }) => {
+    console.log("inside userService");
+    console.log(rest);
+    console.log(email, password);
     const isExist = await DBService.count(User, { email });
     if (isExist) {
       throw error.alreadyRegistered;
