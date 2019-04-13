@@ -6,6 +6,7 @@ import { UserParser } from './parser';
 
 const router = express.Router();
 
+router.get('/', UserParser.read);
 router.post('/', UserParser.create);
 
 export default router;

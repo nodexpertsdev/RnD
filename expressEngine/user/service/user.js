@@ -49,6 +49,15 @@ class Service extends BaseService {
 
     return user;
   }
+  readUser = async () => {
+
+    const getUsers = await DBService.find(User);
+    if (!getUsers) {
+      throw error.unableToRead;
+    }
+
+    return getUsers;
+  }
 }
 
 export default new Service();

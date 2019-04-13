@@ -18,6 +18,14 @@ class Parser extends BaseParser {
       this.response(res, this.error(error), 422);
     }
   }
+  read = async (req, res) => {
+    try {
+      const result = await UserController.read();
+      this.response(res, this.success(result));
+    } catch (error) {
+      this.response(res, this.error(error), 422);
+    }
+  }
 }
 
 export default new Parser();
