@@ -18,6 +18,18 @@ class Parser extends BaseParser {
       this.response(res, this.error(error), 422);
     }
   }
+
+  delete = async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      const result = await UserController.delete(id);
+
+      this.response(res, this.success(result));
+    } catch (error) {
+      this.response(res, this.error(error), 422);
+    }
+  }
 }
 
 export default new Parser();

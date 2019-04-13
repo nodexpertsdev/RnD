@@ -14,6 +14,10 @@ class DbOperation {
   findOne = (collection, data = {}, projection = {}) => {
     return collection.findOne(data, projection);
   }
+
+  delete = (collection, data) => {
+    return collection.deleteOne(data)
+  }
 }
 
 export default new DbOperation();

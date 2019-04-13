@@ -16,7 +16,7 @@ app.use('/', (req, res, next) => { // to be used to authenticate request
       message: 'Forbidden',
     });
   }
-  next();
+  return next();
 });
 app.use('/user', UserRoute);
 app.use('/order', OrderRoute);

@@ -13,7 +13,7 @@ class Service extends BaseService {
     this.supplier = 'supplier';
   }
 
-  registerUser = async ({ email, password, ...rest }) => {
+    registerUser = async ({ email, password, ...rest }) => {
     const isExist = await DBService.count(User, { email });
     if (isExist) {
       throw error.alreadyRegistered;
@@ -48,6 +48,16 @@ class Service extends BaseService {
     }
 
     return user;
+  }
+
+  deleteUser = async (id) => {
+
+    const isExist = await DBService.count(User, { userId: id });
+    if (!isExist) {
+      throw error.unableToDelete;
+    }
+    const result = await DBService.delete(User, { userId: id });
+    return ("User deleted successfully")
   }
 }
 

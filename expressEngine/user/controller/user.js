@@ -10,6 +10,11 @@ class Controller extends BaseController {
 
     return { userId: userData.userId };
   };
+
+  delete = async (id) => {
+    const userData = await UserService.deleteUser(id);
+    return userData
+  }
 };
 
 export default new Controller();
