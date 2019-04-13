@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service/index';
 import { User } from '../../model/index';
 
 // import messages
-import { error } from '../../cms/user/index';
+import { error, success } from '../../cms/user/index';
 
 class Service extends BaseService {
   constructor() {
@@ -56,8 +56,8 @@ class Service extends BaseService {
     if (!isExist) {
       throw error.unableToDelete;
     }
-    const result = await DBService.delete(User, { userId: id });
-    return ("User deleted successfully")
+    await DBService.delete(User, { userId: id });
+    return (success.userDeleted);
   }
 }
 

@@ -16,7 +16,7 @@ class DbOperation {
   }
 
   delete = (collection, data) => {
-    return collection.deleteOne(data)
+    return collection.deleteOne(data);
   }
 }
 
