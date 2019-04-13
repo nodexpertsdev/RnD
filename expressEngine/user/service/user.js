@@ -2,8 +2,7 @@
 import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
-import { User } from '../../model/index';
-
+import { user } from '../../model/index';
 // import messages
 import { error } from '../../cms/user/index';
 
@@ -14,9 +13,9 @@ class Service extends BaseService {
   }
 
   registerUser = async ({ email, password, ...rest }) => {
-    const isExist = await DBService.count(User, { email });
+    const isExist = await DBService.count(user, { email });
     if (isExist) {
-      throw error.alreadyRegistered;
+      throw new Error(error.alreadyRegistered);
     }
 
     const {
@@ -30,7 +29,7 @@ class Service extends BaseService {
       fax = '',
     } = rest;
 
-    const user = await DBService.create(User, {
+    const User = await DBService.create(user, {
       email,
       password,
       role,
@@ -43,11 +42,10 @@ class Service extends BaseService {
       fax,
     });
 
-    if (!user) {
-      throw error.unableToRegister;
+    if (!User) {
+      throw new Error(error.unableToRegister);
     }
-
-    return user;
+    return User;
   }
 }
 

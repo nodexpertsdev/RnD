@@ -9,7 +9,7 @@ class ProductController extends BaseController  {
     try {
       return await ProductService.registerProduct(body);
     } catch (err) {
-      return err;
+      throw new Error(err);
     }
   };
 };

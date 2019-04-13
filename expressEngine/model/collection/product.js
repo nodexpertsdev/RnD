@@ -31,7 +31,7 @@ const productsSchema = new Schema({
 });
 
 
-const ProductModel = model('Products', productsSchema);
+const product = model('Products', productsSchema);
 
 
-export default ProductModel;
+export default product;

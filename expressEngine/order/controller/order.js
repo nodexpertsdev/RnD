@@ -9,7 +9,7 @@ class Controller extends BaseController {
     try {
       return await OrderService.generateOrder(body);
     } catch (err) {
-      return err;
+      throw new Error(err);
     }
   };
 };

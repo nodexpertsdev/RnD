@@ -1,9 +1,9 @@
-import User from './collection/user';
-import Order from './collection/order';
-import Product from './collection/product';
+import user from './collection/user';
+import order from './collection/order';
+import product from './collection/product';
 
 export {
-  User,
-  Order,
-  Product,
+  user,
+  order,
+  product,
 };

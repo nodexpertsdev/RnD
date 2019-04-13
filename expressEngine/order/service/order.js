@@ -2,7 +2,7 @@
 import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
-import { Order } from '../../model/index';
+import { order } from '../../model/index';
 
 // import messages
 import { success } from '../../cms/order';
@@ -10,10 +10,10 @@ import { success } from '../../cms/order';
 class Service extends BaseService {
   generateOrder = async (data) => {
     try {
-      const { orderNumber, supplierId, unitPrice, productPackage } = data,
-      requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
-      this.validateRequired(data, requiredFields)
-      const result = await DBService.create(Order, {
+      const { orderNumber, supplierId, unitPrice, productPackage } = data;
+      // requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
+      // this.validateRequired(data, requiredFields)
+      const result = await DBService.create(order, {
         orderNumber,
         supplierId,
         unitPrice,
@@ -23,7 +23,7 @@ class Service extends BaseService {
       return this.success(result, success.orderGenerated);
 
     } catch (err) {
-      return this.error(err);
+      throw new Error(err);
     }
   }
 }
