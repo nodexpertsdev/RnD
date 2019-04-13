@@ -1,5 +1,1 @@
-import UserController from './controller';
-
-export {
-  UserController,
-};
+export { default } from './user';
