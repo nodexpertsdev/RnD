@@ -3,10 +3,6 @@ import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
 import { product } from '../../model/index';
-
-// import messages
-import {success} from '../../cms/product/index';
-
 class Service extends BaseService {
   registerProduct = async (data) => {
     try {
@@ -20,7 +16,7 @@ class Service extends BaseService {
         package: productPackage,
         isDiscontinued
       });      
-      return this.success(Product, success.productRegistered);
+      return Product;
     } catch(err) {
       throw new Error(err);
     }

@@ -4,9 +4,6 @@ import { BaseService, DBService } from '../../lib/service/index';
 // import collections
 import { order } from '../../model/index';
 
-// import messages
-import { success } from '../../cms/order';
-
 class Service extends BaseService {
   generateOrder = async (data) => {
     try {
@@ -18,9 +15,8 @@ class Service extends BaseService {
         supplierId,
         unitPrice,
         package:productPackage,
-      });
-
-      return this.success(result, success.orderGenerated);
+      });      
+      return result;
 
     } catch (err) {
       throw new Error(err);
