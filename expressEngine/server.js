@@ -22,7 +22,7 @@ app.use('/health-check', (req, res, next) => {
   res.status(200).json({
     status: 'ok',
     message: 'Health is good',
-  });
+  })
 });
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));

@@ -12,7 +12,7 @@ class Service extends BaseService {
     try {
       const { orderNumber, supplierId, unitPrice, productPackage } = data,
       requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
-      // this.validateRequired(data, requiredFields)
+      this.validateRequired(data, requiredFields)
       const result = await DBService.create(Order, {
         orderNumber,
         supplierId,
