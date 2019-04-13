@@ -11,9 +11,7 @@ class ProductController extends BaseController  {
     try {
       const productData = await ProductService.registerProduct(body);
       return {data: productData, message: success.productRegistered};
-    } catch (err) {
-      console.log('334{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{');
-      
+    } catch (err) {      
       throw new Error(err);
     }
   };
