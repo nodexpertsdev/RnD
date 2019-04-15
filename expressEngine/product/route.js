@@ -2,7 +2,7 @@
 import { Router } from "express";
 
 // import controller
-import { ProductController } from "./controller/index";
+import { ProductController } from "./controller";
 
 // import parser
 import parser from "../lib/parser";

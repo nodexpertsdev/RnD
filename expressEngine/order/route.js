@@ -5,7 +5,7 @@ import { Router } from "express";
 import parser from "../lib/parser";
 
 // import controller
-import { OrderController } from "./controller/index";
+import { OrderController } from "./controller";
 
 const router = Router();
 
