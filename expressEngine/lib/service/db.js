@@ -14,8 +14,10 @@ class DbOperation {
   findOne = (collection, data = {}, projection = {}) => {
     return collection.findOne(data, projection);
   }
-  findAll = (collection, {skip, limit}, projection ={}) => {
-    return collection.find().skip(+(skip)).limit(+(limit))
+  findAll = ({collection, data = {}, skip = 0, limit = 10 , projection = {}}) => {
+    const skipValue = isNaN(skip) ? 0 : parseInt(skip, 10);
+    const limitValue = isNaN(limit) ? 0 : parseInt(limit, 10);
+    return collection.find(data, projection).skip(skipValue).limit(limitValue);
   }
 }
 
