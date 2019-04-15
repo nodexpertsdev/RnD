@@ -49,7 +49,7 @@ class Service extends BaseService {
 
     return user;
   }
-  readUser = async ({ skip, limit }) => {
+  readUser = async ({ skip = 0, limit = 10 }) => {
     console.log('skip and limit value is --- ', skip, limit);
     const getUsers = await DBService.findAll(User, { skip, limit });
     if (!getUsers) {
@@ -58,7 +58,6 @@ class Service extends BaseService {
     if(!getUsers.length) {
       throw error.noRecords
     }
-    console.log('get users are ', getUsers);
     return getUsers;
   }
 }

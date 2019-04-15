@@ -14,7 +14,7 @@ class DbOperation {
   findOne = (collection, data = {}, projection = {}) => {
     return collection.findOne(data, projection);
   }
-  findAll = (collection, {skip = 0, limit = 10}, projection ={}) => {
+  findAll = (collection, {skip, limit}, projection ={}) => {
     console.log('skip and limit in query ', skip, limit);
     return collection.find().skip(+(skip)).limit(+(limit))
   }
