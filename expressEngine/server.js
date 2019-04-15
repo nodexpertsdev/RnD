@@ -2,6 +2,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import SwaggerUi from 'swagger-ui-express';
+import { config } from 'dotenv';
 
 // import db methods
 import db from './db/db';
@@ -14,7 +15,7 @@ import swaggerDocument from './doc/swagger.json';
 
 // Set up the express app
 const app = express();
-
+config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

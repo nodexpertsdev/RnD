@@ -3,7 +3,6 @@ import { connect, disconnect } from 'mongoose';
 const dbUrls = {
   local: 'mongodb://localhost:27017/rnd',
 };
-console.log(process.env.MONGO_URL);
 
 let env = process.env.MONGO_URL || 'local';
 
