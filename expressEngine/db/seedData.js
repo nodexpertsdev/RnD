@@ -1,5 +1,5 @@
 import DBService from '../lib/service/db.js';
-import { User } from '../model/index.js';
+import { User } from '../model';
 
 export default async function seed() {
   const res = await DBService.count(User);
