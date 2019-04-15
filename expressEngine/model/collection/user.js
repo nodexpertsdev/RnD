@@ -32,12 +32,6 @@ const UserSchema = new Schema({
     enum: modelLib.roleEnum,
     required: true,
   },
-  firstName: {
-    type: String,
-  },
-  lastName: {
-    type: String,
-  },
   companyName: {
     type: String,
   },
