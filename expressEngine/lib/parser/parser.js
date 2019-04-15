@@ -1,11 +1,11 @@
-import { error } from '../../cms/parser/index';
+import { errorMessage } from '../../cms/errorMessage';
 
 export default (controller = null, functionName = '') => async (req, res) => {
   const { params, query, body } = req;
 
   try {
     if (!(controller && controller[functionName])) {
-      throw new Error(error.functionNotFound);
+      throw new Error(errorMessage.functionNotFound);
     }
 
     const result = await controller[functionName]({ params, query, body });

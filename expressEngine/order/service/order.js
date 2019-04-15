@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service/index';
 import { Order } from '../../model/index';
 
 // import messages
-import { success } from '../../cms/order';
+import { successMessage } from '../../cms/successMessage';
 
 class Service extends BaseService {
   generateOrder = async (data) => {
@@ -20,7 +20,7 @@ class Service extends BaseService {
         package:productPackage,
       });
 
-      return this.success(result, success.orderGenerated);
+      return this.success(result, successMessage.orderGenerated);
 
     } catch (err) {
       return this.error(err);

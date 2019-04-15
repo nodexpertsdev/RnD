@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service/index';
 import { ProductModel, ProductDetail } from '../../model/index';
 
 // import messages
-import {success} from '../../cms/product/index';
+import {successMessage} from '../../cms/successMessage';
 
 class Service extends BaseService {
   registerProduct = async (data) => {
@@ -22,7 +22,7 @@ class Service extends BaseService {
         isDiscontinued
       });
 
-      return this.success(Product, success.productRegistered);
+      return this.success(Product, successMessage.productRegistered);
     } catch(err) {
       return this.error(err);
     }

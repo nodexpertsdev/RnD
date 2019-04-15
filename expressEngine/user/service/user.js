@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service/index';
 import { User } from '../../model/index';
 
 // import messages
-import { error } from '../../cms/user/index';
+import { errorMessage } from '../../cms/errorMessage';
 
 class Service extends BaseService {
   constructor() {
@@ -16,7 +16,7 @@ class Service extends BaseService {
   registerUser = async ({ email, password, ...rest }) => {
     const isExist = await DBService.count(User, { email });
     if (isExist) {
-      throw error.alreadyRegistered;
+      throw errorMessage.alreadyRegistered;
     }
 
     const {
@@ -44,7 +44,7 @@ class Service extends BaseService {
     });
 
     if (!user) {
-      throw error.unableToRegister;
+      throw errorMessage.unableToRegister;
     }
 
     return user;
