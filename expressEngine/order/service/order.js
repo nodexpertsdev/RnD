@@ -18,7 +18,7 @@ class Service extends BaseService {
       const { orderNumber, supplierId, unitPrice, productPackage } = data,
       requiredFields = ['orderNumber', 'supplierId', 'unitPrice' ];
       // const status = validateRequired.validate(data, requiredFields)
-      const status = validateRequired.validateReqData(data, requiredFields);
+      const status = validateRequired(data, requiredFields);
       
       let result;
       if (!Object.keys(status).length) {

@@ -16,7 +16,7 @@ class Service extends BaseService {
       const {name, supplierId,unitPrice, productPackage, isDiscontinued  } = data,
       requiredFields = ['name', 'supplierId','unitPrice'];
 
-      const status = validateRequired.validateReqData(data, requiredFields);
+      const status = validateRequired(data, requiredFields);
       let Product;
       if (!Object.keys(status).length) {
         Product = await DBService.create(ProductModel, {
