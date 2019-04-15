@@ -1,6 +1,9 @@
 class DbOperation {
-  count = (collection, data = {}) => {
-    return collection.countDocuments(data);
+  // count = (collection, data = {}) => {
+  //   return collection.countDocuments(data);
+  // }
+  count = (collection) => {
+    return collection.countDocuments();
   }
 
   create = (collection, data = {}) => {
