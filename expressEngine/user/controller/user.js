@@ -11,9 +11,9 @@ class Controller extends BaseController {
     return { userId: userData.userId };
   };
 
-  delete = async (id) => {
-    const userData = await UserService.deleteUser(id);
-    return userData;
+  delete = async (data) => {
+    const { id } = data.params;
+    await UserService.deleteUser(id);
   }
 };
 

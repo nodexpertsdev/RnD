@@ -2,11 +2,14 @@
 import express from 'express';
 
 // import controller
-import { UserParser } from './parser';
+import UserController from './controller';
+
+// import parser
+import parser from '../lib/parser';
 
 const router = express.Router();
 
-router.post('/', UserParser.create);
-router.delete('/:id', UserParser.delete);
+router.post('/', parser(UserController, 'create'));
+router.delete('/:id', parser(UserController, 'delete'));
 
 export default router;
