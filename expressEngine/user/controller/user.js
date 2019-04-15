@@ -1,5 +1,5 @@
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseController } from '../../lib/controller';
 
 // import service
 import { UserService } from '../service/index';

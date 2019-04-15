@@ -1,10 +1,10 @@
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseController } from '../../lib/controller';
 
 // import service
-import { ProductService } from '../service/index';
+import { ProductService } from '../service';
 
-import {success} from '../../cms/product/index';
+import {success} from '../../cms/product';
 
 class ProductController extends BaseController  {
   create = async ({body}) => {

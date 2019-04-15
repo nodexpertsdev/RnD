@@ -1,10 +1,10 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { user } from '../../model/index';
+import { user } from '../../model';
 // import messages
-import { error } from '../../cms/user/index';
+import { error } from '../../cms/user';
 
 class Service extends BaseService {
   constructor() {

@@ -1,8 +1,8 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { order } from '../../model/index';
+import { order } from '../../model';
 
 class Service extends BaseService {
   generateOrder = async (data) => {

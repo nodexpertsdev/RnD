@@ -1,1 +1,3 @@
-export { default } from './successHandler';
+import successHandler from './successHandler';
+
+export default successHandler;

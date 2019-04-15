@@ -1,8 +1,8 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { product } from '../../model/index';
+import { product } from '../../model';
 class Service extends BaseService {
   registerProduct = async (data) => {
     try {
