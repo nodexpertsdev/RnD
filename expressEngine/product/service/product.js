@@ -1,11 +1,11 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { ProductModel } from '../../model/index';
+import { Product, ProductDetail } from '../../model';
 
 // import messages
-import {success} from '../../cms/product/index';
+import {success} from '../../cms/product';
 
 //import validateRequired
 import { validateRequired } from '../../lib/validationHandler';
@@ -16,19 +16,16 @@ class Service extends BaseService {
       const {name, supplierId,unitPrice, productPackage, isDiscontinued  } = data,
       requiredFields = ['name', 'supplierId','unitPrice'];
 
-      const status = validateRequired(data, requiredFields);
-      let Product;
-      if (!Object.keys(status).length) {
-        Product = await DBService.create(ProductModel, {
-          name,
-          supplierId,
-          unitPrice,
-          package: productPackage,
-          isDiscontinued
-        });
-      }
-      
-      return this.success(Product, success.productRegistered);
+      this.validateRequired(data, requiredFields);
+      const product = await DBService.create(Product, {
+        name,
+        supplierId,
+        unitPrice,
+        package: productPackage,
+        isDiscontinued
+      });
+
+      return this.success(product, success.productRegistered);
     } catch(err) {
       return this.error(err);
     }
