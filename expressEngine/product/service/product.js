@@ -1,20 +1,24 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { ProductModel, ProductDetail } from '../../model/index';
+import { Product, ProductDetail } from '../../model';
 
 // import messages
+<<<<<<< HEAD
 import {successMessage} from '../../cms/successMessage';
+=======
+import {success} from '../../cms/product';
+>>>>>>> develop
 
 class Service extends BaseService {
   registerProduct = async (data) => {
     try {
       const {name, supplierId,unitPrice, productPackage, isDiscontinued  } = data,
       requiredFields = ['name', 'supplierId','unitPrice'];
-      
+
       this.validateRequired(data, requiredFields);
-      const Product = await DBService.create(ProductModel, {
+      const product = await DBService.create(Product, {
         name,
         supplierId,
         unitPrice,
@@ -22,7 +26,11 @@ class Service extends BaseService {
         isDiscontinued
       });
 
+<<<<<<< HEAD
       return this.success(Product, successMessage.productRegistered);
+=======
+      return this.success(product, success.productRegistered);
+>>>>>>> develop
     } catch(err) {
       return this.error(err);
     }
