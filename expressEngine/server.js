@@ -31,12 +31,15 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
 app.use('/api', Route);
 
+const { PORT } = process.env;
+const port = PORT || 5000;
+
 db.open().then(async () => {
   try {
     console.log('Db connected successfully');
 
-    await app.listen(process.env.PORT || 5000);
-    console.log(`App running on port ${process.env.PORT}`);
+    await app.listen(port);
+    console.log(`App running on port ${port}`);
   } catch (err) {
     console.warn(err);
   }
