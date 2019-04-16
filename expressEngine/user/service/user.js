@@ -49,9 +49,10 @@ class Service extends BaseService {
 
     return user;
   }
-  readUser = async ({ query, body }) => {
+  getUsers = async ({ query, body }) => {
     const getUsers = await DBService.findAll({
       collection: User,
+      data: body,
       limit: query.limit,
       skip: query.skip,
     }) || [];

@@ -10,8 +10,8 @@ class Controller extends BaseController {
 
     return { userId: userData.userId };
   };
-  read = async (data) => {
-    const userData = await UserService.readUser(data);
+  get = async (data) => {
+    const userData = await UserService.getUsers(data);
 
     return { data: userData };
   }
