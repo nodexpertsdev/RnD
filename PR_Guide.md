@@ -1,4 +1,4 @@
-# PR Review Guidelines
+# PR Guidelines
 
 
 **Note**: This guide will act as a set of rules, that are required to be followed by anyone who is raising a PR in this project.
