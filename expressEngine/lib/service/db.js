@@ -15,7 +15,7 @@ class DbOperation {
     return collection.findOne(data, projection);
   }
 
-  delete = (collection, data) => {
+  deleteOne = (collection, data) => {
     return collection.deleteOne(data);
   }
 }

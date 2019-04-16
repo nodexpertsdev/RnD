@@ -50,13 +50,13 @@ class Service extends BaseService {
     return user;
   }
 
-  deleteUser = async (id) => {
+  delete = async (id) => {
 
     const isExist = await DBService.count(User, { userId: id });
     if (!isExist) {
       throw { error: error.unableToDelete };
     }
-    await DBService.delete(User, { userId: id });
+    await DBService.deleteOne(User, { userId: id });
     return ({ message: success.userDeleted });
   }
 }

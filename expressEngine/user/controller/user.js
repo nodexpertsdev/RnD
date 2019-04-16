@@ -13,7 +13,8 @@ class Controller extends BaseController {
 
   delete = async (data) => {
     const { id } = data.params;
-    await UserService.deleteUser(id);
+    const result = await UserService.delete(id);
+    return result;
   }
 };
 
