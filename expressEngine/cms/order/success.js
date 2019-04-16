@@ -1,3 +1,3 @@
 export default {
-  orderGenerated: 'Your order is generated successfully',
-};
+    orderGenerated: "Your order is generated successfully",
+  }

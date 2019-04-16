@@ -1,3 +1,3 @@
 export default {
-  functionNotFound: 'Got some internal issue',
+  functionNotFound: "Got some internal issue",
 };
