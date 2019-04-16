@@ -1,6 +1,9 @@
+import error from '../../cms/common';
+
 export default function errorHandler(err, req, res) {
-  const { message } = err;
+  const { message, status } = err;
   res.json({
-    error: message || 'Got some error',
+    error: message || error.undefinedError,
+    status,
   });
 }
