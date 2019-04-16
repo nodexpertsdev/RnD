@@ -11,9 +11,11 @@
 
 ## URL
 Everyone should add the url of the ticket in his PR.
+Format for adding url will be *ticket : url of PR*
 
 ## Assignee
-Before raising a PR, make sure to add yourself as assignee of that Pr.
+Before raising a PR, make sure to add yourself as assignee of that PR.
 
 ## Label
 Before raising a PR, add appropriate labels on that PR. 
+Ex: If you are working on feature branch add the label feature.
