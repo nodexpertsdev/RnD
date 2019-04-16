@@ -1,3 +1,5 @@
+import BaseService from './base';
+const baseService = new BaseService();
 class DbOperation {
   count = (collection, data = {}) => {
     return collection.countDocuments(data);
@@ -15,8 +17,8 @@ class DbOperation {
     return collection.findOne(data, projection);
   }
   findAll = ({collection, data = {}, skip = 0, limit = 10 , projection = {}}) => {
-    const skipValue = isNaN(skip) ? 0 : parseInt(skip, 10);
-    const limitValue = isNaN(limit) ? 0 : parseInt(limit, 10);
+    const skipValue = baseService.parseNumber(skip , 0);
+    const limitValue = baseService.parseNumber(limit, 10);
     return collection.find(data, projection).skip(skipValue).limit(limitValue);
   }
 }

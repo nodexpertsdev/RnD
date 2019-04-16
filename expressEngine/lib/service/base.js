@@ -18,9 +18,12 @@ class BaseService {
     }
     return {
       data,
-      message: successMsg || 'Process compeleted successfully',
+      message: successMsg || 'Process completed successfully',
     };
   }
+
+  parseNumber = (value, defaultValue = 0) => isNaN(value) ? defaultValue : parseInt(value, 10);
+  
 }
 
 export default BaseService;
