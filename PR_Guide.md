@@ -11,7 +11,7 @@
 4. Elementary
 
 ## URL
-Everyone should add the url of the ticket in his PR.
+Please add the url of the ticket in PR.
 Format for adding url will be *ticket : url of PR*
 
 ## Assignee
@@ -22,4 +22,5 @@ Before raising a PR, add appropriate labels on that PR.
 Ex: If you are working on feature branch add the label feature.
 
 ## Elementary
-Instead of making changes in many files at a time, try to create a PR of single functionality. 
+Instead of making changes in many files at a time, try to create a PR of single functionality.
+Make sure to have only your changes in PR. 
