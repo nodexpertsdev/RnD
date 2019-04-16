@@ -1,9 +1,6 @@
-export default function errorHanlder(err, req, res) {
-  const { message, status } = err;
-  
-  res.status(status).json({
-    error: true,
-    message: message || null,
-    status: status || 500,
+export default function errorHandler(err, req, res) {
+  const { message } = err;
+  res.json({
+    error: message || 'Got some error',
   });
 }
