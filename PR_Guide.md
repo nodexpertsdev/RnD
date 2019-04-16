@@ -23,4 +23,3 @@ Ex: If you are working on feature branch add the label feature.
 
 ## Elementary
 Instead of making changes in many files at a time, try to create a PR of single functionality. 
-Make sure your PR doesn't affect the work of others. 
