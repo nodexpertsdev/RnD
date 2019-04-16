@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // import packages
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -19,7 +20,7 @@ config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/health-check', (req, res, next) => {
+app.use('/health-check', (req, res) => {
   res.status(200).json({
     status: 'ok',
     message: 'Health is good',
@@ -34,7 +35,7 @@ db.open().then(async () => {
   try {
     console.log('Db connected successfully');
 
-    await app.listen(process.env.PORT);
+    await app.listen(process.env.PORT || 5000);
     console.log(`App running on port ${process.env.PORT}`);
   } catch (err) {
     console.warn(err);
