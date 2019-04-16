@@ -7,12 +7,15 @@ import { Order } from '../../model/index';
 // import messages
 import { success } from '../../cms/order';
 
+//import validateRequired
+import { validateRequired } from '../../lib/validationHandler';
+
 class Service extends BaseService {
   generateOrder = async (data) => {
     try {
       const { orderNumber, supplierId, unitPrice, productPackage } = data,
       requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
-      this.validateRequired(data, requiredFields)
+      validateRequired(data, requiredFields)
       const result = await DBService.create(Order, {
         orderNumber,
         supplierId,
