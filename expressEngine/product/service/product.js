@@ -13,7 +13,7 @@ import { validateRequired } from '../../lib/validationHandler';
 class Service extends BaseService {
   registerProduct = async (data) => {
     try {
-      const {name, supplierId,unitPrice, productPackage, isDiscontinued  } = data,
+      const { name, supplierId, unitPrice, productPackage, isDiscontinued } = data,
       requiredFields = ['name', 'supplierId','unitPrice'];
 
       validateRequired(data, requiredFields);

@@ -1,8 +1,8 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { Order } from '../../model/index';
+import { Order } from '../../model';
 
 // import messages
 import { success } from '../../cms/order';
