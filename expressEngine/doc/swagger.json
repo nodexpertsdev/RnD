@@ -116,7 +116,42 @@
           }
         }
       }
+    },
+    "/user/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "To delete a user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Unique id of the user that is to be deleted",
+            "in": "path",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "authkey",
+            "description": "successive",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success Response",
+            "schema": { "$ref": "#/definitions/DeleteUserSuccess" }
+          },
+          "403": {
+            "description": "Error Response",
+             "schema": { "$ref": "#/definitions/DeleteUserError" } 
+          }
+        }
+      }
     }
+
   },
   "definitions": {
     "Success": {
@@ -143,6 +178,32 @@
         },
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "DeleteUserSuccess": {
+      "description": "Success Response",
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "example": "User deleted successfully"
+        }
+      }
+    },
+    "DeleteUserError": {
+      "description": "Error Response",
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "example": "User not found to delete, Already deleted"
         }
       }
     }
