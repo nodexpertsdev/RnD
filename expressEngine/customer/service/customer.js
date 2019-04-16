@@ -8,10 +8,10 @@ import { Customer } from '../../model';
 import { error, success } from '../../cms/customer';
 
 class Service extends BaseService {
-    registerCustomer = async (data) => {
+    register = async (data) => {
         try {
             const { firstName, lastName, city, country, contactNo } = data;
-            const requiredFields = ["firstName", "lastName", "city", "country", "contactNo"];
+            //const requiredFields = ["firstName", "lastName", "city", "country", "contactNo"];
 
             const isExist = await DBService.count(Customer, { firstName, lastName });
             if (isExist) {
