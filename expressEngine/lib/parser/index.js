@@ -1,5 +1,1 @@
-import BaseParser from './base';
-
-export {
-  BaseParser,
-};
+export { default } from './parser';

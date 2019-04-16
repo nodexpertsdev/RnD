@@ -13,6 +13,7 @@ import Route from './route';
 
 // import docs
 import swaggerDocument from './doc/swagger.json';
+import seed from './db/seedData';
 
 // Set up the express app
 const app = express();
@@ -37,7 +38,7 @@ const port = PORT || 5000;
 db.open().then(async () => {
   try {
     console.log('Db connected successfully');
-
+    seed();
     await app.listen(port);
     console.log(`App running on port ${port}`);
   } catch (err) {
