@@ -1,14 +1,17 @@
-import { connect, disconnect } from "mongoose";
+import { connect, disconnect } from 'mongoose';
+import LOCAL_URL from '../utils/config';
 
 const dbUrls = {
-  local   : "mongodb://localhost:27017/rnd",
+  local: LOCAL_URL,
 };
 
-let env = process.env.ENV || "local";
+const { MONGO_URL } = process.env;
 
-env = (dbUrls[env] && env) || "local"; // if no url configured for env then connect to local env
+let env = MONGO_URL || 'local';
 
-const db           = {
+env = (dbUrls[env] && env) || 'local'; // if no url configured for env then connect to local env
+
+const db = {
   url: dbUrls[env],
   options: {
     useNewUrlParser: true,
