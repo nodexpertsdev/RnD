@@ -13,7 +13,7 @@ class Service extends BaseService {
             const { firstName, lastName, city, country, contactNo } = data;
             //const requiredFields = ["firstName", "lastName", "city", "country", "contactNo"];
 
-            const isExist = await DBService.count(Customer, { firstName, lastName });
+            const isExist = await DBService.findOne(Customer, { firstName, lastName });
             if (isExist) {
                 throw error.alreadyRegistered;
             }
