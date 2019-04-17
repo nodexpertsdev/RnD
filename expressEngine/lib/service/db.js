@@ -17,7 +17,6 @@ class DbOperation {
     return collection.findOne(data, projection);
   }
   findAll = ({collection, data = {}, skip = 0, limit = 10 , projection = {}}) => {
-    console.log('projection in find all -- ', projection);
     const skipValue = baseService.parseNumber(skip , 0);
     const limitValue = baseService.parseNumber(limit, 10);
     return collection.find(data, projection).skip(skipValue).limit(limitValue);
