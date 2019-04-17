@@ -1,1 +1,1 @@
-export { default as UserHelper } from './user';
+export { default } from './user';

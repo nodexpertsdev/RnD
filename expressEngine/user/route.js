@@ -10,5 +10,5 @@ import parser from '../lib/parser';
 const router = express.Router();
 
 router.post('/', parser(UserController, 'create'));
-router.get('/', parser(UserController, 'get'))
+router.get('/', parser(UserController, 'get'));
 export default router;
