@@ -56,7 +56,7 @@ class Service extends BaseService {
     if (!isExist) {
       throw { error: error.unableToDelete };
     }
-    await DBService.deleteMany(User, { userId: id });
+    await DBService.deleteOne(User, { userId: id });
     return ({ message: success.userDeleted });
   }
 }
