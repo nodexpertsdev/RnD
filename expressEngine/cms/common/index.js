@@ -1,3 +1,4 @@
-import commonError from './error';
+import error from './error';
+import success from './success';
 
-export default commonError;
+export { success, error };

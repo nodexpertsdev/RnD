@@ -1,6 +1,3 @@
-export default function successHandler(message, data = null) {
-  return ({
-    data,
-    message,
-  });
-}
+import success from '../../cms/common/success';
+
+export default (message = success.defaultSuccessMsg, data = null) => ({ data, message });
