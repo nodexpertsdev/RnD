@@ -1,10 +1,13 @@
 import { connect, disconnect } from 'mongoose';
+import LOCAL_URL from '../utils/config';
 
 const dbUrls = {
-  local: 'mongodb://localhost:27017/rnd',
+  local: LOCAL_URL,
 };
 
-let env = process.env.MONGO_URL || 'local';
+const { MONGO_URL } = process.env;
+
+let env = MONGO_URL || 'local';
 
 env = (dbUrls[env] && env) || 'local'; // if no url configured for env then connect to local env
 

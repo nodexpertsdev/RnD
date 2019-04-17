@@ -1,6 +1,6 @@
 class ModelLib {
   constructor() {
-    this.roleEnum = ["system-admin", "supplier"];
+    this.roleEnum = ['system-admin', 'supplier'];
   }
 
   validateEmail = email => {
