@@ -5,10 +5,12 @@ import { BaseController } from '../../lib/controller/index';
 import { UserService } from '../service/index';
 
 class Controller extends BaseController {
-  create = async (data) => {
-    const { body } = data;
-    const userData = await UserService.registerUser(body);
-    return { userId: userData.userId };
+  create = async ({body}) => {
+    try {
+      return await UserService.registerUser(body);
+    } catch (err) {
+      return err;
+    }
   };
 };
 
