@@ -1,26 +1,20 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { Order } from '../../model/index';
-
-// import messages
-import { success } from '../../cms/order';
+import { Order } from '../../model';
 
 class Service extends BaseService {
   generateOrder = async (data) => {
     try {
-      const { orderNumber, supplierId, unitPrice, productPackage } = data,
-      requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
-      this.validateRequired(data, requiredFields)
+      const { orderNumber, supplierId, unitPrice, productPackage } = data;
       const result = await DBService.create(Order, {
         orderNumber,
         supplierId,
         unitPrice,
         package:productPackage,
       });
-
-      return this.success(result, success.orderGenerated);
+      return result;
 
     } catch (err) {
       return this.error(err);

@@ -1,13 +1,16 @@
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseController } from '../../lib/controller';
 
 // import service
-import { OrderService } from '../service/index';
+import { OrderService } from '../service';
+
+import { success } from '../../cms/order';
 
 class Controller extends BaseController {
   create = async ({body}) => {
     try {
-      return await OrderService.generateOrder(body);
+      const orderData = await OrderService.generateOrder(body);
+      return { data: orderData, message: success.orderGenerated };
     } catch (err) {
       return err;
     }
