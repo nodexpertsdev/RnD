@@ -46,7 +46,6 @@ class Service extends BaseService {
     if (!user) {
       throw error.unableToRegister;
     }
-
     return user;
   }
 }
