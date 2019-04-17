@@ -1,7 +1,7 @@
 // import base Parser
 import {
   BaseParser,
-} from '../../lib/parser/index';
+} from '../../lib/parser';
 
 class ProductParser extends BaseParser {
   run(controller, functionName) {

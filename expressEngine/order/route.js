@@ -9,7 +9,7 @@ import parser from '../lib/parser';
 // import controller
 import {
   OrderController,
-} from './controller/index';
+} from './controller';
 
 const router = Router();
 

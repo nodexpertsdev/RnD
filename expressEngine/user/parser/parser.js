@@ -1,8 +1,8 @@
 // import the controller
-import { UserController } from '../controller/index';
+import { UserController } from '../controller';
 
 // import base controller
-import { BaseParser } from '../../lib/parser/index';
+import { BaseParser } from '../../lib/parser';
 
 class Parser extends BaseParser {
   create = async (req, res) => {
