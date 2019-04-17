@@ -1,4 +1,4 @@
-import { error } from '../../cms/parser/index';
+import { error } from '../../cms/parser';
 import successHandler from '../successHandler';
 
 export default (controller = null, functionName = '') => async (req, res) => {
