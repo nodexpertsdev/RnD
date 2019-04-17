@@ -1,8 +1,8 @@
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseController } from '../../lib/controller';
 
 // import service
-import { UserService } from '../service/index';
+import { UserService } from '../service';
 
 import { success } from '../../cms/user';
 class Controller extends BaseController {
