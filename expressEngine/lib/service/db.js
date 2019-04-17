@@ -1,6 +1,6 @@
 import BaseService from './base';
 const baseService = new BaseService();
-class DbOperation {
+class DBOperation {
   count = (collection, data = {}) => {
     return collection.countDocuments(data);
   }
@@ -23,4 +23,4 @@ class DbOperation {
   }
 }
 
-export default new DbOperation();
+export default new DBOperation();
