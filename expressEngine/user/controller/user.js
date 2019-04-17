@@ -10,8 +10,7 @@ class Controller extends BaseController {
       const userData = await UserService.registerUser(body);
       return { userId: userData.userId };
     } catch (err) {      
-      // throw err;
-      return err;
+      throw err;
     }
   };
 };
