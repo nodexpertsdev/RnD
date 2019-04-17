@@ -8,7 +8,7 @@ import { User } from '../../model';
 import { error, success } from '../../cms/user';
 
 // import utils
-import { UserHelper } from '../utils';
+import UserHelper from '../utils';
 
 class Service extends BaseService {
   constructor() {
@@ -16,7 +16,7 @@ class Service extends BaseService {
     this.supplier = 'supplier';
   }
 
-    registerUser = async ({ email, password, ...rest }) => {
+  registerUser = async ({ email, password, ...rest }) => {
     const isExist = await DBService.count(User, { email });
     if (isExist) {
       throw error.alreadyRegistered;
