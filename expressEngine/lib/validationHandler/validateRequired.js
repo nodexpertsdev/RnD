@@ -1,4 +1,4 @@
-const validateReqData = (data = {}, required = []) => {
+const validateRequired = (data = {}, required = []) => {
   const retVal = {};
   required.forEach((field) => {
     if (!(data[field] || data[field] === false || data[field] === 0)) {
@@ -8,4 +8,4 @@ const validateReqData = (data = {}, required = []) => {
   });
   return retVal;
 };
-export default validateReqData;
+export default validateRequired;
