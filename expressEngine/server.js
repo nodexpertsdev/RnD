@@ -12,6 +12,7 @@ import Route from './route';
 // import docs
 import swaggerDocument from './doc/swagger.json';
 import seed from './db/seedData';
+import healthCheck from './lib/routeHelper';
 
 // Set up the express app
 const app = express();
@@ -19,12 +20,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/health-check', (req, res, next) => {
-  res.status(200).json({
-    status: 'ok',
-    message: 'Health is good',
-  })
-});
+app.use('/health-check', healthCheck);
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
