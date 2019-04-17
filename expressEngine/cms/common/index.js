@@ -1,3 +1,3 @@
-import commonError from './error';
+import error from './error';
 
-export default commonError;
+export default error;

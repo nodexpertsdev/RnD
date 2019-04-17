@@ -2,6 +2,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import SwaggerUi from 'swagger-ui-express';
+import errorHandler from './lib/errorHandler';
 
 // import db methods
 import db from './db/db';
@@ -29,6 +30,8 @@ app.use('/health-check', (req, res, next) => {
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
 app.use('/api', Route);
+
+app.use(errorHandler);
 
 const PORT = 5000;
 

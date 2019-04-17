@@ -1,18 +1,34 @@
 class DbOperation {
   count = (collection, data = {}) => {
-    return collection.countDocuments(data);
+    try{
+      return collection.countDocuments(data);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   create = (collection, data = {}) => {
-    return collection.create(data);
+    try{
+      return collection.create(data);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   find = (collection, data = {}, projection = {}) => {
-    return collection.find(data, projection);
+    try{
+      return collection.find(data, projection);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 
   findOne = (collection, data = {}, projection = {}) => {
-    return collection.findOne(data, projection);
+    try{
+      return collection.findOne(data, projection);
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }
 

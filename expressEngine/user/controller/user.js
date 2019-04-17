@@ -1,14 +1,18 @@
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseController } from '../../lib/controller';
 
 // import service
-import { UserService } from '../service/index';
+import { UserService } from '../service';
 
 class Controller extends BaseController {
-  create = async (data) => {
-    const { body } = data;
-    const userData = await UserService.registerUser(body);
-    return { userId: userData.userId };
+  create = async ({body}) => {
+    try{
+      const userData = await UserService.registerUser(body);
+      return { userId: userData.userId };
+    } catch (err) {      
+      // throw err;
+      return err;
+    }
   };
 };
 

@@ -1,11 +1,11 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { User } from '../../model/index';
+import { User } from '../../model';
 
 // import messages
-import { error } from '../../cms/user/index';
+import { error } from '../../cms/user';
 
 class Service extends BaseService {
   constructor() {
@@ -14,40 +14,43 @@ class Service extends BaseService {
   }
 
   registerUser = async ({ email, password, ...rest }) => {
-    const isExist = await DBService.count(User, { email });
-    if (isExist) {
-      throw error.alreadyRegistered;
+    try {
+      const isExist = await DBService.count(User, { email });
+      if (isExist) {
+        throw new Error(error.alreadyRegistered);
+      }
+  
+      const {
+        role = this.supplier,
+        companyName = '',
+        contactName = '',
+        contactTitle = '',
+        city = '',
+        country = '',
+        phone = '',
+        fax = '',
+      } = rest;
+  
+      const user = await DBService.create(User, {
+        email,
+        password,
+        role,
+        companyName,
+        contactName,
+        contactTitle,
+        city,
+        country,
+        phone,
+        fax,
+      });
+  
+      if (!user) {
+        throw new Error(error.unableToRegister);
+      }
+      return user;
+    } catch(err) {
+      throw err;
     }
-
-    const {
-      role = this.supplier,
-      companyName = '',
-      contactName = '',
-      contactTitle = '',
-      city = '',
-      country = '',
-      phone = '',
-      fax = '',
-    } = rest;
-
-    const user = await DBService.create(User, {
-      email,
-      password,
-      role,
-      companyName,
-      contactName,
-      contactTitle,
-      city,
-      country,
-      phone,
-      fax,
-    });
-
-    if (!user) {
-      throw error.unableToRegister;
-    }
-
-    return user;
   }
 }
 
