@@ -7,29 +7,37 @@ import { User } from '../../model/index';
 // import messages
 import { error } from '../../cms/user/index';
 
+//import validateRequired
+import { validateRequired } from '../../lib/validationHandler';
+
 class Service extends BaseService {
   constructor() {
     super();
     this.supplier = 'supplier';
   }
 
-  registerUser = async ({ email, password, ...rest }) => {
+  registerUser = async (data) => {
+    const {
+      city = '',
+      companyName = '',
+      contactName = '',
+      contactTitle = '',
+      country = '',
+      email,
+      fax = '',
+      password,
+      phone = '',
+      role = this.supplier,
+    } = data;
+    
+    requiredFields = ['email', 'password'];
+    validateRequired(data, requiredFields);
+
     const isExist = await DBService.count(User, { email });
     if (isExist) {
       throw error.alreadyRegistered;
     }
-
-    const {
-      role = this.supplier,
-      companyName = '',
-      contactName = '',
-      contactTitle = '',
-      city = '',
-      country = '',
-      phone = '',
-      fax = '',
-    } = rest;
-
+    
     const user = await DBService.create(User, {
       email,
       password,
