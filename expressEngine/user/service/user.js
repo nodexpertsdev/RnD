@@ -8,7 +8,7 @@ import { User } from '../../model/index';
 import { error } from '../../cms/user/index';
 
 // import utils
-import { userHelper } from '../utils';
+import { UserHelper } from '../utils';
 
 class Service extends BaseService {
   constructor() {
@@ -53,7 +53,7 @@ class Service extends BaseService {
     return user;
   }
   get = async ({ query, body }) => {
-    const projection = userHelper();
+    const projection = UserHelper.getProjection();
     const users = await DBService.findAll({
       projection,
       collection: User,
