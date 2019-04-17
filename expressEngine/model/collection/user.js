@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 // import model library methods
-import modelLib from '../lib/index';
+import modelLib from '../lib';
 
 const SALT_WORK_FACTOR = 10;
 const { Schema } = mongoose;
