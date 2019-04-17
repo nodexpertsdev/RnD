@@ -1,4 +1,3 @@
 export default {
-  userRegistered: 'You have registered successfully'
-  ,
+  userRegistered: 'You have registered successfully',
 };
