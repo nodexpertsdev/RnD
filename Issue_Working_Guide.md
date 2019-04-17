@@ -13,8 +13,8 @@ Before starting to work on an issue, make sure to add yourself as assignee of th
 
 ## Label
 While working on an issue, add appropriate labels on that issue. 
-Ex: *If you are working on issue branch add the label in Progress.*
-    *If the PR of issue is merged than add the label Done*
+Ex: *If you are working on issue, add the label in Progress.*
+    *If the PR of issue is merged then remove the label in Progress*
 
 ## Description
 If you are creating a new issue, then add proper description to it. This is essential if someone else decides to work on issue created by you.
