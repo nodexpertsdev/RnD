@@ -7,8 +7,8 @@ import { UserService } from '../service';
 class Controller extends BaseController {
   create = async (data) => {
     const { body } = data;
-    const userData = await UserService.registerUser(body);
-    return { userId: userData.userId };
+    const result = await UserService.registerUser(body);
+    return result;
   };
 
   delete = async (data) => {

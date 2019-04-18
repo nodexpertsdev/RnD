@@ -16,7 +16,7 @@ class Service extends BaseService {
     registerUser = async ({ email, password, ...rest }) => {
     const isExist = await DBService.count(User, { email });
     if (isExist) {
-      throw error.alreadyRegistered;
+      return { error: error.alreadyRegistered};
     }
 
     const {
@@ -44,17 +44,17 @@ class Service extends BaseService {
     });
 
     if (!user) {
-      throw error.unableToRegister;
+      return { error: error.unableToRegister };
     }
 
-    return user;
+    return { data: user ,message: success.userRegistered };
   }
 
   delete = async (data) => {
     const { id } = data.params;
     const isExist = await DBService.findOne(User, { userId: id });
     if (!isExist) {
-      throw { error: error.unableToDelete };
+      return { error: error.unableToDelete };
     }
     await DBService.deleteOne(User, { userId: id });
     return ({ message: success.userDeleted });
