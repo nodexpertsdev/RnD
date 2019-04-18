@@ -1,11 +1,11 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { User } from '../../model/index';
+import { User } from '../../model';
 
 // import messages
-import { error } from '../../cms/user/index';
+import { error, success } from '../../cms/user';
 
 class Service extends BaseService {
   constructor() {
@@ -13,7 +13,7 @@ class Service extends BaseService {
     this.supplier = 'supplier';
   }
 
-  registerUser = async ({ email, password, ...rest }) => {
+    registerUser = async ({ email, password, ...rest }) => {
     const isExist = await DBService.count(User, { email });
     if (isExist) {
       throw error.alreadyRegistered;
@@ -48,6 +48,16 @@ class Service extends BaseService {
     }
 
     return user;
+  }
+
+  delete = async (data) => {
+    const { id } = data.params;
+    const isExist = await DBService.findOne(User, { userId: id });
+    if (!isExist) {
+      throw { error: error.unableToDelete };
+    }
+    await DBService.deleteOne(User, { userId: id });
+    return ({ message: success.userDeleted });
   }
 }
 
