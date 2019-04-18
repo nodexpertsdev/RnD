@@ -7,11 +7,9 @@ class DBOperation {
 
   create = (collection, data = {}) => collection.create(data)
 
-  find = (collection, data = {}, projection = {}) => collection.find(data, projection)
-
   findOne = (collection, data = {}, projection = {}) => collection.findOne(data, projection)
 
-  findAll = ({
+  find = ({
     collection, data = {}, skip = 0, limit = 10, projection = {},
   }) => {
     const skipValue = baseService.parseNumber(skip, 0);

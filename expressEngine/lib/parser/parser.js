@@ -9,7 +9,7 @@ export default (controller = null, functionName = '') => async (req, res) => {
     }
 
     const result = await controller[functionName]({ params, query, body });
-    console.log('inside parser result  ', result);
+
     if (result.error) {
       // Error will be directly handled by the error handler
       return res.json(result);
