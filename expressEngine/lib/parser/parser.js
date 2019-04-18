@@ -1,4 +1,4 @@
-import { error } from '../../cms/parser/index';
+import { error } from '../../cms/parser';
 
 export default (controller = null, functionName = '') => async (req, res) => {
   const { params, query, body } = req;
