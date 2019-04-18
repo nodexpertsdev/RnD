@@ -23,7 +23,7 @@ Similarly, try to create a PR of single functionality. Make sure to have only yo
 ## Label
 While working on an issue, add appropriate labels on that issue. <br>
 Ex: *If you are working on issue, add the label in Progress.*<br>
-    *If the PR of issue is merged then remove the label in Progress*<br>
+    *If the PR of issue is merged then remove the label in Progress*<br><br>
 Before raising a PR, add appropriate labels on that PR. <br>
 Ex: If you are working on feature branch add the label feature.
 
