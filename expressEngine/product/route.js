@@ -6,7 +6,7 @@ import {
 // import controller
 import {
   ProductController,
-} from './controller/index';
+} from './controller';
 
 
 // import parser
