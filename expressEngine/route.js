@@ -6,21 +6,12 @@ import UserRoute from './user/route';
 import OrderRoute from './order/route';
 import ProductRoute from './product/route';
 import CustomerRoute from './customer/route';
+import authMiddleware from './authMiddleware/authMiddleware';
 
 const app = express();
 
-app.use('/', (req, res, next) => { // to be used to authenticate request
-  const { headers } = req;
-  if (headers.authkey !== 'successive') {
-    return res.status(403).json({
-      error: true,
-      message: 'Forbidden',
-    });
-  }
-  next();
-});
-app.use('/customer', CustomerRoute)
-app.use('/user', UserRoute);
-app.use('/order', OrderRoute);
-app.use('/products', ProductRoute);
+app.use('/customer', authMiddleware,CustomerRoute);
+app.use('/user', authMiddleware, UserRoute);
+app.use('/order', authMiddleware, OrderRoute);
+app.use('/products', authMiddleware, ProductRoute);
 export default app;

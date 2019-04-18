@@ -1,8 +1,8 @@
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseController } from '../../lib/controller';
 
 // import service
-import { UserService } from '../service/index';
+import { UserService } from '../service';
 
 class Controller extends BaseController {
   create = async (data) => {
@@ -10,6 +10,11 @@ class Controller extends BaseController {
     const userData = await UserService.registerUser(body);
     return { userId: userData.userId };
   };
+
+  delete = async (data) => {
+    const result = await UserService.delete(data);
+    return result;
+  }
 };
 
 export default new Controller();
