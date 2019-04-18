@@ -14,7 +14,7 @@ import Route from './route';
 // import docs
 import swaggerDocument from './doc/swagger.json';
 import seed from './db/seedData';
-import healthCheck from './lib/routeHelper';
+import routeHelper from './lib/routeHelper';
 
 // Set up the express app
 const app = express();
@@ -22,11 +22,13 @@ config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/health-check', healthCheck);
+app.use('/health-check', routeHelper.healthCheck);
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
 app.use('/api', Route);
+
+app.use(routeHelper.notFoundRoute);
 
 const { PORT } = process.env;
 const port = PORT || 5000;
