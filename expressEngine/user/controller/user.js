@@ -13,7 +13,9 @@ class Controller extends BaseController {
 
   get = async (data) => {
     const userData = await UserService.get(data);
-
+    if (userData.error) {
+      return userData;
+    }
     return { data: userData };
   };
 
