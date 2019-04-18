@@ -1,4 +1,5 @@
 import BaseService from './base';
+import { error } from '../../cms/user';
 
 const baseService = new BaseService();
 class DBOperation {
@@ -15,6 +16,10 @@ class DBOperation {
   }) => {
     const skipValue = baseService.parseNumber(skip, 0);
     const limitValue = baseService.parseNumber(limit, 10);
+    const err = { error: error.noCollection };
+    if (!collection) {
+      throw err;
+    }
     return collection.find(data, projection).skip(skipValue).limit(limitValue);
   }
 

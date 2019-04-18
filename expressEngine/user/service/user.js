@@ -57,7 +57,6 @@ class Service extends BaseService {
     const projection = UserHelper.getProjection();
     const users = (await DBService.findAll({
       projection,
-      collection: User,
       data: body,
       limit: query.limit,
       skip: query.skip,
