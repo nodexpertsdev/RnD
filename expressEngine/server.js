@@ -1,7 +1,9 @@
+/* eslint-disable no-console */
 // import packages
 import express from 'express';
 import bodyParser from 'body-parser';
 import SwaggerUi from 'swagger-ui-express';
+import { config } from 'dotenv';
 
 // import db methods
 import db from './db/db';
@@ -11,32 +13,30 @@ import Route from './route';
 
 // import docs
 import swaggerDocument from './doc/swagger.json';
+import seed from './db/seedData';
+import healthCheck from './lib/routeHelper';
 
 // Set up the express app
 const app = express();
-
+config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/health-check', (req, res, next) => {
-  res.status(200).json({
-    status: 'ok',
-    message: 'Health is good',
-  })
-});
+app.use('/health-check', healthCheck);
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
 app.use('/api', Route);
 
-const PORT = 5000;
+const { PORT } = process.env;
+const port = PORT || 5000;
 
 db.open().then(async () => {
   try {
     console.log('Db connected successfully');
-
-    await app.listen(PORT);
-    console.log(`App running on port ${PORT}`);
+    seed();
+    await app.listen(port);
+    console.log(`App running on port ${port}`);
   } catch (err) {
     console.warn(err);
   }

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 // import model library methods
-import modelLib from '../lib/index';
+import modelLib from '../lib';
 
 const SALT_WORK_FACTOR = 10;
 const { Schema } = mongoose;
@@ -23,6 +23,10 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
+    validate: {
+      validator: password => modelLib.validatePassword(password),
+      message: 'password must have atleast 8 characters, atleast 1 uppaercase, atleast 1 lowercase, atleast 1 special char and atleast 1 integer!',
+    },
   },
   lastLogin: {
     type: Date,
