@@ -4,7 +4,7 @@ export default (controller = null, functionName = '') => async (req, res) => {
   const { params, query, body } = req;
 
   if (!(controller && controller[functionName])) {
-    return (error: error.functionNotFound);
+    return ({ error: error.functionNotFound });
   }
 
   const result = await controller[functionName]({ params, query, body });
