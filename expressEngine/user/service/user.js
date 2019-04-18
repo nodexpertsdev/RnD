@@ -55,15 +55,17 @@ class Service extends BaseService {
 
   get = async ({ query, body }) => {
     const projection = UserHelper.getProjection();
-    const users = (await DBService.findAll({
+    const dataToFind = {
       projection,
+      collection: User,
       data: body,
       limit: query.limit,
       skip: query.skip,
-    })) || [];
-
-    if (!users.length) {
-      throw error.noRecords;
+    };
+    const users = (await DBService.findAll(dataToFind));
+    const err = { error: error.noRecords };
+    if (!(users.error || users.length)) {
+      return err;
     }
     return users;
   };
