@@ -22,19 +22,6 @@ class Parser {
   }
 
   response = (res, data, statusCode = 200) => res.status(statusCode).json(data);
-
-  validateRequired = (data = {}, required = []) => {
-    const retVal = {};
-    required.forEach((field) => {
-      if (!(data[field] || data[field] === false || data[field] === 0)) {
-        const fieldKey = field.charAt(0).toUpperCase() + field.slice(1);
-        retVal[field] = `${fieldKey} is required.`;
-      }
-    });
-    if (Object.keys(retVal).length) {
-      throw retVal;
-    }
-  }
 };
 
 export default Parser;

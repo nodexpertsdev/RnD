@@ -4,7 +4,8 @@ import { BaseService, DBService } from '../../lib/service';
 // import collections
 import { User } from '../../model';
 
-// import messages
+// import validateRequired
+import { validateRequired } from '../../lib/validationHandler';
 import { error, success } from '../../cms/user';
 
 // import utils
@@ -33,23 +34,10 @@ class Service extends BaseService {
       fax = '',
     } = rest;
 
-    const user = await DBService.create(User, {
-      email,
-      password,
-      role,
-      companyName,
-      contactName,
-      contactTitle,
-      city,
-      country,
-      phone,
-      fax,
-    });
-
     if (!user) {
       return { error: error.unableToRegister };
     }
-
+  };
     return { data: user ,message: success.userRegistered };
   }
 
