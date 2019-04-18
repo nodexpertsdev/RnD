@@ -15,7 +15,7 @@ class Service extends BaseService {
 
             const isExist = await DBService.findOne(Customer, { firstName, lastName });
             if (isExist) {
-                throw error.alreadyRegistered;
+                return error.alreadyRegistered;
             }
 
             const customer = await DBService.create(Customer, {
