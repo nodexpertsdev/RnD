@@ -9,7 +9,6 @@ class Controller extends BaseController {
     const { body } = data;
     const result = await UserService.registerUser(body);
     return result;
-
   };
 
   get = async (data) => {
