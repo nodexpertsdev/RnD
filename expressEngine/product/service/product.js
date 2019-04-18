@@ -7,13 +7,16 @@ import { Product, ProductDetail } from '../../model';
 // import messages
 import {success} from '../../cms/product';
 
+//import validateRequired
+import { validateRequired } from '../../lib/validationHandler';
+
 class Service extends BaseService {
   registerProduct = async (data) => {
     try {
-      const {name, supplierId,unitPrice, productPackage, isDiscontinued  } = data,
+      const { name, supplierId, unitPrice, productPackage, isDiscontinued } = data,
       requiredFields = ['name', 'supplierId','unitPrice'];
 
-      this.validateRequired(data, requiredFields);
+      validateRequired(data, requiredFields);
       const product = await DBService.create(Product, {
         name,
         supplierId,
