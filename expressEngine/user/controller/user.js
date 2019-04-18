@@ -10,6 +10,18 @@ class Controller extends BaseController {
     const userData = await UserService.registerUser(body);
     return { userId: userData.userId };
   };
-};
 
+  get = async (data) => {
+    const userData = await UserService.get(data);
+    if (userData.error) {
+      return userData;
+    }
+    return { data: userData };
+  };
+
+  delete = async (data) => {
+    const result = await UserService.delete(data);
+    return result;
+  }
+}
 export default new Controller();

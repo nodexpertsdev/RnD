@@ -10,5 +10,6 @@ import parser from '../lib/parser';
 const router = express.Router();
 
 router.post('/', parser(UserController, 'create'));
-
+router.get('/', parser(UserController, 'get'));
+router.delete('/:id', parser(UserController, 'delete'));
 export default router;

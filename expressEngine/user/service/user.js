@@ -5,7 +5,10 @@ import { BaseService, DBService } from '../../lib/service';
 import { User } from '../../model';
 
 // import messages
-import { error } from '../../cms/user';
+import { error, success } from '../../cms/user';
+
+// import utils
+import userHelper from '../utils';
 
 class Service extends BaseService {
   constructor() {
@@ -48,6 +51,33 @@ class Service extends BaseService {
     }
 
     return user;
+  };
+
+  get = async ({ query, body }) => {
+    const projection = userHelper.getProjection();
+    const dataToFind = {
+      projection,
+      collection: User,
+      data: body,
+      limit: query.limit,
+      skip: query.skip,
+    };
+    const users = (await DBService.find(dataToFind));
+    const err = { error: error.noRecords };
+    if (!(users.error || users.length)) {
+      return err;
+    }
+    return users;
+  };
+
+  delete = async (data) => {
+    const { id } = data.params;
+    const isExist = await DBService.findOne(User, { userId: id });
+    if (!isExist) {
+      throw { error: error.unableToDelete };
+    }
+    await DBService.deleteOne(User, { userId: id });
+    return ({ message: success.userDeleted });
   }
 }
 
