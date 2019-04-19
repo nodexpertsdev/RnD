@@ -7,27 +7,21 @@ import { Order } from '../../model';
 // import messages
 import { success } from '../../cms/order';
 
-//import validateRequired
-import { validateRequired } from '../../lib/validationHandler';
-
 class Service extends BaseService {
   generateOrder = async (data) => {
-    try {
-      const { orderNumber, supplierId, unitPrice, productPackage } = data,
-      requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
-      validateRequired(data, requiredFields)
-      const result = await DBService.create(Order, {
-        orderNumber,
-        supplierId,
-        unitPrice,
-        package:productPackage,
-      });
-
-      return this.success(result, success.orderGenerated);
-
-    } catch (err) {
-      return this.error(err);
+    const {
+      orderNumber, supplierId, unitPrice, productPackage,
+    } = data;
+    const order = await DBService.create(Order, {
+      orderNumber,
+      supplierId,
+      unitPrice,
+      package: productPackage,
+    });
+    if (order.error) {
+      return order;
     }
+    return { data: order, message: success.orderGenerated };
   }
 }
 
