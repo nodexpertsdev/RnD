@@ -1,3 +1,4 @@
+let mongoose = require('mongoose');
 // import service libraries
 import { BaseService, DBService } from '../../lib/service';
 
@@ -33,14 +34,13 @@ class Service extends BaseService {
     }
     delete = async (data) => {
         const { id } = data.params;
-        let mongoose = require('mongoose');
         let valid = mongoose.Types.ObjectId.isValid(id);
         if (!valid) {
-            return ({ error: error.unableToDelete });
+            return ({ error: error.customerNotFound });
         }
         const isExist = await DBService.findOne(Customer, { _id: id });
         if (!isExist) {
-            return ({ error: error.unableToDelete });
+            return ({ error: error.customerNotFound });
         }
         await DBService.deleteOne(Customer, { _id: id });
         return ({ message: success.customerDeleted });
