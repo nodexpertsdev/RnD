@@ -38,12 +38,9 @@ class Service extends BaseService {
         if (!valid) {
             return ({ error: error.customerNotFound });
         }
-        const isExist = await DBService.findOne(Customer, { _id: id });
-        if (!isExist) {
-            return ({ error: error.customerNotFound });
-        }
-        await DBService.deleteOne(Customer, { _id: id });
-        return ({ message: success.customerDeleted });
+        const result = await DBService.deleteOne(Customer, { _id: id });
+        const { deletedCount } = result;
+        return ( deletedCount ? { message: success.customerDeleted } : { error: error.customerNotFound });
     }
 }
 
