@@ -1,27 +1,63 @@
-class DbOperation {
-  count = (collection, data = {}) => {
-    return collection.countDocuments(data);
+import BaseService from './base';
+import { error } from '../../cms/user';
+
+const baseService = new BaseService();
+class DBOperation {
+  count = async (collection, data = {}) => {
+    try {
+      return await collection.countDocuments(data);
+    } catch (err) {
+      return { error: err.message };
+    }
   }
 
-  create = (collection, data = {}) => {
-    return collection.create(data);
+  create = async (collection, data = {}) => {
+    try {
+      return await collection.create(data);
+    } catch (err) {
+      return { error: err.message };
+    }
   }
 
-  find = (collection, data = {}, projection = {}) => {
-    return collection.find(data, projection);
+  findOne = async (collection, data = {}, projection = {}) => {
+    try {
+      return await collection.findOne(data, projection);
+    } catch (err) {      
+      return { error: err.message };
+    }
   }
 
-  findOne = (collection, data = {}, projection = {}) => {
-    return collection.findOne(data, projection);
+  find = async ({
+    collection, data = {}, skip = 0, limit = 10, projection = {},
+  }) => {
+    try {
+      const skipValue = baseService.parseNumber(skip, 0);
+      const limitValue = baseService.parseNumber(limit, 10);
+      const err = { error: error.noCollection };
+      if (!collection) {
+        return err;
+      }
+      return await collection.find(data, projection).skip(skipValue).limit(limitValue);
+    } catch (err) {
+      return { error: err.message };
+    }
   }
 
-  deleteMany = (collection, data) => {
-    return collection.deleteMany(data);
+  deleteMany = async (collection, data) => {
+    try {
+      return await collection.deleteMany(data);
+    } catch (err) {
+      return { error: err.message };
+    }
   }
 
-  deleteOne = (collection, data) => {
-    return collection.deleteOne(data);
+  deleteOne = async (collection, data) => {
+    try {
+      return await collection.deleteOne(data);
+    } catch (err) {      
+      return { error: err.message };
+    }
   }
 }
 
-export default new DbOperation();
+export default new DBOperation();

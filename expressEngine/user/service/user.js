@@ -17,9 +17,12 @@ class Service extends BaseService {
   }
 
   registerUser = async ({ email, password, ...rest }) => {
-    const isExist = await DBService.count(User, { email });
+    const isExist = await DBService.count(User, { email }); 
+    if (isExist.error) {
+      return isExist;
+    }
     if (isExist) {
-      return { error: error.alreadyRegistered};
+      return { error: error.alreadyRegistered };
     }
 
     const {
@@ -45,26 +48,28 @@ class Service extends BaseService {
       phone,
       fax,
     });
-
-    if (!user) {
-      return { error: error.unableToRegister };
+        
+    if (user.error) {
+      return user;
     }
 
-    return { data: user ,message: success.userRegistered };
+    return { data: user, message: success.userRegistered };
   }
 
   get = async ({ query, body }) => {
     const projection = userHelper.getProjection();
     const dataToFind = {
       projection,
-      collection: User,
       data: body,
       limit: query.limit,
       skip: query.skip,
     };
-    const users = (await DBService.find(dataToFind));
+    const users = (await DBService.find(dataToFind)) || [];
     const err = { error: error.noRecords };
-    if (!(users.error || users.length)) {
+    if (users.error) {
+      return users;
+    }
+    if (!users.length) {
       return err;
     }
     return { data: users };
@@ -76,8 +81,14 @@ class Service extends BaseService {
     if (!isExist) {
       return { error: error.unableToDelete };
     }
-    await DBService.deleteOne(User, { userId: id });
-    return ({ message: success.userDeleted });
+    if (isExist.error) {
+      return isExist;
+    }
+    const deleted = await DBService.deleteOne(User, { userId: id });
+    if (deleted.error) {
+      return deleted;
+    }
+    return ({ data: deleted, message: success.userDeleted });
   }
 }
 
