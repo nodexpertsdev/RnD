@@ -26,15 +26,12 @@ class RouteHelper {
   
   /**
    * @desc To handle the live request
-   * @param req request object
    * @param res response object
    *
    * @return res
    */
-  static notFound(req, res) {
-    res.status(404).json({
-      error: "Route Not Found"
-    });
+  static notFound(res) {
+    res.status(404).send({ error: "Route not found" });
   };
 };
 
