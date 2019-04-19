@@ -17,7 +17,7 @@ class Service extends BaseService {
   }
 
   registerUser = async ({ email, password, ...rest }) => {
-    const isExist = await DBService.count(User, { email }); 
+    const isExist = await DBService.count(User, { email });
     if (isExist.error) {
       return isExist;
     }
