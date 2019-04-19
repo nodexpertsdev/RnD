@@ -22,13 +22,13 @@ config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/health-check', routeHelper.healthCheck);
+app.use(routeHelper.liveRoute(), routeHelper.liveRequest);
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
 
 app.use('/api', Route);
 
-app.use(routeHelper.notFoundRoute);
+app.use(routeHelper.notFound);
 
 const { PORT } = process.env;
 const port = PORT || 5000;
