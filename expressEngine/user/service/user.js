@@ -4,8 +4,6 @@ import { BaseService, DBService } from '../../lib/service';
 // import collections
 import { User } from '../../model';
 
-// import validateRequired
-import { validateRequired } from '../../lib/validationHandler';
 import { error, success } from '../../cms/user';
 
 // import utils
@@ -17,47 +15,43 @@ class Service extends BaseService {
     this.supplier = 'supplier';
   }
 
-  registerUser = async (data) => {
-    try {
-      const {
-        city,
-        companyName,
-        contactName,
-        contactTitle,
-        country,
-        email,
-        fax,
-        password,
-        phone,
-        role = this.supplier,
-      } = data;
-      const requiredFields = ['email', 'password'];
-
-      validateRequired(data, requiredFields);
-
-      const isExist = await DBService.count(User, { email });
-      if (isExist) {
-        throw error.alreadyRegistered;
-      }
-      const user = await DBService.create(User, {
-        email,
-        password,
-        role,
-        companyName,
-        contactName,
-        contactTitle,
-        city,
-        country,
-        phone,
-        fax,
-      });
-      if (!user) {
-        throw error.unableToRegister;
-      }
-      return this.success(success.userRegistered);
-    } catch (err) {
-      return this.error(err);
+  registerUser = async ({ email, password, ...rest }) => {
+    const isExist = await DBService.count(User, { email });
+    if (isExist.error) {
+      return isExist;
     }
+    if (isExist) {
+      return { error: error.alreadyRegistered };
+    }
+
+    const {
+      role = this.supplier,
+      companyName = '',
+      contactName = '',
+      contactTitle = '',
+      city = '',
+      country = '',
+      phone = '',
+      fax = '',
+    } = rest;
+
+    const user = await DBService.create(User, {
+      email,
+      password,
+      role,
+      companyName,
+      contactName,
+      contactTitle,
+      city,
+      country,
+      phone,
+      fax,
+    });
+        
+    if (user.error) {
+      return user;
+    }
+    return { data: user, message: success.userRegistered };
   };
 
   get = async ({ query, body }) => {
@@ -71,10 +65,13 @@ class Service extends BaseService {
     };
     const users = (await DBService.find(dataToFind));
     const err = { error: error.noRecords };
-    if (!(users.error || users.length)) {
+    if (users.error) {
+      return users;
+    }
+    if (!users.length) {
       return err;
     }
-    return users;
+    return { data: users };
   };
 
   delete = async (data) => {
@@ -83,8 +80,14 @@ class Service extends BaseService {
     if (!isExist) {
       return { error: error.unableToDelete };
     }
-    await DBService.deleteOne(User, { userId: id });
-    return ({ message: success.userDeleted });
+    if (isExist.error) {
+      return isExist;
+    }
+    const deleted = await DBService.deleteOne(User, { userId: id });
+    if (deleted.error) {
+      return deleted;
+    }
+    return ({ data: deleted, message: success.userDeleted });
   }
 }
 
