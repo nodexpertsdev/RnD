@@ -58,6 +58,7 @@ class Service extends BaseService {
     const projection = userHelper.getProjection();
     const dataToFind = {
       projection,
+      collection: User,
       data: body,
       limit: query.limit,
       skip: query.skip,
