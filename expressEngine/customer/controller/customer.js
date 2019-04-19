@@ -11,6 +11,10 @@ class CustomerController extends BaseController {
             return err;
         }
     };
+    delete = async (data) => {
+        const result = await CustomerService.delete(data);
+        return result;
+    }
 };
 
 export default new CustomerController();

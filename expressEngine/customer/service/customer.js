@@ -31,6 +31,20 @@ class Service extends BaseService {
             return this.error(err);
         }
     }
+    delete = async (data) => {
+        const { id } = data.params;
+        let mongoose = require('mongoose');
+        let valid = mongoose.Types.ObjectId.isValid(id);
+        if (!valid) {
+            return ({ error: error.unableToDelete });
+        }
+        const isExist = await DBService.findOne(Customer, { _id: id });
+        if (!isExist) {
+            return ({ error: error.unableToDelete });
+        }
+        await DBService.deleteOne(Customer, { _id: id });
+        return ({ message: success.customerDeleted });
+    }
 }
 
 export default new Service();

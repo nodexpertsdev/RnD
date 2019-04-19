@@ -9,8 +9,7 @@ import parser from '../lib/parser';
 
 const router = Router();
 
-router
-    .post('/',
-        parser(CustomerController, 'create'));
+router.post('/',parser(CustomerController, 'create'));
+router.delete('/:id', parser(CustomerController, 'delete'));
 
 export default router;
