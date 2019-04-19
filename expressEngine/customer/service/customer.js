@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service';
 import { Customer } from '../../model';
 
 // import messages
-import { success } from '../../cms/customer';
+import { error, success } from '../../cms/customer';
 
 class Service extends BaseService {
     register = async (data) => {
@@ -16,7 +16,7 @@ class Service extends BaseService {
 
       const isExist = await DBService.findOne(Customer, { email });
       if (isExist) {
-        return error.alreadyRegistered;
+        return { error: error.alreadyRegistered };
       }
 
       const customer = await DBService.create(Customer, {
