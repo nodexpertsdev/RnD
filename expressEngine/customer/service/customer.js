@@ -5,7 +5,7 @@ import { BaseService, DBService } from '../../lib/service';
 import { Customer } from '../../model';
 
 // import messages
-import { error, success } from '../../cms/customer';
+import { success } from '../../cms/customer';
 
 class Service extends BaseService {
     register = async (data) => {
@@ -29,7 +29,7 @@ class Service extends BaseService {
       if (customer.error) {
         return customer;
       }
-      return this.success(customer, success.customerRegistered);
+      return { data: customer, message: success.customerRegistered };
     }
 }
 
