@@ -4,7 +4,6 @@ import { BaseService, DBService } from '../../lib/service';
 // import collections
 import { User } from '../../model';
 
-// import messages
 import { error, success } from '../../cms/user';
 
 // import utils
@@ -52,9 +51,8 @@ class Service extends BaseService {
     if (user.error) {
       return user;
     }
-
     return { data: user, message: success.userRegistered };
-  }
+  };
 
   get = async ({ query, body }) => {
     const projection = userHelper.getProjection();
@@ -64,7 +62,7 @@ class Service extends BaseService {
       limit: query.limit,
       skip: query.skip,
     };
-    const users = (await DBService.find(dataToFind)) || [];
+    const users = (await DBService.find(dataToFind));
     const err = { error: error.noRecords };
     if (users.error) {
       return users;

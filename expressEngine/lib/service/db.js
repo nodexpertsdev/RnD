@@ -1,5 +1,6 @@
 import BaseService from './base';
 import { error } from '../../cms/user';
+<<<<<<< HEAD
 
 const baseService = new BaseService();
 class DBOperation {
@@ -58,6 +59,32 @@ class DBOperation {
       return { error: err.message };
     }
   }
+=======
+
+const baseService = new BaseService();
+class DBOperation {
+  count = (collection, data = {}) => collection.countDocuments(data)
+
+  create = (collection, data = {}) => collection.create(data)
+
+  findOne = (collection, data = {}, projection = {}) => collection.findOne(data, projection)
+
+  find = ({
+    collection, data = {}, skip = 0, limit = 10, projection = {},
+  }) => {
+    const skipValue = baseService.parseNumber(skip, 0);
+    const limitValue = baseService.parseNumber(limit, 10);
+    const err = { error: error.noCollection };
+    if (!collection) {
+      return err;
+    }
+    return collection.find(data, projection).skip(skipValue).limit(limitValue);
+  }
+
+  deleteMany = (collection, data) => collection.deleteMany(data)
+
+  deleteOne = (collection, data) => collection.deleteOne(data)
+>>>>>>> 21623fefceb304b06a26d18c6e9d4ae618185142
 }
 
 export default new DBOperation();

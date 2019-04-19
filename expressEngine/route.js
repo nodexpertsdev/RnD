@@ -10,7 +10,7 @@ import authMiddleware from './authMiddleware/authMiddleware';
 
 const app = express();
 
-app.use('/customer', authMiddleware,CustomerRoute);
+app.use('/customer', authMiddleware, CustomerRoute);
 app.use('/user', authMiddleware, UserRoute);
 app.use('/order', authMiddleware, OrderRoute);
 app.use('/products', authMiddleware, ProductRoute);
