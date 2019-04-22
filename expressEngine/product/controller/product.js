@@ -1,17 +1,11 @@
 // import base controller
-import { BaseController } from '../../lib/controller/index';
+import { BaseController } from '../../lib/controller';
 
 // import service
-import { ProductService } from '../service/index';
+import { ProductService } from '../service';
 
-class ProductController extends BaseController  {
-  create = async ({body}) => {
-    try {
-      return await ProductService.registerProduct(body);
-    } catch (err) {
-      return err;
-    }
-  };
-};
+class ProductController extends BaseController {
+  create = ({ body }) => ProductService.registerProduct(body);
+}
 
 export default new ProductController();
