@@ -1,9 +1,9 @@
 import { error as commonError, success } from '../../cms/common';
 
 class responseHandler {
-  success = ({ data, message }) => ({ data: data || null, message: message || success.defaultSuccessMsg });
+  success = ({ data = null, message = success.defaultSuccessMsg }) => ({ data, message });
 
-  error = ({ error, status }) => ({ error: error || commonError.undefinedError, status: status || 500 });
+  error = ({ error = commonError.undefinedError, status = 500 }) => ({ error, status });
 
   response = (data) => {
     const { error } = data;
