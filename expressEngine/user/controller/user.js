@@ -5,20 +5,15 @@ import { BaseController } from '../../lib/controller';
 import { UserService } from '../service';
 
 class Controller extends BaseController {
-  create = async ({ body }) => {
-    try {
-      return await UserService.registerUser(body);
-    } catch (err) {
-      return err;
-    }
+  create = async (data) => {
+    const { body } = data;
+    const result = await UserService.registerUser(body);
+    return result;
   };
 
   get = async (data) => {
     const userData = await UserService.get(data);
-    if (userData.error) {
-      return userData;
-    }
-    return { data: userData };
+    return userData;
   };
 
   delete = async (data) => {
