@@ -15,16 +15,17 @@ class UserHelper {
       const match = await bcrypt.compare(loginPassword, hashPassword);
       return match;
     } catch (err) {
-      return { error: 'not match' };
+      return { error: err };
     }
   };
 
   createToken = async ({ data }) => {
     try {
-      const token = await jwt.sign(data, 'successive');
+      const { key = 'successive' } = process.env;
+      const token = await jwt.sign(data, key);
       return token;
     } catch (err) {
-      return { error: 'error in generate token' };
+      return { error: err };
     }
   }
 }
