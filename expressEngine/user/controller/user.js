@@ -20,9 +20,5 @@ class Controller extends BaseController {
     const result = await UserService.delete(data);
     return result;
   }
-
-  login = async () => {
-    console.log('inside login ---- ');
-  }
 }
 export default new Controller();

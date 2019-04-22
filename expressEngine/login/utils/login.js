@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-class UserHelper {
+class LoginHelper {
   getProjection = () => {
     const projection = {
       email: 1,
@@ -30,4 +30,4 @@ class UserHelper {
   }
 }
 
-export default new UserHelper();
+export default new LoginHelper();

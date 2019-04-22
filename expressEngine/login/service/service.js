@@ -10,13 +10,13 @@ import { validateRequired } from '../../lib/validationHandler';
 import { error, success } from '../../cms/user';
 
 // import utils
-import userHelper from '../utils';
+import loginHelper from '../utils';
 
 
 class LoginService extends BaseService {
     login = async ({ body }) => {
       const { email, password: loginPassword } = body;
-      const projection = userHelper.getProjection();
+      const projection = loginHelper.getProjection();
 
       const isExist = await DBService.findOne(User, { email }, projection);
       if (!isExist) {
@@ -24,7 +24,7 @@ class LoginService extends BaseService {
       }
 
       const { password: hashPassword = '', id: userId = '' } = isExist;
-      const match = await userHelper.checkUser({ loginPassword, hashPassword });
+      const match = await loginHelper.checkUser({ loginPassword, hashPassword });
       if (!match || match.error) {
         return { error: error.passwordError };
       }
@@ -40,7 +40,7 @@ class LoginService extends BaseService {
         await DBService.deleteOne(userToken, { userId: tokenForUser });
       }
 
-      const token = await userHelper.createToken({ data: body });
+      const token = await loginHelper.createToken({ data: body });
       if (!token || token.error) {
         return { error: error.tokenError };
       }
