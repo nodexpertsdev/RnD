@@ -21,7 +21,7 @@ class LoginHelper {
 
   createToken = async ({ data }) => {
     try {
-      const { key = 'successive' } = process.env;
+      const { KEY: key = 'successive' } = process.env;
       const token = await jwt.sign(data, key);
       return token;
     } catch (err) {
