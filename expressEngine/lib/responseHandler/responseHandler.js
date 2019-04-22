@@ -1,17 +1,17 @@
 import { error as commonError, success } from '../../cms/common';
 
-class responseHandler {
-  success = ({ data, message }) => ({ data: data || null, message: message || success.defaultSuccessMsg });
+class ResponseHandler {
+  success = ({ data = true, message = success.defaultSuccessMsg }) => ({ data, message });
 
-  error = ({ error, status }) => ({ error: error || commonError.undefinedError, status: status || 500 });
+  error = ({ error = commonError.undefinedError, status = 500 }) => ({ error, status });
 
-  response = (data) => {
+  response = (res, data) => {
     const { error } = data;
     if (error) {
-      return this.error(data);
+      res.json(this.error(data));
     }
-    return this.success(data);
+    res.json(this.success(data));
   }
 }
 
-export default new responseHandler();
+export default new ResponseHandler();
