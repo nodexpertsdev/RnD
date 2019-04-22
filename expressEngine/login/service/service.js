@@ -2,8 +2,7 @@
 import { BaseService, DBService } from '../../lib/service';
 
 // import collections
-import { User } from '../../model';
-import { userToken } from '../../model';
+import { User, userToken } from '../../model';
 
 // import validateRequired
 import { validateRequired } from '../../lib/validationHandler';
