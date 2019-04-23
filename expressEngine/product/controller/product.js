@@ -1,10 +1,7 @@
-// import base controller
-import { BaseController } from '../../lib/controller';
-
 // import service
 import { ProductService } from '../service';
 
-class ProductController extends BaseController {
+class ProductController {
   create = ({ body }) => ProductService.registerProduct(body);
 }
 
