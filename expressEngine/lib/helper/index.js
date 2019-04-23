@@ -1,1 +1,1 @@
-export { default as BaseHelper } from './baseHelper';
+export { default as baseHelper } from './base';

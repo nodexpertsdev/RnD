@@ -7,7 +7,7 @@ import { Customer } from '../../model';
 // import messages
 import { error, success } from '../../cms/customer';
 // import helper
-import { BaseHelper } from '../../lib/helper';
+import { baseHelper } from '../../lib/helper';
 
 class Service extends BaseService {
 register = async (data) => {
@@ -41,7 +41,7 @@ register = async (data) => {
 
   delete = async (data) => {
     const { id } = data.params;
-    const valid = BaseHelper.validateId(id);
+    const valid = baseHelper.validateId(id);
     if (!valid) {
       return { error: error.customerNotFound };
     }
