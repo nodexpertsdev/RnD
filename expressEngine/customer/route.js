@@ -1,7 +1,7 @@
 // importing packages
 import { Router } from 'express';
 // import controller
-import { CustomerController } from './controller/index';
+import { CustomerController } from './controller';
 
 import parser from '../lib/parser';
 

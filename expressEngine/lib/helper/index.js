@@ -1,3 +1,1 @@
-import helper from './helper';
-
-export default helper;
+export { default as BaseHelper } from './baseHelper';
