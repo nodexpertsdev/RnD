@@ -13,7 +13,7 @@ import {
 
 const router = Router();
 
-router.post('/',
-  parser(OrderController, 'create'));
+router.post('/', parser(OrderController, 'create'));
+router.delete('/:orderNumber', parser(OrderController, 'delete'));
 
 export default router;

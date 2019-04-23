@@ -5,7 +5,7 @@ import { DBService } from '../../lib/service';
 import { Order } from '../../model';
 
 // import messages
-import { success } from '../../cms/order';
+import { success, error } from '../../cms/order';
 
 class Service {
   generateOrder = async (data) => {
@@ -22,6 +22,20 @@ class Service {
       return order;
     }
     return { data: order, message: success.orderGenerated };
+  }
+
+  cancelOrder = async (data) => {
+    const { orderNumber } = data;
+    const order = await DBService.deleteOne(Order, { orderNumber });
+    const { deletedCount } = order;
+    console.log();
+    
+    if (order.error) {
+      return order;
+    }
+    return deletedCount
+      ? { message: success.orderCanceled }
+      : { error: error.orderNotFound };
   }
 }
 
