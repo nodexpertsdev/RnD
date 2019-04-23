@@ -27,13 +27,6 @@ class DBOperation {
     }
   }
 
-  update = ({ collection, dataToUpdate, originalId }) => {
-    const record = collection.findOne({ _id: originalId });
-    const date = new Date();
-    const newData = Object.assign(record, dataToUpdate, { createdAt: date });
-    collection.create(...newData);
-  }
-
   find = async ({
     collection, data = {}, skip = 0, limit = 10, projection = {},
   }) => {
