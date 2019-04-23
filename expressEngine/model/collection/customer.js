@@ -4,6 +4,10 @@ import {
 } from 'mongoose';
 
 const customerSchema = new Schema({
+  customerId: {
+    type: String,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -25,6 +29,11 @@ const customerSchema = new Schema({
     required: true,
   },
 }, { collection: 'customers', timestamp: true });
+
+customerSchema.pre('save', async function preSave() {
+  const customer = this;
+  customer.customerId = customer._id.toString();
+});
 
 const Customer = model('Customers', customerSchema);
 
