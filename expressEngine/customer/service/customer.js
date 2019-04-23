@@ -1,5 +1,5 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service';
+import { DBService } from '../../lib/service';
 
 // import collections
 import { Customer } from '../../model';
@@ -7,7 +7,7 @@ import { Customer } from '../../model';
 // import messages
 import { error, success } from '../../cms/customer';
 
-class Service extends BaseService {
+class Service {
     register = async (data) => {
       const {
         name, email, city, country, contactNo,

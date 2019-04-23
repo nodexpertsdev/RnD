@@ -1,5 +1,5 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service';
+import { DBService } from '../../lib/service';
 
 // import collections
 import { Order } from '../../model';
@@ -7,7 +7,7 @@ import { Order } from '../../model';
 // import messages
 import { success } from '../../cms/order';
 
-class Service extends BaseService {
+class Service {
   generateOrder = async (data) => {
     const {
       orderNumber, supplierId, unitPrice, productPackage,

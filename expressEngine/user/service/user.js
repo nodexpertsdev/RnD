@@ -1,5 +1,5 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service';
+import { DBService } from '../../lib/service';
 
 // import collections
 import { User } from '../../model';
@@ -9,9 +9,8 @@ import { error, success } from '../../cms/user';
 // import utils
 import userHelper from '../utils';
 
-class Service extends BaseService {
+class Service {
   constructor() {
-    super();
     this.supplier = 'supplier';
   }
 

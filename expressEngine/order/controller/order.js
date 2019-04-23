@@ -1,10 +1,7 @@
-// import base controller
-import { BaseController } from '../../lib/controller';
-
 // import service
 import { OrderService } from '../service';
 
-class Controller extends BaseController {
+class Controller {
   create = ({ body }) => OrderService.generateOrder(body);
 }
 
