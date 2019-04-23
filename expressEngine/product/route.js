@@ -3,20 +3,19 @@ import {
   Router,
 } from 'express';
 
-import {
-  ProductController,
-} from './controller/index';
-
-
 // import controller
 import {
-  ProductParser,
-} from './parser';
+  ProductController,
+} from './controller';
+
+
+// import parser
+import parser from '../lib/parser';
 
 const router = Router();
 
 router
   .post('/',
-    ProductParser.run(ProductController, 'create'));
+    parser(ProductController, 'create'));
 
 export default router;

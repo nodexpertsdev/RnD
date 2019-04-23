@@ -1,35 +1,92 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { DBService } from '../../lib/service';
 
 // import collections
-import { User } from '../../model/index';
+import { User } from '../../model';
 
-// import messages
-import {error, success} from '../../cms/user/index';
+import { error, success } from '../../cms/user';
 
-class Service extends BaseService {
-  registerUser = async (data) => {
-    try {
+// import utils
+import userHelper from '../utils';
 
-      const requiredFields = ["email", "password"];
-      this.validateRequired(data, requiredFields);
+class Service {
+  constructor() {
+    this.supplier = 'supplier';
+  }
 
-      const isExist = await DBService.count(User, { email: data.email });
-      if (isExist) {
-        return this.error(error.alreadyRegistered);
-      }
-
-
-      const user = await DBService.create(User, {
-        email: data.email,
-        password: data.password,
-      });
-
-      return this.success(user, success.userRegistered);
-    } catch(err) {
-      console.log('ERROR:::::::::::::::::::::::', err);
-      return this.error(err);
+  registerUser = async ({ email, password, ...rest }) => {
+    const isExist = await DBService.count(User, { email });
+    if (isExist.error) {
+      return isExist;
     }
+    if (isExist) {
+      return { error: error.alreadyRegistered };
+    }
+
+    const {
+      role = this.supplier,
+      companyName = '',
+      contactName = '',
+      contactTitle = '',
+      city = '',
+      country = '',
+      phone = '',
+      fax = '',
+    } = rest;
+
+    const user = await DBService.create(User, {
+      email,
+      password,
+      role,
+      companyName,
+      contactName,
+      contactTitle,
+      city,
+      country,
+      phone,
+      fax,
+    });
+        
+    if (user.error) {
+      return user;
+    }
+    return { data: user, message: success.userRegistered };
+  };
+
+  get = async ({ query, body }) => {
+    const projection = userHelper.getProjection();
+    const dataToFind = {
+      projection,
+      collection: User,
+      data: body,
+      limit: query.limit,
+      skip: query.skip,
+    };
+    const users = (await DBService.find(dataToFind));
+    const err = { error: error.noRecords };
+    if (users.error) {
+      return users;
+    }
+    if (!users.length) {
+      return err;
+    }
+    return { data: users };
+  };
+
+  delete = async (data) => {
+    const { id } = data.params;
+    const isExist = await DBService.findOne(User, { userId: id });
+    if (!isExist) {
+      return { error: error.unableToDelete };
+    }
+    if (isExist.error) {
+      return isExist;
+    }
+    const deleted = await DBService.deleteOne(User, { userId: id });
+    if (deleted.error) {
+      return deleted;
+    }
+    return ({ data: deleted, message: success.userDeleted });
   }
 }
 

@@ -1,12 +1,15 @@
 import User from './collection/user';
-import UserDetail from './collection/userDetail';
 import Order from './collection/order';
 import Product from './collection/product';
 import OrderItems from './collection/orderItems'
+import Customer from './collection/customer';
+import userToken from './collection/userToken';
+
 export {
   User,
-  UserDetail,
   Order,
   OrderItems,
   Product,
+  Customer,
+  userToken,
 };

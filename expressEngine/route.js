@@ -1,26 +1,28 @@
 // import packages
 import express from 'express';
+import SwaggerUi from 'swagger-ui-express';
+
 
 // import routes
 import UserRoute from './user/route';
 import OrderRoute from './order/route';
 import ProductRoute from './product/route';
 import OrderItemsRoute from './orderItems/route';
+import CustomerRoute from './customer/route';
+import authMiddleware from './authMiddleware/authMiddleware';
+import loginRoute from './login/route';
+import routeHelper from './lib/routeHelper';
+import swaggerDocument from './doc/swagger.json';
 
 const app = express();
 
-app.use('/', (req, res, next) => { // to be used to authenticate request
-  const { headers } = req;
-  if (headers.authkey !== 'successive') {
-    return res.status(403).json({
-      error: true,
-      message: 'Forbidden',
-    });
-  }
-  next();
-});
-app.use('/user', UserRoute);
-app.use('/order', OrderRoute);
-app.use('/products', ProductRoute);
-app.use('/orderItems', OrderItemsRoute);
+app.use(routeHelper.liveRoute(), routeHelper.liveRequest);
+app.use('/docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));
+app.use('/customer', authMiddleware, CustomerRoute);
+app.use('/user', authMiddleware, UserRoute);
+app.use('/order', authMiddleware, OrderRoute);
+app.use('/products', authMiddleware, ProductRoute);
+app.use('/orderItems', authMiddleware, OrderItemsRoute);
+app.use('/login', loginRoute);
+app.use(routeHelper.notFound);
 export default app;

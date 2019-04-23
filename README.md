@@ -81,3 +81,18 @@ Use /api-docs to access swagger docs.
 
 We are following [Coding Style Guidelines](https://github.com/nodexpertsdev/RnD/blob/develop/CODING_GUIDE.md)
 
+### Maintainers
+* **[Amanjot Singh](https://github.com/amanjotSuccessive)**
+* **[Faiyaz Ahmad](https://github.com/faiyaz24)**
+* **[Himanshu Gupta](https://github.com/himanshu-nodex)**
+* **[Kartikay Ranjan](https://github.com/kartikay-nx)**
+* **[Manish Kumar](https://github.com/manish-nx)**
+* **[Mayank Kumar Awasthi](https://github.com/mayank-nx)**
+* **[Nishant Naithani](https://github.com/NishantNaithani1997)**
+* **[Nitin Chauhan](https://github.com/Nitin17SS)**
+* **[Nitin Kumar Bhola](https://github.com/nitinbhola44)**
+* **[Shalu Sharma](https://github.com/sharmashalu)**
+* **[Shraddha Goel](https://github.com/shraddhagoelss)**
+* **[Shubham Kumar Madheshiya](https://github.com/shubhkm)**
+
+

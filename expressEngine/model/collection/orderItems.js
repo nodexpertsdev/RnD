@@ -4,20 +4,24 @@ const { Schema } = mongoose
 const orderItem = new Schema({
     orderId: {
         type: String,
-        unique:true
+        unique:true,
+        required: true
     },
     productId: {
         type: String,
-        unique:true
+        unique:true,
+        required: true
     },
     unitPrice: {
         type: Number,
+        required: true
     },
     qunatity: {
-        type: Number
+        type: Number,
+        required: true
     }
 })
 
-const orderItems = mongoose.model("OrderItems",orderItem)
+const OrderItems = mongoose.model("OrderItems",orderItem)
 
-export default orderItems;
+export default OrderItems;
