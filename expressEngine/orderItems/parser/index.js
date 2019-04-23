@@ -1,1 +1,2 @@
-export { default as Parser } from './orderItems';
+import { Parser } from './orderItems';
+export default Parser;
