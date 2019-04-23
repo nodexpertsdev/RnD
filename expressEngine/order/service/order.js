@@ -28,7 +28,6 @@ class Service {
     const { orderNumber } = data;
     const order = await DBService.deleteOne(Order, { orderNumber });
     const { deletedCount } = order;
-    console.log();
     
     if (order.error) {
       return order;
