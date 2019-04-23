@@ -1,5 +1,7 @@
+import BaseService from './base';
 import { error } from '../../cms/user';
 
+const baseService = new BaseService();
 class DBOperation {
   count = async (collection, data = {}) => {
     try {
@@ -25,21 +27,21 @@ class DBOperation {
     }
   }
 
-  // find = async ({
-  //   collection, data = {}, skip = 0, limit = 10, projection = {},
-  // }) => {
-  //   try {
-  //     const skipValue = baseService.parseNumber(skip, 0);
-  //     const limitValue = baseService.parseNumber(limit, 10);
-  //     const err = { error: error.noCollection };
-  //     if (!collection) {
-  //       return err;
-  //     }
-  //     return await collection.find(data, projection).skip(skipValue).limit(limitValue);
-  //   } catch (err) {
-  //     return { error: err.message };
-  //   }
-  // }
+  find = async ({
+    collection, data = {}, skip = 0, limit = 10, projection = {},
+  }) => {
+    try {
+      const skipValue = baseService.parseNumber(skip, 0);
+      const limitValue = baseService.parseNumber(limit, 10);
+      const err = { error: error.noCollection };
+      if (!collection) {
+        return err;
+      }
+      return await collection.find(data, projection).skip(skipValue).limit(limitValue);
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
 
   deleteMany = async (collection, data) => {
     try {
