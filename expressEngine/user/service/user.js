@@ -89,6 +89,19 @@ class Service extends BaseService {
     }
     return ({ data: deleted, message: success.userDeleted });
   }
+
+  put = async ({ body }) => {
+    const {id, dataToUpdate} = body;
+    console.log(dataToUpdate,"333333333333");
+    if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
+      return error.emptyData;
+    }
+    if (dataToUpdate.password) {
+      return error.nonUpdatable
+    }
+    const updated = await DBService.updateOne(User, { userId: id }, dataToUpdate);
+    return updated.nModified ? success.userUpdated : error.unableToUpdate;
+  }
 }
 
 export default new Service();

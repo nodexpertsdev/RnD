@@ -19,6 +19,11 @@ class Controller extends BaseController {
   delete = async (data) => {
     const result = await UserService.delete(data);
     return result;
+  };
+
+  put = async (data) => {
+    const result = await UserService.put(data);
+    return result;
   }
 }
 export default new Controller();

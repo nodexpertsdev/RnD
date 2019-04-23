@@ -4,4 +4,7 @@ export default {
   noRecords: 'no records found',
   unableToDelete: 'User not found to delete, Already deleted',
   noCollection: 'no collection found',
+  unableToUpdate: 'User not found to update',
+  emptyData: 'Please provide data to update',
+  nonUpdatable: 'Unable to update password',
 };
