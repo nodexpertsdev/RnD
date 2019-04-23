@@ -6,6 +6,8 @@ import { Customer } from '../../model';
 
 // import messages
 import { error, success } from '../../cms/customer';
+// import helper
+import { baseHelper } from '../../lib/helper';
 
 class Service {
     register = async (data) => {
@@ -31,6 +33,19 @@ class Service {
       }
       return { data: customer, message: success.customerRegistered };
     }
+
+    delete = async (data) => {
+      const { id } = data.params;
+      const valid = baseHelper.validateId(id);
+      if (!valid) {
+        return { error: error.customerNotFound };
+      }
+      const result = await DBService.deleteOne(Customer, { _id: id });
+      const { deletedCount } = result;
+      return deletedCount
+        ? { message: success.customerDeleted }
+        : { error: error.customerNotFound };
+    };
 }
 
 export default new Service();
