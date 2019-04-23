@@ -9,7 +9,7 @@ import { validateRequired } from '../../lib/validationHandler';
 import { error, success } from '../../cms/user';
 
 // import utils
-import loginHelper from '../utils';
+import loginHelper from '../../utils/login';
 
 
 class LoginService extends BaseService {
