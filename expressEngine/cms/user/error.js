@@ -4,4 +4,7 @@ export default {
   noRecords: 'no records found',
   unableToDelete: 'User not found to delete, Already deleted',
   noCollection: 'no collection found',
+  loginError: 'login failed please signUp first',
+  passwordError: 'incorrect password',
+  tokenError: 'token is not generated',
 };

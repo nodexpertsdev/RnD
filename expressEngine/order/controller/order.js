@@ -1,17 +1,8 @@
-// import base controller
-import { BaseController } from '../../lib/controller/index';
-
 // import service
-import { OrderService } from '../service/index';
+import { OrderService } from '../service';
 
-class Controller extends BaseController {
-  create = async ({body}) => {
-    try {
-      return await OrderService.generateOrder(body);
-    } catch (err) {
-      return err;
-    }
-  };
-};
+class Controller {
+  create = ({ body }) => OrderService.generateOrder(body);
+}
 
 export default new Controller();

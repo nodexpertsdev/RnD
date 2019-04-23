@@ -1,25 +1,26 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service';
+import { DBService } from '../../lib/service';
 
 // import collections
 import { User } from '../../model';
 
-// import messages
 import { error, success } from '../../cms/user';
 
 // import utils
 import userHelper from '../utils';
 
-class Service extends BaseService {
+class Service {
   constructor() {
-    super();
     this.supplier = 'supplier';
   }
 
   registerUser = async ({ email, password, ...rest }) => {
     const isExist = await DBService.count(User, { email });
+    if (isExist.error) {
+      return isExist;
+    }
     if (isExist) {
-      throw error.alreadyRegistered;
+      return { error: error.alreadyRegistered };
     }
 
     const {
@@ -45,12 +46,11 @@ class Service extends BaseService {
       phone,
       fax,
     });
-
-    if (!user) {
-      throw error.unableToRegister;
+        
+    if (user.error) {
+      return user;
     }
-
-    return user;
+    return { data: user, message: success.userRegistered };
   };
 
   get = async ({ query, body }) => {
@@ -64,20 +64,29 @@ class Service extends BaseService {
     };
     const users = (await DBService.find(dataToFind));
     const err = { error: error.noRecords };
-    if (!(users.error || users.length)) {
+    if (users.error) {
+      return users;
+    }
+    if (!users.length) {
       return err;
     }
-    return users;
+    return { data: users };
   };
 
   delete = async (data) => {
     const { id } = data.params;
     const isExist = await DBService.findOne(User, { userId: id });
     if (!isExist) {
-      throw { error: error.unableToDelete };
+      return { error: error.unableToDelete };
     }
-    await DBService.deleteOne(User, { userId: id });
-    return ({ message: success.userDeleted });
+    if (isExist.error) {
+      return isExist;
+    }
+    const deleted = await DBService.deleteOne(User, { userId: id });
+    if (deleted.error) {
+      return deleted;
+    }
+    return ({ data: deleted, message: success.userDeleted });
   }
 }
 
