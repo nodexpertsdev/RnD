@@ -1,4 +1,4 @@
-  export default {
-    customerRegistered: 'You have registered successfully',
-    customerDeleted: 'Customer deleted successfully'
-    }
+export default {
+  customerRegistered: 'You have registered successfully',
+  customerDeleted: 'Customer deleted successfully',
+};
