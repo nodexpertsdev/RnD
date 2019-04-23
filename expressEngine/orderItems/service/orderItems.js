@@ -7,7 +7,7 @@ import { orderItem } from '../../model/index';
 //import cms from '../../cms/orderItems/index';
 
 class Service extends BaseService {
-  registerorderItems = async (data) => {
+  registerOrderItems = async (data) => {
     try {
       const requiredFields = ["orderId", "productId", "unitPrice", "qunatity"];
       
