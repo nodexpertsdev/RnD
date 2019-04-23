@@ -13,12 +13,7 @@ class Service extends BaseService {
       
       this.validateRequired(data, requiredFields);
       
-      const orderItems = await DBService.create(orderItem, {
-        orderId: data.orderId,
-        productId: data.productId,
-        unitPrice: data.unitPrice,
-        qunatity: data.qunatity,
-      });
+      const orderItems = await DBService.create(orderItem, {...data });
 
       return this.success(orderItems/* , cms */);
     } catch (err) {
