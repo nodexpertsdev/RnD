@@ -1,5 +1,5 @@
 // import service libraries
-import { BaseService, DbService } from '../../lib/service/index';
+import { BaseService, DBService } from '../../lib/service/index';
 
 // import collections
 import { orderItem } from '../../model/index';
@@ -13,7 +13,7 @@ class Service extends BaseService {
       
       this.validateRequired(data, requiredFields);
       
-      const orderItems = await DbService.create(orderItem, {
+      const orderItems = await DBService.create(orderItem, {
         orderId: data.orderId,
         productId: data.productId,
         unitPrice: data.unitPrice,
