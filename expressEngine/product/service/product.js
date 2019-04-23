@@ -5,7 +5,7 @@ import { DBService } from '../../lib/service';
 import { Product } from '../../model';
 
 // import messages
-import { success } from '../../cms/product';
+import { error, success } from '../../cms/product';
 
 class Service {
   registerProduct = async (data) => {
@@ -25,6 +25,24 @@ class Service {
     }
     return { data: product, message: success.productRegistered };
   }
+
+  getProduct = async ({ query, body }) => {
+    const dataToFind = {
+      collection: Product,
+      data: body,
+      limit: query.limit,
+      skip: query.skip,
+    };
+    const products = (await DBService.find(dataToFind));
+    const err = { error: error.noRecords };
+    if (products.error) {
+      return products;
+    }
+    if (!products.length) {
+      return err;
+    }
+    return { data: products };
+  };
 }
 
 export default new Service();

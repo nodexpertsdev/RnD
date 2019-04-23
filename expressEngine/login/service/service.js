@@ -12,7 +12,7 @@ import { error, success } from '../../cms/user';
 import loginHelper from '../../utils/login';
 
 
-class LoginService extends BaseService {
+class LoginService {
     login = async ({ body }) => {
       const { email, password: loginPassword } = body;
       const projection = loginHelper.getProjection();
