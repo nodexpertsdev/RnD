@@ -27,7 +27,7 @@ class DBOperation {
     }
   }
 
-  updateOne = async ({ collection, dataToUpdate, filter }) => {
+  updateOne = async (collection, dataToUpdate, filter) => {
     try {
       return await collection.updateOne({ filter }, { $set: { dataToUpdate } });
     } catch (err) {
@@ -35,7 +35,7 @@ class DBOperation {
     }
   }
 
-  updateMany = async ({ collection, dataToUpdate, filter }) => {
+  updateMany = async (collection, dataToUpdate, filter) => {
     try {
       return await collection.updateMany({ filter }, { $set: { dataToUpdate } });
     } catch (err) {
