@@ -8,6 +8,7 @@ import { Customer } from '../../model';
 import { error, success } from '../../cms/customer';
 // import helper
 import { baseHelper } from '../../lib/helper';
+import modelLib from '../../model/lib';
 
 class Service {
     register = async (data) => {
@@ -46,6 +47,18 @@ class Service {
         ? { message: success.customerDeleted }
         : { error: error.customerNotFound };
     };
+
+    put = async (body) => {
+      const { id, dataToUpdate } = body;
+      if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
+        return { error: error.emptyData };
+      }
+      if (dataToUpdate.email && !modelLib.validateEmail(dataToUpdate.email)) {
+        return { error: error.notUpdated };
+      }
+      const result = await DBService.updateOne(Customer, { _id: id }, dataToUpdate);
+      return result.nModified ? { message: success.customerUpdated } : { error: error.notUpdated };
+    }
 }
 
 export default new Service();
