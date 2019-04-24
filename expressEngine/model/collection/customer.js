@@ -4,7 +4,7 @@ import {
 } from 'mongoose';
 
 const customerSchema = new Schema({
-  customerId: {
+  id: {
     type: String,
     unique: true,
   },
@@ -32,7 +32,7 @@ const customerSchema = new Schema({
 
 customerSchema.pre('save', function preSave() {
   const customer = this;
-  customer.customerId = customer._id.toString();
+  customer.id = customer._id.toString();
 });
 
 const Customer = model('Customers', customerSchema);

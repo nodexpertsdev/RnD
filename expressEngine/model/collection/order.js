@@ -4,7 +4,7 @@ import {
 } from 'mongoose';
 
 const ordersSchema = new Schema({
-  orderId: {
+  id: {
     type: String,
     unique: true,
   },
@@ -32,7 +32,7 @@ const ordersSchema = new Schema({
 
 ordersSchema.pre('save', function preSave() {
   const order = this;
-  order.orderId = order._id.toString();
+  order.id = order._id.toString();
 });
 
 const Order = model('orders', ordersSchema);
