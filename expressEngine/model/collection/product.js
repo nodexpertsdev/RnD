@@ -34,7 +34,7 @@ const productsSchema = new Schema({
   timestamp: true,
 });
 
-productsSchema.pre('save', async function preSave() {
+productsSchema.pre('save', function preSave() {
   const product = this;
   product.productId = product._id.toString();
 });

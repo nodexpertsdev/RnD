@@ -30,7 +30,7 @@ const customerSchema = new Schema({
   },
 }, { collection: 'customers', timestamp: true });
 
-customerSchema.pre('save', async function preSave() {
+customerSchema.pre('save', function preSave() {
   const customer = this;
   customer.customerId = customer._id.toString();
 });

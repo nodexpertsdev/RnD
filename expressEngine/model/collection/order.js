@@ -30,7 +30,7 @@ const ordersSchema = new Schema({
   timestamp: true,
 });
 
-ordersSchema.pre('save', async function preSave() {
+ordersSchema.pre('save', function preSave() {
   const order = this;
   order.orderId = order._id.toString();
 });
