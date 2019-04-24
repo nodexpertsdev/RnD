@@ -14,6 +14,6 @@ import {
 const router = Router();
 
 router.post('/', parser(OrderController, 'create'));
-router.delete('/:orderNumber', parser(OrderController, 'delete'));
+router.put('/', parser(OrderController, 'update'));
 
 export default router;

@@ -4,7 +4,7 @@ import { OrderService } from '../service';
 class Controller {
   create = ({ body }) => OrderService.generateOrder(body);
 
-  delete = ({ params }) => OrderService.cancelOrder(params);
+  update = ({ body }) => OrderService.updateOrder(body);
 }
 
 export default new Controller();

@@ -5,7 +5,8 @@ import { DBService } from '../../lib/service';
 import { Order } from '../../model';
 
 // import messages
-import { success, error } from '../../cms/order';
+import { success } from '../../cms/order';
+import { error } from '../../cms/common';
 
 class Service {
   generateOrder = async (data) => {
@@ -24,19 +25,19 @@ class Service {
     return { data: order, message: success.orderGenerated };
   }
 
-  cancelOrder = async (data) => {
-    const { orderNumber } = data;
-    const order = await DBService.deleteOne(Order, { orderNumber });
-    const { deletedCount } = order;
-    console.log();
-    
+  updateOrder = async (data) => {
+    const { orderNumber, dataToUpdate } = data;
+    if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
+      return { error: error.emptyData };
+    }
+    const order = await DBService.updateOne(Order, { orderNumber }, dataToUpdate);
     if (order.error) {
       return order;
     }
-    return deletedCount
-      ? { message: success.orderCanceled }
-      : { error: error.orderNotFound };
+    const { nModified } = order;
+    return nModified
+      ? { message: success.orderUpdated }
+      : { error: error.unableToUpdate };
   }
 }
-
 export default new Service();
