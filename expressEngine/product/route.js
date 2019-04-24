@@ -14,8 +14,10 @@ import parser from '../lib/parser';
 
 const router = Router();
 
-router
-  .post('/',
-    parser(ProductController, 'create'));
+router.post('/',
+  parser(ProductController, 'create'));
+
+router.delete('/:id',
+  parser(ProductController, 'delete'));
 
 export default router;

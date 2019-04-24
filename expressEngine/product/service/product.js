@@ -25,6 +25,20 @@ class Service {
     }
     return { data: product, message: success.productRegistered };
   }
+
+  deleteProduct = async (data) => {
+    const { id } = data;
+    const product = await DBService.updateOne(Product, {
+      isDiscontinued: true,
+    }, { productId: id });
+    const { n, nModified } = product;
+    if (nModified) {
+      return { message: success.productDeleted };
+    } if (n) {
+      return { message: success.productAlreadyDeleated };
+    }
+    return { message: success.productNotFound };
+  }
 }
 
 export default new Service();

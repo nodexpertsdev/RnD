@@ -4,6 +4,10 @@ import {
 } from 'mongoose';
 
 const productsSchema = new Schema({
+  productId: {
+    type: String,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -26,10 +30,14 @@ const productsSchema = new Schema({
   },
 
 }, {
-  collection: 'product',
-  timestamp: true,
-});
+    collection: 'product',
+    timestamp: true,
+  });
 
+productsSchema.pre('save', function preSave() {
+  const product = this;
+  product.productId = product._id.toString();
+});
 
 const Product = model('Products', productsSchema);
 
