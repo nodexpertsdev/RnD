@@ -1,5 +1,5 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service';
+import { DBService } from '../../lib/service';
 
 // import collections
 import { User } from '../../model';
@@ -8,10 +8,10 @@ import { error, success } from '../../cms/user';
 
 // import utils
 import userHelper from '../utils';
+import modelLib from '../../model/lib';
 
-class Service extends BaseService {
+class Service {
   constructor() {
-    super();
     this.supplier = 'supplier';
   }
 
@@ -47,7 +47,7 @@ class Service extends BaseService {
       phone,
       fax,
     });
-        
+
     if (user.error) {
       return user;
     }
@@ -91,16 +91,20 @@ class Service extends BaseService {
   }
 
   put = async ({ body }) => {
-    const {id, dataToUpdate} = body;
-    console.log(dataToUpdate,"333333333333");
+    const { id, dataToUpdate } = body;
     if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
-      return error.emptyData;
+      return { error: error.emptyData };
     }
     if (dataToUpdate.password) {
-      return error.nonUpdatable
+      return { error: error.notUpdatable };
+    }
+    if (dataToUpdate.email && !modelLib.validateEmail(dataToUpdate.email)) {
+      return { error: `${dataToUpdate.email} is not a valid email!` };
     }
     const updated = await DBService.updateOne(User, { userId: id }, dataToUpdate);
-    return updated.nModified ? success.userUpdated : error.unableToUpdate;
+    return (updated.nModified
+      ? { message: success.userUpdated }
+      : { error: error.unableToUpdate });
   }
 }
 

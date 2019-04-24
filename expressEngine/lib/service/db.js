@@ -22,7 +22,7 @@ class DBOperation {
   findOne = async (collection, data = {}, projection = {}) => {
     try {
       return await collection.findOne(data, projection);
-    } catch (err) {      
+    } catch (err) {
       return { error: err.message };
     }
   }
@@ -54,14 +54,22 @@ class DBOperation {
   deleteOne = async (collection, data) => {
     try {
       return await collection.deleteOne(data);
-    } catch (err) {      
+    } catch (err) {
       return { error: err.message };
     }
   }
 
-  updateOne = async (collection, filter, dataToUpdate = {}) => {
+  updateOne = async (collection, filter, dataToUpdate) => {
     try {
       return await collection.updateOne(filter, dataToUpdate);
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
+
+  updateMany = async (collection, filter, dataToUpdate) => {
+    try {
+      return await collection.updateMany(filter, dataToUpdate);
     } catch (err) {
       return { error: err.message };
     }

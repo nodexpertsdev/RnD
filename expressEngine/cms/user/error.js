@@ -4,7 +4,10 @@ export default {
   noRecords: 'no records found',
   unableToDelete: 'User not found to delete, Already deleted',
   noCollection: 'no collection found',
+  loginError: 'login failed please signUp first',
+  passwordError: 'incorrect password',
+  tokenError: 'token is not generated',
   unableToUpdate: 'User not found to update',
   emptyData: 'Please provide data to update',
-  nonUpdatable: 'Unable to update password',
+  notUpdatable: 'Unable to update password',
 };

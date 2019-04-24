@@ -1,10 +1,7 @@
-// import base controller
-import { BaseController } from '../../lib/controller';
-
 // import service
 import { UserService } from '../service';
 
-class Controller extends BaseController {
+class Controller {
   create = async (data) => {
     const { body } = data;
     const result = await UserService.registerUser(body);
