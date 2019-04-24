@@ -29,7 +29,10 @@ class Service {
   getProduct = async ({ query, body }) => {
     const dataToFind = {
       collection: Product,
-      data: body,
+      data: {
+        ...body,
+        isDiscontinued: undefined,
+      },
       limit: query.limit,
       skip: query.skip,
     };
