@@ -1,7 +1,8 @@
-import {
+import mongoose from 'mongoose';
+
+const {
   Schema,
-  model,
-} from 'mongoose';
+} = mongoose;
 
 const productsSchema = new Schema({
   name: {
@@ -25,13 +26,10 @@ const productsSchema = new Schema({
     required: false,
   },
 
-}, {
-  collection: 'product',
-  timestamp: true,
-});
+}, { collection: 'product', timestamps: true });
 
 
-const Product = model('Products', productsSchema);
+const Product = mongoose.model('Products', productsSchema);
 
 
 export default Product;

@@ -1,7 +1,8 @@
-import {
+import mongoose from 'mongoose';
+
+const {
   Schema,
-  model,
-} from 'mongoose';
+} = mongoose;
 
 const customerSchema = new Schema({
   name: {
@@ -24,9 +25,9 @@ const customerSchema = new Schema({
     type: Number,
     required: true,
   },
-}, { collection: 'customers', timestamp: true });
+}, { collection: 'customers', timestamps: true });
 
-const Customer = model('Customers', customerSchema);
+const Customer = mongoose.model('Customers', customerSchema);
 
 
 export default Customer;

@@ -1,7 +1,8 @@
-import {
+import mongoose from 'mongoose';
+
+const {
   Schema,
-  model,
-} from 'mongoose';
+} = mongoose;
 
 const ordersSchema = new Schema({
   orderNumber: {
@@ -21,10 +22,7 @@ const ordersSchema = new Schema({
     required: false,
   },
 
-}, {
-  collection: 'orders',
-  timestamp: true,
-});
-const Order = model('orders', ordersSchema);
+}, { collection: 'orders', timestamps: true });
+const Order = mongoose.model('Orders', ordersSchema);
 
 export default Order;
