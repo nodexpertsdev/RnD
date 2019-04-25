@@ -27,8 +27,9 @@ class Service {
   }
 
   updateProduct = async (data) => {
-    const { filter, dataToUpdate } = data;
-    const product = await DBService.updateOne(Product, dataToUpdate, filter);
+    const { criteria, dataToUpdate } = data;
+    const collection = Product;
+    const product = await DBService.updateOne({ collection, dataToUpdate, criteria });
     if (product.error) {
       return product;
     }
