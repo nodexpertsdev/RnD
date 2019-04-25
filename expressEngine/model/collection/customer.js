@@ -5,6 +5,10 @@ const {
 } = mongoose;
 
 const customerSchema = new Schema({
+  id: {
+    type: String,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -26,6 +30,11 @@ const customerSchema = new Schema({
     required: true,
   },
 }, { collection: 'customers', timestamps: true });
+
+customerSchema.pre('save', function preSave() {
+  const customer = this;
+  customer.id = customer._id.toString();
+});
 
 const Customer = mongoose.model('Customers', customerSchema);
 
