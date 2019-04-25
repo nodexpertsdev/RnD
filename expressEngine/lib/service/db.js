@@ -76,6 +76,22 @@ class DBOperation {
   }
 
   updateOne = async (collection, filter, dataToUpdate) => {
+    try {
+      return await collection.updateOne(filter, { $set: dataToUpdate });
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
+
+  updateMany = async (collection, filter, dataToUpdate) => {
+    try {
+      return await collection.updateMany(filter, { $set: dataToUpdate });
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
+
+  updateOne = async (collection, filter, dataToUpdate) => {
     try {      
       return await collection.updateOne(filter, { $set: dataToUpdate });
     } catch (err) {
