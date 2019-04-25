@@ -5,7 +5,8 @@ import { DBService } from '../../lib/service';
 import { Product } from '../../model';
 
 // import messages
-import { error, success } from '../../cms/product';
+import { success } from '../../cms/product';
+import { error } from '../../cms/common';
 
 class Service {
   registerProduct = async (data) => {
