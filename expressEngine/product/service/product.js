@@ -32,7 +32,8 @@ class Service {
     if (product.error) {
       return product;
     }
-    return { data: product, message: success.productUpdated };
+    const { nModified: FilesModifiled, n: FilesFound } = product;
+    return { data: { FilesFound, FilesModifiled }, message: success.productUpdated };
   }
 }
 
