@@ -26,18 +26,17 @@ class Service {
     return { data: product, message: success.productRegistered };
   }
 
-  getProduct = async ({ query, body }) => {
+  getProduct = async ({ query }) => {
     const dataToFind = {
       collection: Product,
       data: {
-        ...body,
-        isDiscontinued: undefined,
+        isDiscontinued: { $exists: false },
       },
       limit: query.limit,
       skip: query.skip,
     };
     const products = (await DBService.find(dataToFind));
-    const err = { error: error.noRecords };
+    const err = { error: error.noRecord };
     if (products.error) {
       return products;
     }
