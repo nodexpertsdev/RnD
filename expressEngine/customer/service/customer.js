@@ -57,7 +57,11 @@ class Service {
         return { error: error.notUpdated };
       }
       const result = await DBService.updateOne(Customer, { _id: id }, dataToUpdate);
-      return result.nModified ? { message: success.customerUpdated } : { error: error.notUpdated };
+      if (result.error) {
+        return result;
+      }
+      const { nModified } = result;
+      return nModified ? { message: success.customerUpdated } : { error: error.notUpdated };
     }
 }
 
