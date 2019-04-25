@@ -38,9 +38,9 @@ class Service {
     if (nModified) {
       return { message: success.productDeleted };
     } if (n) {
-      return { message: error.productAlreadyDeleted };
+      return { error: error.productAlreadyDeleted };
     }
-    return { message: error.productNotFound };
+    return { error: error.productNotFound };
   }
 }
 
