@@ -24,6 +24,10 @@ const ordersSchema = new Schema({
     type: String,
     required: false,
   },
+  status: {
+    type: String,
+    required: true,
+  },
 
 }, {
   collection: 'orders',

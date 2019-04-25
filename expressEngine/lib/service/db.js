@@ -74,6 +74,14 @@ class DBOperation {
       return { error: err.message };
     }
   }
+
+  updateOne = async (collection, filter, dataToUpdate) => {
+    try {      
+      return await collection.updateOne(filter, { $set: dataToUpdate });
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
 }
 
 export default new DBOperation();
