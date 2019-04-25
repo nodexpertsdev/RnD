@@ -11,6 +11,10 @@
     {
       "name": "User",
       "description": "Routes related to user operations"
+    },
+    {
+      "name":"Customer",
+      "description": "Routes related to customer operations"
     }
   ],
   "schemes": [
@@ -151,8 +155,86 @@
           }
         }
       }
+    },
+    "/customer": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "To register a new customer",
+        "description": "",
+        "operationId": "addCustomer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Customer",
+            "properties": {
+              "firstName": {
+                "type": "string",
+                "name": "firstName",
+                "description": "First Name of customer getting registered",
+                "required": true
+              },
+              "lastName": {
+                "type": "string",
+                "name": "lastName",
+                "description": "Last Name of customer getting registered",
+                "required": true
+              },
+              "city": {
+                "type": "string",
+                "name": "city",
+                "description": "City of customer getting registered",
+                "required": true
+              },
+              "country": {
+                "type": "string",
+                "name": "country",
+                "description": "Country of customer getting registered",
+                "required": true
+              },
+              "contactNo": {
+                "type": "number",
+                "example": "number",
+                "name": "contactNo",
+                "description": "Contact number of customer getting registered",
+                "required": true
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "authkey",
+            "description": "successive",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have registered successfully",
+            "type": "object",
+            "$ref": "#/definitions/Success"
+          },
+          "422": {
+            "description": "Customer is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          },
+          "409": {
+            "description": "Customer is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
     }
-
   },
   "definitions": {
     "Success": {

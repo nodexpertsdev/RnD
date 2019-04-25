@@ -1,31 +1,47 @@
 // import service libraries
-import { BaseService, DBService } from '../../lib/service/index';
+import { DBService } from '../../lib/service';
 
 // import collections
-import { Order } from '../../model/index';
+import { Order } from '../../model';
 
 // import messages
 import { success } from '../../cms/order';
+import { error } from '../../cms/common';
 
-class Service extends BaseService {
+class Service {
   generateOrder = async (data) => {
-    try {
-      const { orderNumber, supplierId, unitPrice, productPackage } = data,
-      requiredFields = ['orderNumber', 'supplierId', 'unitPrice', ]
-      this.validateRequired(data, requiredFields)
-      const result = await DBService.create(Order, {
-        orderNumber,
-        supplierId,
-        unitPrice,
-        package:productPackage,
-      });
-
-      return this.success(result, success.orderGenerated);
-
-    } catch (err) {
-      return this.error(err);
+    const {
+      orderNumber, supplierId, unitPrice, productPackage,
+    } = data;
+    const order = await DBService.create(Order, {
+      orderNumber,
+      supplierId,
+      unitPrice,
+      package: productPackage,
+    });
+    if (order.error) {
+      return order;
     }
+    return { data: order, message: success.orderGenerated };
+  }
+
+  updateOrder = async (data) => {
+    const { orderNumber, dataToUpdate } = data;
+    if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
+      return { error: error.emptyData };
+    }
+    const order = await DBService.updateOne(Order, { orderNumber }, dataToUpdate);
+    if (order.error) {
+      return order;
+    }
+    const { nModified, n } = order;
+    if (nModified) {
+      return { message: success.orderUpdated };
+    } 
+    if (n) {
+      return { error: error.alreadyUpdated };
+    }
+    return { error: error.unableToUpdate };
   }
 }
-
 export default new Service();

@@ -1,8 +1,5 @@
 // import services
-import BaseService from './base';
 import DBService from './db';
+import BaseService from './base';
 
-export {
-  BaseService,
-  DBService,
-};
+export { DBService, BaseService };

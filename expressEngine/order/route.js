@@ -13,7 +13,7 @@ import {
 
 const router = Router();
 
-router.post('/',
-  parser(OrderController, 'create'));
+router.post('/', parser(OrderController, 'create'));
+router.put('/', parser(OrderController, 'update'));
 
 export default router;
