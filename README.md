@@ -19,8 +19,9 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 	$ git clone https://github.com/nodexpertsdev/RnD.git
-    $ cd RnD/expressEngine
+    $ cd RnD
     $ git checkout develop
+    $ cd expressEngine
     $ npm start
 
 ## Swagger Documentation
