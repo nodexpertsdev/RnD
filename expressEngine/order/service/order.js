@@ -34,10 +34,13 @@ class Service {
     if (order.error) {
       return order;
     }
-    const { nModified } = order;
-    return nModified
-      ? { message: success.orderUpdated }
-      : { error: error.unableToUpdate };
+    const { nModified, n } = order;
+    if (nModified) {
+      return { message: success.orderUpdated };
+    } if (n) {
+      return { error: error.alreadyUpdated };
+    }
+    return { error: error.unableToUpdate };
   }
 }
 export default new Service();
