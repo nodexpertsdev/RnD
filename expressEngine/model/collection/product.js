@@ -1,7 +1,8 @@
-import {
+import mongoose from 'mongoose';
+
+const {
   Schema,
-  model,
-} from 'mongoose';
+} = mongoose;
 
 const productsSchema = new Schema({
   id: {
@@ -29,10 +30,7 @@ const productsSchema = new Schema({
     required: false,
   },
 
-}, {
-  collection: 'product',
-  timestamp: true,
-});
+}, { collection: 'product', timestamps: true });
 
 productsSchema.pre('save', function preSave() {
   const product = this;
@@ -40,7 +38,7 @@ productsSchema.pre('save', function preSave() {
 });
 
 
-const Product = model('Products', productsSchema);
+const Product = mongoose.model('Products', productsSchema);
 
 
 export default Product;

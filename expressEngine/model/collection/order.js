@@ -1,7 +1,8 @@
-import {
+import mongoose from 'mongoose';
+
+const {
   Schema,
-  model,
-} from 'mongoose';
+} = mongoose;
 
 const ordersSchema = new Schema({
   id: {
@@ -31,7 +32,7 @@ const ordersSchema = new Schema({
 
 }, {
   collection: 'orders',
-  timestamp: true,
+  timestamps: true,
 });
 
 ordersSchema.pre('save', function preSave() {
@@ -39,6 +40,6 @@ ordersSchema.pre('save', function preSave() {
   order.id = order._id.toString();
 });
 
-const Order = model('orders', ordersSchema);
+const Order = mongoose.model('orders', ordersSchema);
 
 export default Order;
