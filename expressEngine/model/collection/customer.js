@@ -1,9 +1,14 @@
-import {
+import mongoose from 'mongoose';
+
+const {
   Schema,
-  model,
-} from 'mongoose';
+} = mongoose;
 
 const customerSchema = new Schema({
+  id: {
+    type: String,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -24,9 +29,14 @@ const customerSchema = new Schema({
     type: Number,
     required: true,
   },
-}, { collection: 'customers', timestamp: true });
+}, { collection: 'customers', timestamps: true });
 
-const Customer = model('Customers', customerSchema);
+customerSchema.pre('save', function preSave() {
+  const customer = this;
+  customer.id = customer._id.toString();
+});
+
+const Customer = mongoose.model('Customers', customerSchema);
 
 
 export default Customer;
