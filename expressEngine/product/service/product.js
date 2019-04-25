@@ -30,7 +30,7 @@ class Service {
     const dataToFind = {
       collection: Product,
       data: {
-        isDiscontinued: { $nin: true },
+        isDiscontinued: { $ne: true },
       },
       limit: query.limit,
       skip: query.skip,
