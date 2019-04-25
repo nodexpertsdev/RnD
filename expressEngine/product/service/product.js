@@ -5,7 +5,7 @@ import { DBService } from '../../lib/service';
 import { Product } from '../../model';
 
 // import messages
-import { success } from '../../cms/product';
+import { success, error } from '../../cms/product';
 
 class Service {
   registerProduct = async (data) => {
@@ -30,14 +30,17 @@ class Service {
     const { id } = data;
     const product = await DBService.updateOne(Product, {
       isDiscontinued: true,
-    }, { productId: id });
+    }, { id });
     const { n, nModified } = product;
+    if (product.error) {
+      return product;
+    }
     if (nModified) {
       return { message: success.productDeleted };
     } if (n) {
-      return { message: success.productAlreadyDeleted };
+      return { message: error.productAlreadyDeleted };
     }
-    return { message: success.productNotFound };
+    return { message: error.productNotFound };
   }
 }
 
