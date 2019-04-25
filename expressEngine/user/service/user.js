@@ -5,6 +5,7 @@ import { DBService } from '../../lib/service';
 import { User } from '../../model';
 
 import { error, success } from '../../cms/user';
+import { error as commonError } from '../../cms/common';
 
 // import utils
 import userHelper from '../utils';
@@ -93,15 +94,18 @@ class Service {
   put = async ({ body }) => {
     const { id, dataToUpdate } = body;
     if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
-      return { error: error.emptyData };
+      return { error: commonError.emptyData };
     }
     if (dataToUpdate.password) {
-      return { error: error.notUpdatable };
+      return { error: commonError.notUpdatable };
     }
     if (dataToUpdate.email && !modelLib.validateEmail(dataToUpdate.email)) {
       return { error: `${dataToUpdate.email} is not a valid email!` };
     }
-    const updated = await DBService.updateOne(User, { userId: id }, dataToUpdate);
+    const updated = await DBService.updateOne(User, { _id: id }, dataToUpdate);
+    if (updated.error) {
+      return updated;
+    }
     return (updated.nModified
       ? { message: success.userUpdated }
       : { error: error.unableToUpdate });

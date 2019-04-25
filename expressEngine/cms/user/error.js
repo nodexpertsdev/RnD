@@ -8,6 +8,4 @@ export default {
   passwordError: 'incorrect password',
   tokenError: 'token is not generated',
   unableToUpdate: 'User not found to update',
-  emptyData: 'Please provide data to update',
-  notUpdatable: 'Unable to update password',
 };
