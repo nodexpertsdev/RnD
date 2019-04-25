@@ -37,12 +37,11 @@ class Service {
       skip: query.skip,
     };
     const products = (await DBService.find(dataToFind));
-    const err = { error: error.noRecords };
     if (products.error) {
       return products;
     }
     if (!products.length) {
-      return err;
+      return { error: error.noRecords };
     }
     return { data: products };
   };
