@@ -37,7 +37,8 @@ class Service {
     const { nModified, n } = order;
     if (nModified) {
       return { message: success.orderUpdated };
-    } if (n) {
+    } 
+    if (n) {
       return { error: error.alreadyUpdated };
     }
     return { error: error.unableToUpdate };
