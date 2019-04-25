@@ -3,5 +3,5 @@ export default {
   unableToUpdate: 'Unable to update',
   alreadyUpdated: 'Data provided is already updated',
   emptyData: 'Please provide the data to update',
-  noRecords: 'no records found',
+  noRecords: 'No records found',
 };
