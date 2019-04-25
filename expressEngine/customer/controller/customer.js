@@ -15,10 +15,7 @@ class CustomerController {
     return result;
   };
 
-  put = async ({ body }) => {
-    const result = await CustomerService.put(body);
-    return result;
-  }
+  put = ({ body }) => CustomerService.put(body);
 }
 
 export default new CustomerController();
