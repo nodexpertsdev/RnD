@@ -30,13 +30,13 @@ class Service {
     const dataToFind = {
       collection: Product,
       data: {
-        isDiscontinued: { $exists: false },
+        isDiscontinued: { $nin: true },
       },
       limit: query.limit,
       skip: query.skip,
     };
     const products = (await DBService.find(dataToFind));
-    const err = { error: error.noRecord };
+    const err = { error: error.noRecords };
     if (products.error) {
       return products;
     }
