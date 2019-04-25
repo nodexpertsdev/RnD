@@ -16,11 +16,8 @@ class CustomerController {
   };
 
   put = async ({ body }) => {
-    try {
-      return await CustomerService.put(body);
-    } catch (err) {
-      return err;
-    }
+    const result = await CustomerService.put(body);
+    return result;
   }
 }
 
