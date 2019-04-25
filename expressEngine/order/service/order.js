@@ -43,5 +43,22 @@ class Service {
     }
     return { error: error.unableToUpdate };
   }
+
+  get = async ({ query }) => {
+    const { skip, limit } = query;
+    const dataToFind = {
+      collection: Order,
+      skip,
+      limit,
+    };
+    const orders = (await DBService.find(dataToFind));
+    if (orders.error) {
+      return orders;
+    }
+    if (!orders.length) {
+      return { error: error.noRecords };
+    }
+    return { data: orders };
+  }
 }
 export default new Service();
