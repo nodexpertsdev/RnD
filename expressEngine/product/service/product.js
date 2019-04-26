@@ -6,6 +6,7 @@ import { Product } from '../../model';
 
 // import messages
 import { success } from '../../cms/product';
+import { error } from '../../cms/common';
 
 class Service {
   registerProduct = async (data) => {
@@ -28,12 +29,24 @@ class Service {
 
   updateProduct = async (data) => {
     const { criteria, dataToUpdate } = data;
+    if (!criteria) {
+      return { error: error.emptyCriteria };
+    }
+    if (!dataToUpdate) {
+      return { error: error.emptyData };
+    }
     const collection = Product;
     const product = await DBService.updateOne({ collection, dataToUpdate, criteria });
     if (product.error) {
       return product;
     }
     const { nModified: FilesModifiled, n: FilesFound } = product;
+    if (FilesFound === 0) {
+      return { error: error.noRecord };
+    }
+    if (FilesModifiled === 0) {
+      return { error: error.noModification };
+    }
     return { data: { FilesFound, FilesModifiled }, message: success.productUpdated };
   }
 }
