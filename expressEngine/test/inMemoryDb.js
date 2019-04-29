@@ -10,7 +10,7 @@ export default async () => {
   }
 
   return {
-    mongoDBName: 'users',
+    mongoDBName: 'RnD',
     mongoUri: await mongod.getConnectionString(),
   };
 };
