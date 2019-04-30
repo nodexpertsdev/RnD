@@ -29,10 +29,10 @@ class Service {
 
   updateProduct = async (data) => {
     const { criteria, dataToUpdate } = data;
-    if (!criteria) {
+    if (!criteria || Object.entries(criteria).length === 0) {
       return { error: error.emptyCriteria };
     }
-    if (!dataToUpdate) {
+    if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
       return { error: error.emptyData };
     }
     const collection = Product;
