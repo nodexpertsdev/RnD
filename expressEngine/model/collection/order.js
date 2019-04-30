@@ -1,9 +1,14 @@
-import {
+import mongoose from 'mongoose';
+
+const {
   Schema,
-  model,
-} from 'mongoose';
+} = mongoose;
 
 const ordersSchema = new Schema({
+  id: {
+    type: String,
+    unique: true,
+  },
   orderNumber: {
     type: Number,
     required: true,
@@ -20,11 +25,21 @@ const ordersSchema = new Schema({
     type: String,
     required: false,
   },
+  status: {
+    type: String,
+    required: true,
+  },
 
 }, {
   collection: 'orders',
-  timestamp: true,
+  timestamps: true,
 });
-const Order = model('orders', ordersSchema);
+
+ordersSchema.pre('save', function preSave() {
+  const order = this;
+  order.id = order._id.toString();
+});
+
+const Order = mongoose.model('orders', ordersSchema);
 
 export default Order;
