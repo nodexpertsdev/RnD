@@ -1,0 +1,2 @@
+{"message":"Db connected successfully","level":"info","service":"user-service","timestamp":"2019-05-01 16:37:39"}
+{"message":"App running on port 5000","level":"info","service":"user-service","timestamp":"2019-05-01 16:37:39"}
