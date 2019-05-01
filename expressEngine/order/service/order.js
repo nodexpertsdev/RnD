@@ -11,13 +11,13 @@ import { error } from '../../cms/common';
 class Service {
   generateOrder = async (data) => {
     const {
-      orderNumber, supplierId, unitPrice, productPackage,
+      orderNumber, supplierId, unitPrice, status,
     } = data;
     const order = await DBService.create(Order, {
       orderNumber,
       supplierId,
       unitPrice,
-      package: productPackage,
+      status,
     });
     if (order.error) {
       return order;
@@ -37,7 +37,7 @@ class Service {
     const { nModified, n } = order;
     if (nModified) {
       return { message: success.orderUpdated };
-    } 
+    }
     if (n) {
       return { error: error.alreadyUpdated };
     }
