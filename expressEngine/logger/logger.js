@@ -1,135 +1,59 @@
-// import winston
 import { createLogger, format, transports } from 'winston';
 
-const logger = () => {
-  const {
-    combine, timestamp, json, colorize, simple,
-  } = format;
+const {
+  combine, colorize, simple, location
+} = format;
 
-  // setup logger
-  const error = createLogger({
-    level: 'error',
-    format: combine(
-      timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss',
-      }),
-      json(),
-    ),
-    defaultMeta: { service: 'user-service' },
-    transports: [
-      new transports.Console({
-        format: combine(colorize(), simple()),
-      }),
-      new transports.File({
-        filename: 'logs/error.log',
-        level: 'error',
-      }),
-    ],
-  });
+const transport = {
+  console: new transports.Console({
+    format: combine(colorize(), simple()),
+    level: 'warn'
+  }),
+};
 
-  const warn = createLogger({
-    level: 'warn',
-    format: combine(
-      timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss',
-      }),
-      json(),
-    ),
-    defaultMeta: { service: 'user-service' },
-    transports: [
-      new transports.Console({
-        format: combine(colorize(), simple()),
-      }),
-      new transports.File({
-        filename: 'logs/warn.log',
-        level: 'warn',
-      }),
-    ],
-  });
+// setup logger
+const userLogger = createLogger({
+  transports: [
+    transport.console,
+  ]
+});
 
-  const info = createLogger({
-    level: 'info',
-    format: combine(
-      timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss',
-      }),
-      json(),
-    ),
-    defaultMeta: { service: 'user-service' },
-    transports: [
-      new transports.Console({
-        format: combine(colorize(), simple()),
-      }),
-      new transports.File({
-        filename: 'logs/info.log',
-        level: 'info',
-      }),
-    ],
-  });
+const logger = {};
 
-  const verbose = createLogger({
-    level: 'verbose',
-    format: combine(
-      timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss',
-      }),
-      json(),
-    ),
-    defaultMeta: { service: 'user-service' },
-    transports: [
-      new transports.Console({
-        format: combine(colorize(), simple()),
-      }),
-      new transports.File({
-        filename: 'logs/verbose.log',
-        level: 'verbose',
-      }),
-    ],
-  });
+logger.info = function(msg) {
+  transport.console.level = 'info';
+  var message = new Date().toString() + " : " + msg + "\n";
+  userLogger.info(message);
+};
 
-  const debug = createLogger({
-    level: 'debug',
-    format: combine(
-      timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss',
-      }),
-      json(),
-    ),
-    defaultMeta: { service: 'user-service' },
-    transports: [
-      new transports.Console({
-        format: combine(colorize(), simple()),
-      }),
-      new transports.File({
-        filename: 'logs/debug.log',
-        level: 'debug',
-      }),
-    ],
-  });
+logger.error = function(msg) {
+  transport.console.level = 'error';
+  var message = new Date().toString() + " : " + msg + "\n";
+  userLogger.error(message);
+};
 
-  const silly = createLogger({
-    level: 'silly',
-    format: combine(
-      timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss',
-      }),
-      json(),
-    ),
-    defaultMeta: { service: 'user-service' },
-    transports: [
-      new transports.Console({
-        format: combine(colorize(), simple()),
-      }),
-      new transports.File({
-        filename: 'logs/silly.log',
-        level: 'silly',
-      }),
-    ],
-  });
-  const winstonLogger = {
-    error, warn, info, verbose, debug, silly,
-  };
-  return winstonLogger;
+logger.warn = function(msg) {
+  transport.console.level = 'warn';
+  var message = new Date().toString() + " : " + msg + "\n";
+  userLogger.warn(message);
+};
+
+logger.verbose = function(msg) {
+  transport.console.level = 'verbose';
+  var message = new Date().toString() + " : " + msg + "\n";
+  userLogger.verbose(message);
+};
+
+logger.debug = function(msg) {
+  transport.console.level = 'debug';
+  var message = new Date().toString() + " : " + msg + "\n";
+  userLogger.debug(message);
+};
+
+logger.silly = function(msg) {
+  transport.console.level = 'silly';
+  var message = new Date().toString() + " : " + msg + "\n";
+  userLogger.silly(message);
 };
 
 export default logger;

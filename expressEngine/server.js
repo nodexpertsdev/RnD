@@ -30,18 +30,18 @@ const port = PORT || 5000;
 db.open().then(async () => {
   try {
     console.log('Db connected successfully');
-    logger().info.info('Db connected successfully');
-    logger().warn.warn('This is a warning message');
-    logger().debug.debug('This is a debug message');
-    logger().error.error('This is an error message');
+    logger.info('Db connected successfully');
+    logger.warn('This is a warning message');
+    logger.debug('This is a debug message');
+    logger.error('This is an error message');
     seed();
     await app.listen(port);
     console.log(`App running on port ${port}`);
-    logger().info.info(`App running on port ${port}`);
+    logger.info(`App running on port ${port}`);
   } catch (err) {
-    logger().warn.warn(err);
+    logger.warn(err);
   }
 }).catch((err) => {
   console.warn(err);
-  logger().warn.warn(err);
+  logger.warn(err);
 });
