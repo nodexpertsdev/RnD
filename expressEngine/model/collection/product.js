@@ -31,7 +31,7 @@ const productsSchema = new Schema({
 
 }, {
     collection: 'product',
-    timestamp: true,
+    timestamps: true,
   });
 
 productsSchema.pre('save', function preSave() {
