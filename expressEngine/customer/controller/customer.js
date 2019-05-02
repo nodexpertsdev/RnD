@@ -14,6 +14,8 @@ class CustomerController {
     const result = await CustomerService.delete(data);
     return result;
   };
+
+  put = ({ body }) => CustomerService.put(body);
 }
 
 export default new CustomerController();

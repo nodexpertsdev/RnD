@@ -42,6 +42,24 @@ class Service {
     }
     return { error: error.productNotFound };
   }
+  getProduct = async ({ query }) => {
+    const dataToFind = {
+      collection: Product,
+      data: {
+        isDiscontinued: { $ne: true },
+      },
+      limit: query.limit,
+      skip: query.skip,
+    };
+    const products = (await DBService.find(dataToFind));
+    if (products.error) {
+      return products;
+    }
+    if (!products.length) {
+      return { error: error.noRecords };
+    }
+    return { data: products };
+  };
 }
 
 export default new Service();
