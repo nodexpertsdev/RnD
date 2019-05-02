@@ -42,4 +42,5 @@ productsSchema.pre('save', function preSave() {
 
 const Product = mongoose.model('Products', productsSchema);
 
+
 export default Product;
