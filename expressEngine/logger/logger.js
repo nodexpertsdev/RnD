@@ -1,59 +1,89 @@
 import { createLogger, format, transports } from 'winston';
+import moment from 'moment';
 
 const {
-  combine, colorize, simple, location
+  combine, colorize, simple,
 } = format;
+
+const getDetailsFromFile = (fileDetails) => {
+  const fileAndRow = fileDetails
+    .split('at ').pop()
+    .split('(').pop()
+    .replace(')', '')
+    .split(':');
+
+  const date = moment(new Date()).format('dddd, MMMM Do YYYY, h:mm:ss a');
+
+  const detailsFromFile = {
+    date,
+    file: fileAndRow[0],
+    line: fileAndRow[1],
+    row: fileAndRow[2],
+  };
+
+  detailsFromFile.formattedInfos = Object.keys(detailsFromFile).reduce((previous, key) => `${previous}`
+    + '\t'
+    + `${key}: `
+    + `${detailsFromFile[key]}`
+    + '\n',
+  '\n');
+
+  return detailsFromFile;
+};
+
+const formatter = (options, meta) => {
+  const detailsFromFile = getDetailsFromFile(meta);
+  return (
+    `${options}`
+    + `${detailsFromFile.formattedInfos}`
+  );
+};
 
 const transport = {
   console: new transports.Console({
+    level: 'warn',
     format: combine(colorize(), simple()),
-    level: 'warn'
   }),
 };
 
 // setup logger
 const userLogger = createLogger({
+  format: combine(colorize(), simple()),
   transports: [
     transport.console,
-  ]
+  ],
 });
 
 const logger = {};
 
-logger.info = function(msg) {
+logger.info = function (msg, meta) {
   transport.console.level = 'info';
-  var message = new Date().toString() + " : " + msg + "\n";
-  userLogger.info(message);
+  userLogger.info(formatter(msg, meta));
 };
 
-logger.error = function(msg) {
+logger.error = function (msg, meta) {
   transport.console.level = 'error';
-  var message = new Date().toString() + " : " + msg + "\n";
-  userLogger.error(message);
+  userLogger.error(formatter(msg, meta));
 };
 
-logger.warn = function(msg) {
+logger.warn = function (msg, meta) {
   transport.console.level = 'warn';
-  var message = new Date().toString() + " : " + msg + "\n";
-  userLogger.warn(message);
+  userLogger.warn(formatter(msg, meta));
 };
 
-logger.verbose = function(msg) {
+logger.verbose = function (msg, meta) {
   transport.console.level = 'verbose';
-  var message = new Date().toString() + " : " + msg + "\n";
-  userLogger.verbose(message);
+  userLogger.verbose(formatter(msg, meta));
 };
 
-logger.debug = function(msg) {
+logger.debug = function (msg, meta) {
   transport.console.level = 'debug';
-  var message = new Date().toString() + " : " + msg + "\n";
-  userLogger.debug(message);
+  userLogger.debug(formatter(msg, meta));
 };
 
-logger.silly = function(msg) {
+logger.silly = function (msg, meta) {
   transport.console.level = 'silly';
-  var message = new Date().toString() + " : " + msg + "\n";
-  userLogger.silly(message);
+  userLogger.silly(formatter(msg, meta));
 };
 
 export default logger;
