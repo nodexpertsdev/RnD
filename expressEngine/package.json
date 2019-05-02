@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "start": "npm i && node_modules/.bin/nodemon server.js --exec babel-node server.js",
-    "test": "ENV=test nyc ./node_modules/.bin/mocha --require @babel/register"
+    "test": "mocha \"test/**/*.spec.js\" --require @babel/register"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { connect } from 'mongoose';
-import server from '../server';
-import inMemoryDB from './inMemoryDb';
+import server from '../../../server';
+import inMemoryDB from '../../inMemoryDb';
 
 const { expect } = chai;
 const should = chai.should();
@@ -17,7 +17,7 @@ after(async () => {
   db.disconnect();
 });
 
-describe('Users', () => {
+describe('UserPost', () => {
   describe('Post function in api/user/', () => {
     it('register a user using given email and id', async () => {
       const result = await chai.request(server)
