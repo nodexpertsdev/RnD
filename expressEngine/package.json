@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "start": "npm i && node_modules/.bin/nodemon server.js --exec babel-node server.js",
-    "test": "mocha \"test/**/*.spec.js\" --require @babel/register"
+    "test": "nyc mocha \"test/**/*.spec.js\" --require @babel/register --exit"
   },
   "repository": {
     "type": "git",
@@ -39,11 +39,13 @@
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
-    "eslint": "^5.14.1",
-    "eslint-plugin-import": "^2.16.0",
     "@babel/register": "^7.0.0",
     "chai": "^4.2.0",
+    "eslint": "^5.14.1",
+    "eslint-plugin-import": "^2.16.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.10"
+    "mongodb-memory-server": "^5.1.0",
+    "nodemon": "^1.18.10",
+    "nyc": "^14.1.0"
   }
 }
