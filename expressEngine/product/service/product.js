@@ -40,14 +40,14 @@ class Service {
     if (product.error) {
       return product;
     }
-    const { nModified: FilesModifiled, n: FilesFound } = product;
-    if (FilesFound === 0) {
+    const { nModified: filesModifiled, n: filesFound } = product;
+    if (filesFound === 0) {
       return { error: error.noRecord };
     }
-    if (FilesModifiled === 0) {
+    if (filesModifiled === 0) {
       return { error: error.noModification };
     }
-    return { data: { FilesFound, FilesModifiled }, message: success.productUpdated };
+    return { data: { filesFound, filesModifiled }, message: success.productUpdated };
   }
 
   getProduct = async ({ query }) => {
