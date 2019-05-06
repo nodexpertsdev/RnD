@@ -1,30 +1,24 @@
-const email = {
+const supplierId = {
   empty: '',
-  withoutAtOperator: 'Abcm.com',
-  withoutPeriod: 'Abcm@com',
-  withoutAlphabets: '123@342.34',
-  withoutNumber: 'Abcm@cdf.om',
+  number: 123456786565,
+  properId: '5cad7772336be17a34ca44db',
 };
 
-const password = {
+const name = {
   empty: '',
-  characterCount: 'Aa4@bc',
-  withoutCapitalAlphabet: 'abc@1234',
-  withoutSmallAlphabet: 'ABC@1234',
-  withoutNumber: 'abc@aaaaa',
-  withoutSpecialCharacter: 'abcAB1234',
 };
 
-const role = {
-  randomString: 'fdsa',
+const unitPrice = {
+  empty: '',
+  withString: 'sfdsafa',
 };
+
 
 const error = {
-  email,
-  password,
-  role,
+  supplierId,
+  name,
+  unitPrice,
   status: 500,
-  phone: 'abcd',
 };
 
 export default error;
