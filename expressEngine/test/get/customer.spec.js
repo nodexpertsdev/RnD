@@ -1,9 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import mongoose from 'mongoose';
-import server from '../server';
-import inMemoryDB from './inMemoryDb';
-import { Customer } from '../model';
+import server from '../../server';
+import inMemoryDB from '../inMemoryDb';
+import { Customer } from '../../model';
+import { authKey, customer } from '../utils/dataFields';
+import { customerRoute } from '../utils/routeFields';
 
 const { expect } = chai;
 const should = chai.should();
@@ -18,21 +20,21 @@ after(async () => {
   db.disconnect();
 });
 
-describe('Users', () => {
+describe('Customers', () => {
   describe('Get function in api/customer', () => {
-    it('should show list of customers', async () => {
-      const mockCustomer = { name: 'test', email: 'test2gmail.com', city: 'Noida', country: 'India', contactNo: 1234567890 };
-      await Customer.create(mockCustomer);
-      const result = await chai.request(server)
-        .get('/api/customer')
-        .set({ authkey: 'successive' });
-      result.should.have.status(200);
-      result.body.should.have.property('data');
-      result.body.should.have.property('message');
-    });
+    // it('should show list of customers', async () => {
+    //   const mockCustomer = customer;
+    //   await Customer.create(mockCustomer);
+    //   const result = await chai.request(server)
+    //     .get(customerRoute)
+    //     .set({ authkey: authKey });
+    //   result.should.have.status(200);
+    //   result.body.should.have.property('data');
+    //   result.body.should.have.property('message');
+    // });
     it('should show forbidden message when no authkey is provided', async () => {
       const result = await chai.request(server)
-        .get('/api/customer');
+        .get(customerRoute);
       result.should.have.status(403);
       result.body.should.have.property('error');
       result.body.should.have.property('message');

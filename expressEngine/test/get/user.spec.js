@@ -1,9 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import mongoose from 'mongoose';
-import server from '../server';
-import inMemoryDB from './inMemoryDb';
-import { User } from '../model';
+import server from '../../server';
+import inMemoryDB from '../inMemoryDb';
+import { User } from '../../model';
+import { user, authKey } from '../utils/dataFields';
+import { userRoute } from '../utils/routeFields';
 
 const { expect } = chai;
 const should = chai.should();
@@ -21,18 +23,18 @@ after(async () => {
 describe('Users', () => {
   describe('Get function in api/user', () => {
     it('should show list of users', async () => {
-      const mockUser = { email: 'test@gmail.com', password: 'Test.1234', role: 'system-admin' };
+      const mockUser = user;
       await User.create(mockUser);
       const result = await chai.request(server)
-        .get('/api/user')
-        .set({ authkey: 'successive' });
+        .get(userRoute)
+        .set({ authkey: authKey });
       result.should.have.status(200);
       result.body.should.have.property('data');
       result.body.should.have.property('message');
     });
     it('should show forbidden message when no authkey is provided', async () => {
       const result = await chai.request(server)
-        .get('/api/user');
+        .get(userRoute);
       result.should.have.status(403);
       result.body.should.have.property('error');
       result.body.should.have.property('message');
