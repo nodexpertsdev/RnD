@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 describe('UserPost', () => {
   describe('Post function in api/user/', () => {
-    it('register a user using given email and id', async () => {
+    it('register a user using given email and password', async () => {
       const result = await chai
         .request(server)
         .post(success.userRoute)
