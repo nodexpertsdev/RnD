@@ -9,6 +9,6 @@ before(async () => {
   db = await connect(mongoUri, { useCreateIndex: true, useNewUrlParser: true });
 });
 
-after(async () => {
+after(() => {
   db.disconnect();
 });
