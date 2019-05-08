@@ -1,5 +1,5 @@
 import { connect } from 'mongoose';
-import inMemoryDB from './inMemoryDb';
+import inMemoryDB from './db';
 
 
 let db;
