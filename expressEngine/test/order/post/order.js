@@ -1,264 +1,266 @@
+/* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../../server';
-import { error, success } from '../../data';
+import { error, success, config } from '../../data';
 
-const { expect } = chai;
 const should = chai.should();
 chai.use(chaiHttp);
 
 describe('orderPost', () => {
-  describe('Post function in api/order/', () => {
-    it('Generate order testing', async () => {
+  const { header, status, route } = config;
+  const { order } = route;
+  const { ok, internalServerError } = status;
+
+  describe(`post function in ${order}`, () => {
+    it('should generate order', async () => {
       const result = await chai
         .request(server)
-        .post(success.orderRoute)
-        .set(success.header)
+        .post(order)
+        .set(header)
         .send({
           orderNumber: success.randomNumber,
+          status: success.randomString,
           supplierId: success.randomString,
           unitPrice: success.randomNumber,
-          status: success.randomString,
         });
-      result.should.have.status(success.status);
+      result.should.have.status(ok);
       result.body.should.have.property('data');
       result.body.should.have.property('message');
     });
 
-    describe('Check for order number', () => {
-      it('Without order number', async () => {
+    describe('check for order number', () => {
+      it('should fail without order number', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Order number as empty string', async () => {
+      it('should fail for order number as empty string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: '',
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Order number as random string', async () => {
+      it('should fail for order number as random string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomString,
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Order number with number', async () => {
+      it('should pass for order number as number', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(success.status);
+        result.should.have.status(ok);
         result.body.should.have.property('data');
         result.body.should.have.property('message');
       });
     });
 
-    describe('Check for supplier id', () => {
-      it('Without supplier id', async () => {
+    describe('check for supplier id', () => {
+      it('should fail without supplier id', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
-            unitPrice: success.randomNumber,
             status: success.randomString,
+            unitPrice: success.randomNumber,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Supplier id as empty string', async () => {
+      it('should fail for supplier id as empty string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: '',
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Supplier id as random string', async () => {
+      it('should pass for supplier id as random string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(success.status);
+        result.should.have.status(ok);
         result.body.should.have.property('data');
         result.body.should.have.property('message');
       });
 
-      it('Supplier id with number', async () => {
+      it('should pass for supplier id as number', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: success.randomNumber,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(success.status);
+        result.should.have.status(ok);
         result.body.should.have.property('data');
         result.body.should.have.property('message');
       });
     });
 
-    describe('Check for unit price', () => {
-      it('Without unit price', async () => {
+    describe('check for unit price', () => {
+      it('should fail without unit price', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
-            supplierId: success.randomString,
             status: success.randomString,
+            supplierId: success.randomString,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Unit price as empty string', async () => {
+      it('should fail for unit price as empty string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: '',
-            status: success.randomString,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Supplier id as random string', async () => {
+      it('should fail for unit price as random string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: success.randomString,
-            status: success.randomString,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Unit price with number', async () => {
+      it('should pass for unit price as number', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: success.randomNumber,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(success.status);
+        result.should.have.status(ok);
         result.body.should.have.property('data');
         result.body.should.have.property('message');
       });
     });
 
-
-    describe('Check for status', () => {
-      it('Without status', async () => {
+    describe('check for status', () => {
+      it('should fail without status', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
             supplierId: success.randomString,
             unitPrice: success.randomNumber,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Status as empty string', async () => {
+      it('should fail for status as empty string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
-            supplierId: success.randomString,
-            unitPrice: success.randomNumber,
             status: '',
+            supplierId: success.randomString,
+            unitPrice: success.randomNumber,
           });
-        result.should.have.status(error.status);
+        result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('Status as random string', async () => {
+      it('should pass for status as random string', async () => {
         const result = await chai
           .request(server)
-          .post(success.orderRoute)
-          .set(success.header)
+          .post(order)
+          .set(header)
           .send({
             orderNumber: success.randomNumber,
+            status: success.randomString,
             supplierId: success.randomString,
             unitPrice: success.randomNumber,
-            status: success.randomString,
           });
-        result.should.have.status(success.status);
+        result.should.have.status(ok);
         result.body.should.have.property('data');
         result.body.should.have.property('message');
       });
-
     });
   });
 });
