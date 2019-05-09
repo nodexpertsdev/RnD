@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "start": "npm i && node_modules/.bin/nodemon server.js --exec babel-node server.js",
-    "test": "mocha \"test/**/*.spec.js\" --require @babel/register"
+    "test": "nyc mocha --recursive --require @babel/register --exit"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.4.12",
     "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
@@ -45,6 +44,7 @@
     "eslint-plugin-import": "^2.16.0",
     "mocha": "^5.2.0",
     "mongodb-memory-server": "^5.1.0",
+    "mongoose": "^5.5.6",
     "nodemon": "^1.18.10",
     "nyc": "^14.0.0"
   }
