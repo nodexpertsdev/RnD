@@ -15,5 +15,6 @@ const router = Router();
 
 router.post('/', parser(OrderController, 'create'));
 router.put('/', parser(OrderController, 'update'));
+router.get('/', parser(OrderController, 'get'));
 
 export default router;
