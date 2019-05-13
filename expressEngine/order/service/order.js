@@ -61,7 +61,7 @@ class Service {
       return orders;
     }
     if (!orders.length) {
-      return { error: error.noRecords };
+      return { error: error.noRecord };
     }
     return { data: orders };
   }
