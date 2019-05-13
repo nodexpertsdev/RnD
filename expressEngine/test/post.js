@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../../../server';
-import { error, success, config } from '../../data';
+import server from '../server';
+import { error, success, config } from './data';
 
 
 const should = chai.should();
