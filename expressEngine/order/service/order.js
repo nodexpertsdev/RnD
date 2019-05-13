@@ -7,14 +7,16 @@ import { Order } from '../../model';
 // import messages
 import { success } from '../../cms/order';
 import { error } from '../../cms/common';
+import { helper } from '../utils';
 
 class Service {
   generateOrder = async (data) => {
     const {
-      orderNumber, supplierId, unitPrice, productPackage,
+      orderNumber, supplierId, unitPrice, productPackage, status,
     } = data;
     const order = await DBService.create(Order, {
       orderNumber,
+      status,
       supplierId,
       unitPrice,
       package: productPackage,
@@ -37,19 +39,22 @@ class Service {
     const { nModified, n } = order;
     if (nModified) {
       return { message: success.orderUpdated };
-    } 
+    }
     if (n) {
       return { error: error.alreadyUpdated };
     }
     return { error: error.unableToUpdate };
   }
 
-  get = async ({ query }) => {
+  get = async ({ body, query }) => {
+    const projection = helper.getProjection();
     const { skip, limit } = query;
     const dataToFind = {
+      projection,
       collection: Order,
-      skip,
+      data: body,
       limit,
+      skip,
     };
     const orders = (await DBService.find(dataToFind));
     if (orders.error) {

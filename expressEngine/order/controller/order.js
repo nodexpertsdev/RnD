@@ -1,6 +1,5 @@
 // import service
 import { OrderService } from '../service';
-import { Order } from '../../model';
 
 class Controller {
   create = ({ body }) => OrderService.generateOrder(body);
