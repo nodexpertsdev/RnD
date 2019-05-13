@@ -9,5 +9,6 @@ const router = Router();
 
 router.post('/', parser(CustomerController, 'create'));
 router.delete('/:id', parser(CustomerController, 'delete'));
+router.put('/', parser(CustomerController, 'put'));
 
 export default router;
