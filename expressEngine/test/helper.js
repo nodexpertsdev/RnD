@@ -1,10 +1,8 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-let mongoServer;
-
 beforeEach((done) => {
-  mongoServer = new MongoMemoryServer();
+  const mongoServer = new MongoMemoryServer();
   mongoServer
     .getConnectionString()
     .then((mongoUri) => {
@@ -17,5 +15,4 @@ beforeEach((done) => {
 
 afterEach(() => {
   mongoose.disconnect();
-  mongoServer.stop();
 });
