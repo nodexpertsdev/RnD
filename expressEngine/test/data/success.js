@@ -3,19 +3,6 @@ const role = {
   systemAdmin: 'system-admin',
 };
 
-const validEmails = [
-  'Abc@gmail.com',
-  'abc@gmail.com',
-  'abcd@gmail.com',
-  'aBc@gmail.com',
-  'abC@gmail.com',
-  'abd@gmail.com',
-  'sdf@gmail.com',
-  'df@gmail.com',
-  'sdflj@gmail.com',
-  'ldf@gmic.com',
-  'd@gmail.com',
-];
 const success = {
   role,
   city: 'abcde',
@@ -23,7 +10,7 @@ const success = {
   contactName: 'abc',
   contactTitle: 'abc',
   country: 'aaaaaaa',
-  email: validEmails,
+  email: 'abc@gmail.com',
   fax: 'abbbbbb',
   password: 'Aa42@abc',
   phone: 43545,

@@ -25,6 +25,7 @@ const error = {
   role,
   phone: 'abcd',
   status: 500,
+  userId: 1234,
 };
 
 export default error;

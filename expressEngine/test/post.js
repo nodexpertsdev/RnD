@@ -1,13 +1,15 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../../../server';
-import { error, success, config } from '../../data';
+import server from '../server';
+import { error, success, config } from './data';
+
 
 const should = chai.should();
 chai.use(chaiHttp);
 
-describe('UserPost', () => {
+describe('userPost', () => {
+
   const { header, route, status } = config;
   const { user } = route;
   const { ok, internalServerError } = status;
@@ -19,7 +21,7 @@ describe('UserPost', () => {
         .request(server)
         .post(user)
         .set(header)
-        .send({ email: email[0], password });
+        .send({ email, password });
       result.should.have.status(ok);
       result.body.should.have.property('data');
       result.body.should.have.property('message');
@@ -120,7 +122,7 @@ describe('UserPost', () => {
           .request(server)
           .post(user)
           .set(header)
-          .send({ email: email[0] });
+          .send({ email });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -130,7 +132,7 @@ describe('UserPost', () => {
           .request(server)
           .post(user)
           .set(header)
-          .send({ email: email[0], password: empty });
+          .send({ email, password: empty });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -141,7 +143,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[0],
+            email,
             password: characterCount,
           });
         result.should.have.status(internalServerError);
@@ -154,7 +156,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[0],
+            email,
             password: withoutCapitalAlphabet,
           });
         result.should.have.status(internalServerError);
@@ -167,7 +169,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[0],
+            email,
             password: withoutSmallAlphabet,
           });
         result.should.have.status(internalServerError);
@@ -180,7 +182,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[0],
+            email,
             password: withoutNumber,
           });
         result.should.have.status(internalServerError);
@@ -193,7 +195,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[0],
+            email,
             password: withoutSpecialCharacter,
           });
         result.should.have.status(internalServerError);
@@ -211,7 +213,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[2],
+            email,
             password,
             role: supplier,
           });
@@ -226,7 +228,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[3],
+            email,
             password,
             role: systemAdmin,
           });
@@ -260,7 +262,7 @@ describe('UserPost', () => {
           .set(header)
           .send({
             companyName,
-            email: email[4],
+            email,
             password,
           });
         result.should.have.status(ok);
@@ -279,7 +281,7 @@ describe('UserPost', () => {
           .set(header)
           .send({
             contactName,
-            email: email[5],
+            email,
             password,
           });
         result.should.have.status(ok);
@@ -298,7 +300,7 @@ describe('UserPost', () => {
           .set(header)
           .send({
             contactTitle,
-            email: email[6],
+            email,
             password,
           });
         result.should.have.status(ok);
@@ -317,7 +319,7 @@ describe('UserPost', () => {
           .set(header)
           .send({
             city,
-            email: email[7],
+            email,
             password,
           });
         result.should.have.status(ok);
@@ -336,7 +338,7 @@ describe('UserPost', () => {
           .set(header)
           .send({
             country,
-            email: email[8],
+            email,
             password,
 
           });
@@ -355,7 +357,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[9],
+            email,
             password,
             phone,
           });
@@ -371,7 +373,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[9],
+            email,
             password,
             phone,
           });
@@ -390,7 +392,7 @@ describe('UserPost', () => {
           .post(user)
           .set(header)
           .send({
-            email: email[10],
+            email,
             fax,
             password,
           });

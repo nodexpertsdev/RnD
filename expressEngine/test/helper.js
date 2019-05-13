@@ -1,14 +1,18 @@
-import { connect } from 'mongoose';
-import inMemoryDB from './db';
+import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
-
-let db;
-
-before(async () => {
-  const { mongoUri } = await inMemoryDB();
-  db = await connect(mongoUri, { useCreateIndex: true, useNewUrlParser: true });
+beforeEach((done) => {
+  const mongoServer = new MongoMemoryServer();
+  mongoServer
+    .getConnectionString()
+    .then((mongoUri) => {
+      return mongoose.connect(mongoUri, (err) => {
+        if (err) done(err);
+      });
+    })
+    .then(() => done());
 });
 
-after(() => {
-  db.disconnect();
+afterEach(() => {
+  mongoose.disconnect();
 });
