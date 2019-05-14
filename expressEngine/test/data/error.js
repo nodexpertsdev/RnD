@@ -1,4 +1,3 @@
-
 const email = {
   empty: '',
   withoutAlphabets: '123@342.34',
