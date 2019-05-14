@@ -3,18 +3,8 @@ const role = {
   systemAdmin: 'system-admin',
 };
 
-const productPost = {
-  header: { authkey: 'successive' },
-  isDiscontinued: false,
-  name: 'sss',
-  productPackage: 'asdas',
-  productRoute: '/api/products',
-  status: 200,
-  supplierId: 'asdsafsdf',
-  unitPrice: 1,
-};
-
 const success = {
+  role,
   city: 'abcde',
   companyName: 'sdf',
   contactName: 'abc',
@@ -24,9 +14,6 @@ const success = {
   fax: 'abbbbbb',
   password: 'Aa42@abc',
   phone: 43545,
-  productPost,
-  role,
 };
-
 
 export default success;
