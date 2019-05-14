@@ -15,8 +15,7 @@ const {
   isDiscontinued, name, productPackage, supplierId, unitPrice,
 } = success;
 const { id, price, empty } = error;
-const { number } = id;
-const { withString } = price;
+
 
 describe('productPost', () => {
   describe(`post function in ${product}`, () => {
@@ -50,6 +49,7 @@ describe('productPost', () => {
       });
 
       it('should not be number', async () => {
+        const { number } = id;
         const result = await chai
           .request(server)
           .post(product)
@@ -109,6 +109,7 @@ describe('productPost', () => {
         result.body.should.have.property('error');
       });
       it('should pass as string value', async () => {
+        const { withString } = price;
         const result = await chai
           .request(server)
           .post(product)
