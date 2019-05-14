@@ -3,7 +3,7 @@ const id = {
 };
 
 const price = {
-  withString: 'sfdsafa',
+  withString: 'notValid',
 };
 
 const error = {
