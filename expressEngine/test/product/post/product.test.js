@@ -6,20 +6,21 @@ import { error, success } from '../../data';
 const { expect } = chai;
 const should = chai.should();
 chai.use(chaiHttp);
+const { productPost } = success;
 
 describe('ProductPost', () => {
   describe('Post function in api/products/', () => {
     it('create a product using proper supplierId', async () => {
       const result = await chai
         .request(server)
-        .post(success.productRoute)
-        .set(success.header)
+        .post(productPost.productRoute)
+        .set(productPost.header)
         .send({
+          name: productPost.name,
           supplierId: error.supplierId.properId,
-          name: success.name,
-          unitPrice: success.unitPrice,
+          unitPrice: productPost.unitPrice,
         });
-      result.should.have.status(success.status);
+      result.should.have.status(productPost.status);
       result.body.should.have.property('data');
       result.body.should.have.property('message');
     });
@@ -28,8 +29,8 @@ describe('ProductPost', () => {
       it('Without supplierId field', async () => {
         const result = await chai
           .request(server)
-          .post(success.productRoute)
-          .set(success.header)
+          .post(productPost.productRoute)
+          .set(productPost.header)
           .send({});
         result.should.have.status(error.status);
         result.body.should.have.property('error');
@@ -38,8 +39,8 @@ describe('ProductPost', () => {
       it('Should be string', async () => {
         const result = await chai
           .request(server)
-          .post(success.productRoute)
-          .set(success.header)
+          .post(productPost.productRoute)
+          .set(productPost.header)
           .send({ supplierId: error.supplierId.number });
         result.should.have.status(error.status);
         result.body.should.have.property('error');
@@ -49,10 +50,10 @@ describe('ProductPost', () => {
         it('Name field as blank space', async () => {
           const result = await chai
             .request(server)
-            .post(success.productRoute)
-            .set(success.header)
+            .post(productPost.productRoute)
+            .set(productPost.header)
             .send({
-              name: error.name.empty,
+              name: error.empty,
             });
           result.should.have.status(error.status);
           result.body.should.have.property('error');
@@ -60,14 +61,14 @@ describe('ProductPost', () => {
         it('With name as a random string', async () => {
           const result = await chai
             .request(server)
-            .post(success.productRoute)
-            .set(success.header)
+            .post(productPost.productRoute)
+            .set(productPost.header)
             .send({
+              name: productPost.name,
               supplierId: error.supplierId.properId,
-              name: success.name,
-              unitPrice: success.unitPrice,
+              unitPrice: productPost.unitPrice,
             });
-          result.should.have.status(success.status);
+          result.should.have.status(productPost.status);
           result.body.should.have.property('data');
           result.body.should.have.property('message');
         });
@@ -77,10 +78,10 @@ describe('ProductPost', () => {
         it('unitPrice field as blank space', async () => {
           const result = await chai
             .request(server)
-            .post(success.productRoute)
-            .set(success.header)
+            .post(productPost.productRoute)
+            .set(productPost.header)
             .send({
-              unitPrice: error.unitPrice.empty,
+              unitPrice: error.empty,
             });
           result.should.have.status(error.status);
           result.body.should.have.property('error');
@@ -88,8 +89,8 @@ describe('ProductPost', () => {
         it('unitPrice field as string value', async () => {
           const result = await chai
             .request(server)
-            .post(success.productRoute)
-            .set(success.header)
+            .post(productPost.productRoute)
+            .set(productPost.header)
             .send({
               unitPrice: error.unitPrice.withString,
             });
@@ -99,14 +100,14 @@ describe('ProductPost', () => {
         it('With unitPrice as a random number', async () => {
           const result = await chai
             .request(server)
-            .post(success.productRoute)
-            .set(success.header)
+            .post(productPost.productRoute)
+            .set(productPost.header)
             .send({
+              name: productPost.name,
               supplierId: error.supplierId.properId,
-              name: success.name,
-              unitPrice: success.unitPrice,
+              unitPrice: productPost.unitPrice,
             });
-          result.should.have.status(success.status);
+          result.should.have.status(productPost.status);
           result.body.should.have.property('data');
           result.body.should.have.property('message');
         });
@@ -116,15 +117,15 @@ describe('ProductPost', () => {
         it('With package as a random string', async () => {
           const result = await chai
             .request(server)
-            .post(success.productRoute)
-            .set(success.header)
+            .post(productPost.productRoute)
+            .set(productPost.header)
             .send({
+              name: productPost.name,
+              package: productPost.productPackage,
               supplierId: error.supplierId.properId,
-              name: success.name,
-              unitPrice: success.unitPrice,
-              package: success.productPackage,
+              unitPrice: productPost.unitPrice,
             });
-          result.should.have.status(success.status);
+          result.should.have.status(productPost.status);
           result.body.should.have.property('data');
           result.body.should.have.property('message');
         });
@@ -134,15 +135,15 @@ describe('ProductPost', () => {
         it('With isDiscontinued as a boolean value', async () => {
           const result = await chai
             .request(server)
-            .post(success.productRoute)
-            .set(success.header)
+            .post(productPost.productRoute)
+            .set(productPost.header)
             .send({
+              isDiscontinued: productPost.isDiscontinued,
+              name: productPost.name,
               supplierId: error.supplierId.properId,
-              name: success.name,
-              unitPrice: success.unitPrice,
-              isDiscontinued: success.isDiscontinued,
+              unitPrice: productPost.unitPrice,
             });
-          result.should.have.status(success.status);
+          result.should.have.status(productPost.status);
           result.body.should.have.property('data');
           result.body.should.have.property('message');
         });
