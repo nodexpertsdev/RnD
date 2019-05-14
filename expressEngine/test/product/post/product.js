@@ -51,7 +51,11 @@ describe('productPost', () => {
           .request(server)
           .post(product)
           .set(header)
-          .send({ supplierId: number });
+          .send({
+            name,
+            supplierId: number,
+            unitPrice,
+          });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -65,6 +69,8 @@ describe('productPost', () => {
           .set(header)
           .send({
             name: empty,
+            supplierId,
+            unitPrice,
           });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
@@ -92,6 +98,8 @@ describe('productPost', () => {
           .post(product)
           .set(header)
           .send({
+            name,
+            supplierId,
             unitPrice: empty,
           });
         result.should.have.status(internalServerError);
@@ -103,6 +111,8 @@ describe('productPost', () => {
           .post(product)
           .set(header)
           .send({
+            name,
+            supplierId,
             unitPrice: withString,
           });
         result.should.have.status(internalServerError);
