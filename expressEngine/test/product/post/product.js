@@ -41,7 +41,10 @@ describe('productPost', () => {
           .request(server)
           .post(product)
           .set(header)
-          .send({});
+          .send({
+            name,
+            unitPrice,
+          });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
