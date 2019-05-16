@@ -4,6 +4,7 @@ const header = {
 
 const route = {
   user: '/api/user',
+  customer: '/api/customer'
 };
 
 const status = {
