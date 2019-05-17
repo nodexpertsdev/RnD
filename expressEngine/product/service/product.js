@@ -42,6 +42,30 @@ class Service {
     }
     return { error: error.productNotFound };
   }
+  
+  updateProduct = async (data) => {
+    const { criteria, dataToUpdate } = data;
+    if (!criteria || Object.entries(criteria).length === 0) {
+      return { error: error.emptyCriteria };
+    }
+    if (!dataToUpdate || Object.entries(dataToUpdate).length === 0) {
+      return { error: error.emptyData };
+    }
+    const collection = Product;
+    const product = await DBService.updateOne({ collection, dataToUpdate, criteria });
+    if (product.error) {
+      return product;
+    }
+    const { nModified: filesModifiled, n: filesFound } = product;
+    if (filesFound === 0) {
+      return { error: error.noRecord };
+    }
+    if (filesModifiled === 0) {
+      return { error: error.noModification };
+    }
+    return { data: { filesFound, filesModifiled }, message: success.productUpdated };
+  }
+
   getProduct = async ({ query }) => {
     const dataToFind = {
       collection: Product,

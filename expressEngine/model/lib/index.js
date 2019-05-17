@@ -10,10 +10,16 @@ class ModelLib {
     return re.test(String(email).toLowerCase());
 
   };
+
   validatePassword = (password) => {
     var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,50}$/;
     return re.test(String(password));
   };
+
+  validateContactNumber = (contactNo) => {
+    var re = /^[0-9]{10}$/
+    return re.test(contactNo)
+  }
 }
 
 export default new ModelLib();
