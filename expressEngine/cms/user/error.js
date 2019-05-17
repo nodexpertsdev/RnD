@@ -7,5 +7,4 @@ export default {
   loginError: 'login failed please signUp first',
   passwordError: 'incorrect password',
   tokenError: 'token is not generated',
-  unableToUpdate: 'User not found to update',
 };
