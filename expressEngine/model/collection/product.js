@@ -30,13 +30,15 @@ const productsSchema = new Schema({
     required: false,
   },
 
-}, { collection: 'product', timestamps: true });
+}, {
+  collection: 'product',
+  timestamps: true,
+});
 
 productsSchema.pre('save', function preSave() {
   const product = this;
   product.id = product._id.toString();
 });
-
 
 const Product = mongoose.model('Products', productsSchema);
 
