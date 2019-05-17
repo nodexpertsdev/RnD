@@ -1,0 +1,4 @@
+node_modules
+*-lock.json
+*.ignore
+.nyc_output

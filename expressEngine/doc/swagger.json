@@ -1,0 +1,294 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a documentation for e-commerce",
+    "version": "1.0.0",
+    "title": "Research and Development"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Routes related to user operations"
+    },
+    {
+      "name":"Customer",
+      "description": "Routes related to customer operations"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "To register a new user",
+        "description": "",
+        "operationId": "addUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Request Body",
+            "properties": {
+              "email": {
+                "name": "email",
+                "description": "Email id of user getting registered",
+                "required": true,
+                "type": "string"
+              },
+              "password": {
+                "name": "password",
+                "description": "Password of user getting registered",
+                "required": true,
+                "type": "string"
+              },
+              "role": {
+                "name": "role",
+                "description": "Role of user getting registered",
+                "type": "string"
+              },
+              "companyName": {
+                "name": "companyName",
+                "description": "Company Name of user getting registered",
+                "type": "string"
+              },
+              "contactName": {
+                "name": "contactName",
+                "description": "Contact Name of user getting registered",
+                "type": "string"
+              },
+              "contactTitle": {
+                "name": "contactTitle",
+                "description": "Contact Title of user getting registered",
+                "type": "string"
+              },
+              "city": {
+                "name": "city",
+                "description": "City of user getting registered",
+                "type": "string"
+              },
+              "country": {
+                "name": "country",
+                "description": "Country of user getting registered",
+                "type": "string"
+              },
+              "phone": {
+                "name": "phone",
+                "description": "Phone number of user getting registered",
+                "type": "number"
+              },
+              "fax": {
+                "name": "fax",
+                "description": "Fax of user getting registered",
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "authkey",
+            "description": "successive",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have registered successfully",
+            "type": "object",
+            "$ref": "#/definitions/Success"
+          },
+          "422": {
+            "description": "User is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          },
+          "409": {
+            "description": "User is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "To delete a user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Unique id of the user that is to be deleted",
+            "in": "path",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "authkey",
+            "description": "successive",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success Response",
+            "schema": { "$ref": "#/definitions/DeleteUserSuccess" }
+          },
+          "403": {
+            "description": "Error Response",
+            "schema": { "$ref": "#/definitions/DeleteUserError" } 
+          }
+        }
+      }
+    },
+    "/customer": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "summary": "To register a new customer",
+        "description": "",
+        "operationId": "addCustomer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Customer",
+            "properties": {
+              "firstName": {
+                "type": "string",
+                "name": "firstName",
+                "description": "First Name of customer getting registered",
+                "required": true
+              },
+              "lastName": {
+                "type": "string",
+                "name": "lastName",
+                "description": "Last Name of customer getting registered",
+                "required": true
+              },
+              "city": {
+                "type": "string",
+                "name": "city",
+                "description": "City of customer getting registered",
+                "required": true
+              },
+              "country": {
+                "type": "string",
+                "name": "country",
+                "description": "Country of customer getting registered",
+                "required": true
+              },
+              "contactNo": {
+                "type": "number",
+                "example": "number",
+                "name": "contactNo",
+                "description": "Contact number of customer getting registered",
+                "required": true
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "authkey",
+            "description": "successive",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have registered successfully",
+            "type": "object",
+            "$ref": "#/definitions/Success"
+          },
+          "422": {
+            "description": "Customer is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          },
+          "409": {
+            "description": "Customer is already registered",
+            "type": "object",
+            "$ref": "#/definitions/Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Success": {
+      "description": "Success Response",
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "data": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "description": "Error Response",
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteUserSuccess": {
+      "description": "Success Response",
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "example": "User deleted successfully"
+        }
+      }
+    },
+    "DeleteUserError": {
+      "description": "Error Response",
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "example": "User not found to delete, Already deleted"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "rnd",
+  "version": "1.0.0",
+  "description": "It is to explore, learn and try anything interesting.",
+  "main": "server.js",
+  "scripts": {
+    "lint": "eslint",
+    "start": "npm i && node_modules/.bin/nodemon server.js --exec babel-node server.js",
+    "test": "nyc mocha --recursive --require @babel/register --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodexpertsdev/RnD.git"
+  },
+  "author": "nodexperts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nodexpertsdev/RnD/issues"
+  },
+  "homepage": "https://github.com/nodexpertsdev/RnD#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.3.4",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "bcrypt": "^3.0.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.4.12",
+    "swagger-ui-express": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^5.14.1",
+    "eslint-plugin-import": "^2.16.0",
+    "mocha": "^5.2.0",
+    "mongodb-memory-server": "^5.1.0",
+    "nodemon": "^1.18.10",
+    "nyc": "^14.0.0"
+  }
+}
