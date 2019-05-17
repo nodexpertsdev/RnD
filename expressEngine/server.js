@@ -35,3 +35,5 @@ db.open().then(async () => {
 }).catch((err) => {
   console.warn(err);
 });
+
+export default app;

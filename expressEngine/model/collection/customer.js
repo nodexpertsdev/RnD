@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
-const {
-  Schema,
-} = mongoose;
+import modelLib from '../lib';
+
+const { Schema } = mongoose;
+
 
 const customerSchema = new Schema({
   id: {
@@ -15,7 +16,11 @@ const customerSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'Email is required'],
+    validate: {
+      validator: email => modelLib.validateEmail(email),
+      message: props => `${props.value} is not a valid email!`,
+    },
   },
   city: {
     type: String,
@@ -28,6 +33,10 @@ const customerSchema = new Schema({
   contactNo: {
     type: Number,
     required: true,
+    validate: {
+    validator: contactNo => modelLib.validateContactNumber(contactNo),
+      message: props => `${props.value} is not a valid contact number!`,
+    }
   },
 }, { collection: 'customers', timestamps: true });
 
