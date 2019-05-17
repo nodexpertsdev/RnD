@@ -5,6 +5,7 @@ const header = {
 const route = {
   product: '/api/products',
   user: '/api/user',
+  customer: '/api/customer'
 };
 
 const status = {
