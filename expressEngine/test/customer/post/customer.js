@@ -12,7 +12,7 @@ describe('CustomerPost', () => {
   const { header, route, status } = config;
   const { customer } = route;
   const { ok, internalServerError } = status;
-  const { email, contactNo, name, city, country } = success;
+  const { city, contactNo, country, email, name } = success;
 
   // describe(`post function in ${customer}`, () => {
     describe(`possible pass cases in ${customer}`, () => {
@@ -22,7 +22,7 @@ describe('CustomerPost', () => {
         .request(server)
         .post(customer)
         .set(header)
-        .send({ email, name, city, country, contactNo });
+        .send({ city, contactNo, country, email, name });
       result.should.have.status(ok);
       result.body.should.have.property('data');
       result.body.should.have.property('message');
@@ -37,7 +37,6 @@ describe('CustomerPost', () => {
         withoutAtOperator,
         withoutAlphabets,
         withoutPeriod,
-        withoutNumber,
       } = error.email;
 
       it('should fail without email', async () => {
@@ -45,7 +44,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ name, city, country, contactNo });
+          .send({ city, contactNo, country, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -55,7 +54,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email: empty, name, city, country, contactNo });
+          .send({ city, contactNo, country, email: empty, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -65,7 +64,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email: withoutAtOperator, name, city, country, contactNo });
+          .send({ city, contactNo, country, email: withoutAtOperator, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -75,7 +74,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email: withoutPeriod, name, city, country, contactNo });
+          .send({ city, contactNo, country, email: withoutPeriod, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -85,7 +84,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email: withoutAlphabets, name, city, country, contactNo });
+          .send({ city, contactNo, country, email: withoutAlphabets, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -93,8 +92,8 @@ describe('CustomerPost', () => {
 
     describe('check for contact number ', () => {
       const {
-        numberCount,
         empty,
+        numberCount,
       } = error.contactNo;
 
       it('should fail without contact number', async () => {
@@ -102,17 +101,17 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email, name, city, country });
+          .send({ city, country, email, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
 
-      it('should fail for contact number with blank space', async () => {
+      it('should fail for blank contact number', async () => {
         const result = await chai
           .request(server)
           .post(customer)
           .set(header)
-          .send({ contactNo: empty, email, name, city, country });
+          .send({ city, contactNo: empty, country, email, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -122,7 +121,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ contactNo: numberCount, email, name, city, country });
+          .send({ city, contactNo: numberCount, country, email, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -135,7 +134,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email, city, country, contactNo});
+          .send({ city, contactNo, country, email });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -145,7 +144,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ name: '', email, city, country, contactNo});
+          .send({ city, contactNo, country, email, name: '' });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -159,7 +158,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email, name, country, contactNo});
+          .send({ contactNo, country, email, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -169,7 +168,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ city: '', email, name, country, contactNo});
+          .send({ city: '', contactNo, country, email, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -183,7 +182,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ email, name, city, contactNo });
+          .send({ city, contactNo, email, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -193,7 +192,7 @@ describe('CustomerPost', () => {
           .request(server)
           .post(customer)
           .set(header)
-          .send({ country: '', email, name, city, contactNo });
+          .send({ city, contactNo, country: '', email, name });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
