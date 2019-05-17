@@ -108,7 +108,7 @@ class Service {
     }
     return (updated.nModified
       ? { message: success.userUpdated }
-      : { error: error.unableToUpdate });
+      : { error: commonError.unableToUpdate });
   }
 }
 
