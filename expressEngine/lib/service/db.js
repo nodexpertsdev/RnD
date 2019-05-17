@@ -22,7 +22,7 @@ class DBOperation {
   findOne = async (collection, data = {}, projection = {}) => {
     try {
       return await collection.findOne(data, projection);
-    } catch (err) {      
+    } catch (err) {
       return { error: err.message };
     }
   }
@@ -35,9 +35,17 @@ class DBOperation {
     }
   }
 
-  updateMany = async (collection, dataToUpdate, filter) => {
+  updateOne = async ({ collection, dataToUpdate, criteria }) => {
     try {
-      return await collection.updateMany(filter, { $set: dataToUpdate });
+      return await collection.updateOne(criteria, { $set: dataToUpdate });
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
+
+  updateMany = async ({ collection, dataToUpdate, criteria }) => {
+    try {
+      return await collection.updateMany(criteria, { $set: dataToUpdate });
     } catch (err) {
       return { error: err.message };
     }
@@ -70,7 +78,7 @@ class DBOperation {
   deleteOne = async (collection, data) => {
     try {
       return await collection.deleteOne(data);
-    } catch (err) {      
+    } catch (err) {
       return { error: err.message };
     }
   }
@@ -82,6 +90,7 @@ class DBOperation {
       return { error: err.message };
     }
   }
+
 }
 
 export default new DBOperation();
