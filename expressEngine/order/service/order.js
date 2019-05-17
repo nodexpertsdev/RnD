@@ -19,6 +19,7 @@ class Service {
       status,
       supplierId,
       unitPrice,
+      status,
       package: productPackage,
     });
     if (order.error) {

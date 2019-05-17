@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import modelLib from '../lib';
 
 const {
   Schema,
@@ -27,6 +28,7 @@ const ordersSchema = new Schema({
   },
   status: {
     type: String,
+    enum: modelLib.orderStatus(),
     required: true,
   },
 
