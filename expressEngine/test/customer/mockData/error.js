@@ -2,7 +2,6 @@ const email = {
   empty: '',
   withoutAlphabets: '123@342.34',
   withoutAtOperator: 'Abcm.com',
-  withoutNumber: 'Abcm@cdf.com',
   withoutPeriod: 'Abcm@com',
 };
 
@@ -16,7 +15,6 @@ const error = {
   name:'Varun',
   city: 'abcde',
   country: 'aaaaaaa',
-  email: 'abc@successive.tech',
   contactNo,
 };
 

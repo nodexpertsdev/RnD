@@ -2,7 +2,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../../server';
-import { error, success } from '../cms';
+import { error, success } from '../mockData';
 import { config } from '../../data';
 
 const should = chai.should();
@@ -14,18 +14,22 @@ describe('CustomerPost', () => {
   const { ok, internalServerError } = status;
   const { email, contactNo, name, city, country } = success;
 
-  describe(`post function in ${customer}`, () => {
+  // describe(`post function in ${customer}`, () => {
+    describe(`possible pass cases in ${customer}`, () => {
+
     it('should register a customer using given email, contact number, name, city and country', async () => {
       const result = await chai
         .request(server)
         .post(customer)
         .set(header)
         .send({ email, name, city, country, contactNo });
-      console.log('------------', result.body);
       result.should.have.status(ok);
       result.body.should.have.property('data');
       result.body.should.have.property('message');
     });
+
+  });
+  describe(`possible failure cases in ${customer}`, () => {
 
     describe('check for wrong email format', () => {
       const {
@@ -42,7 +46,6 @@ describe('CustomerPost', () => {
           .post(customer)
           .set(header)
           .send({ name, city, country, contactNo });
-        console.log('----++++++++', result.body);
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -83,16 +86,6 @@ describe('CustomerPost', () => {
           .post(customer)
           .set(header)
           .send({ email: withoutAlphabets, name, city, country, contactNo });
-        result.should.have.status(internalServerError);
-        result.body.should.have.property('error');
-      });
-
-      it('should fail for email without number', async () => {
-        const result = await chai
-          .request(server)
-          .post(customer)
-          .set(header)
-          .send({ email: withoutNumber, name, city, country, contactNo });
         result.should.have.status(internalServerError);
         result.body.should.have.property('error');
       });
@@ -137,44 +130,74 @@ describe('CustomerPost', () => {
 
     describe('check for contact name', () => {
 
-      it('should pass for contact name as a random string', async () => {
+      it('should fail if name is not given', async () => {
         const result = await chai
           .request(server)
           .post(customer)
           .set(header)
-          .send({ name, email, city, country, contactNo});
-        result.should.have.status(ok);
-        result.body.should.have.property('data');
-        result.body.should.have.property('message');
+          .send({ email, city, country, contactNo});
+        result.should.have.status(internalServerError);
+        result.body.should.have.property('error');
       });
+
+      it('should fail if name is empty', async () => {
+        const result = await chai
+          .request(server)
+          .post(customer)
+          .set(header)
+          .send({ name: '', email, city, country, contactNo});
+        result.should.have.status(internalServerError);
+        result.body.should.have.property('error');
+      });
+
     });
 
     describe('check for city', () => {
 
-      it('should pass for city as a random string', async () => {
+      it('should fail if city is not given', async () => {
         const result = await chai
           .request(server)
           .post(customer)
           .set(header)
-          .send({ city, email, name, country, contactNo});
-        result.should.have.status(ok);
-        result.body.should.have.property('data');
-        result.body.should.have.property('message');
+          .send({ email, name, country, contactNo});
+        result.should.have.status(internalServerError);
+        result.body.should.have.property('error');
       });
+
+      it('should fail if city is empty', async () => {
+        const result = await chai
+          .request(server)
+          .post(customer)
+          .set(header)
+          .send({ city: '', email, name, country, contactNo});
+        result.should.have.status(internalServerError);
+        result.body.should.have.property('error');
+      });
+
     });
 
     describe('check for country', () => {
 
-      it('should pass for country as a random string', async () => {
+      it('should fail if country is not given', async () => {
         const result = await chai
           .request(server)
           .post(customer)
           .set(header)
-          .send({ country, email, name, city, contactNo});
-        result.should.have.status(ok);
-        result.body.should.have.property('data');
-        result.body.should.have.property('message');
+          .send({ email, name, city, contactNo });
+        result.should.have.status(internalServerError);
+        result.body.should.have.property('error');
       });
+
+      it('should fail if country is empty', async () => {
+        const result = await chai
+          .request(server)
+          .post(customer)
+          .set(header)
+          .send({ country: '', email, name, city, contactNo });
+        result.should.have.status(internalServerError);
+        result.body.should.have.property('error');
+      });
+
     });
 })
 });
