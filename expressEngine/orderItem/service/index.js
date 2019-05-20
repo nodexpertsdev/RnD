@@ -1,5 +1,5 @@
-import OrderItemService from './orderItem';
+import orderItemService from './orderItem';
 
 export {
-  OrderItemService,
+  orderItemService,
 };
