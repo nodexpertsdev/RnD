@@ -15,7 +15,6 @@ class DBOperation {
     try {
       return await collection.create(data);
     } catch (err) {
-      console.log(err.message);
       return { error: err.message };
     }
   }
