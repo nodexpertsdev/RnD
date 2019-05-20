@@ -15,6 +15,7 @@ class DBOperation {
     try {
       return await collection.create(data);
     } catch (err) {
+      console.log(err.message);
       return { error: err.message };
     }
   }
@@ -84,7 +85,7 @@ class DBOperation {
   }
 
   updateOne = async (collection, filter, dataToUpdate) => {
-    try {      
+    try {
       return await collection.updateOne(filter, { $set: dataToUpdate });
     } catch (err) {
       return { error: err.message };
