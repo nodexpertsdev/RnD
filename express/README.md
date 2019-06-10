@@ -88,7 +88,4 @@ Use /api-docs to access swagger docs.
 * **[Mayank Kumar Awasthi](https://github.com/mayank-nx)**
 * **[Nishant Naithani](https://github.com/NishantNaithani1997)**
 * **[Nitin Chauhan](https://github.com/Nitin17SS)**
-* **[Nitin Kumar Bhola](https://github.com/nitinbhola44)**
-* **[Shalu Sharma](https://github.com/sharmashalu)**
 * **[Shraddha Goel](https://github.com/shraddhagoelss)**
-* **[Shubham Kumar Madheshiya](https://github.com/shubhkm)**
