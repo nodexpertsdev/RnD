@@ -1,5 +1,7 @@
 # RnD
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/61a2f299367541458f1a8731c6812d02)](https://app.codacy.com/app/mayank-nx/RnD?utm_source=github.com&utm_medium=referral&utm_content=nodexpertsdev/RnD&utm_campaign=Badge_Grade_Dashboard)
+
 Research and develop to learn, explore and apply.
 
 ## Motivation
